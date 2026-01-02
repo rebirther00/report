@@ -1,0 +1,242 @@
+# -*- coding: utf-8 -*-
+"""
+마크다운 파일을 DOCX로 변환하는 스크립트 (한글 폰트 지원)
+"""
+import subprocess
+import sys
+import os
+
+def install_package(package):
+    """패키지 설치"""
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package, "-q"])
+
+# 필요한 패키지 설치
+try:
+    from docx import Document
+    from docx.shared import Pt, Inches, Cm
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.enum.table import WD_TABLE_ALIGNMENT
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+except ImportError:
+    install_package("python-docx")
+    from docx import Document
+    from docx.shared import Pt, Inches, Cm
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.enum.table import WD_TABLE_ALIGNMENT
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+
+FONT_NAME = '맑은 고딕'
+
+def set_run_font(run, font_name=FONT_NAME, size=11, bold=False):
+    """Run에 한글 폰트 설정"""
+    run.font.name = font_name
+    run.font.size = Pt(size)
+    run.font.bold = bold
+    # 동아시아 폰트 설정
+    r = run._element
+    rPr = r.get_or_add_rPr()
+    rFonts = rPr.get_or_add_rFonts()
+    rFonts.set(qn('w:eastAsia'), font_name)
+    rFonts.set(qn('w:ascii'), font_name)
+    rFonts.set(qn('w:hAnsi'), font_name)
+
+def add_styled_paragraph(doc, text, font_size=11, bold=False, alignment=None):
+    """스타일이 적용된 문단 추가"""
+    p = doc.add_paragraph()
+    run = p.add_run(text)
+    set_run_font(run, size=font_size, bold=bold)
+    if alignment:
+        p.alignment = alignment
+    return p
+
+def add_styled_heading(doc, text, level=1):
+    """스타일이 적용된 제목 추가"""
+    sizes = {0: 18, 1: 16, 2: 14, 3: 12}
+    p = doc.add_paragraph()
+    run = p.add_run(text)
+    set_run_font(run, size=sizes.get(level, 12), bold=True)
+    if level == 0:
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    return p
+
+def add_styled_table(doc, data, first_col_bold=True):
+    """스타일이 적용된 표 추가"""
+    table = doc.add_table(rows=len(data), cols=len(data[0]))
+    table.style = 'Table Grid'
+    
+    for i, row_data in enumerate(data):
+        row = table.rows[i]
+        for j, cell_text in enumerate(row_data):
+            cell = row.cells[j]
+            cell.text = ''
+            p = cell.paragraphs[0]
+            run = p.add_run(str(cell_text))
+            is_bold = first_col_bold and j == 0
+            set_run_font(run, size=10, bold=is_bold)
+    
+    return table
+
+def create_docx():
+    """DOCX 파일 생성"""
+    doc = Document()
+    
+    # 기본 스타일 설정
+    style = doc.styles['Normal']
+    style.font.name = FONT_NAME
+    style.font.size = Pt(11)
+    style._element.rPr.rFonts.set(qn('w:eastAsia'), FONT_NAME)
+    
+    # 제목
+    add_styled_heading(doc, '복합소재 기반 건설기계 경량화 및 AI 융합 기술개발', 0)
+    
+    # 부제목
+    p = add_styled_heading(doc, '4대 아이템 총괄 요약 (본부장 보고용)', 1)
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    
+    doc.add_paragraph()
+    
+    # 사업 개요
+    add_styled_heading(doc, '사업 개요', 2)
+    
+    overview_data = [
+        ['주관', 'KIST 전북분원'],
+        ['예산', '300억원 (4년) + 도비 매칭'],
+        ['핵심 키워드', '첨단소재 + AI + 모빌리티'],
+        ['전북 연계', '탄소융합연구원, 한건연, 호룡(익산·김제)']
+    ]
+    add_styled_table(doc, overview_data)
+    
+    doc.add_paragraph()
+    
+    # 1. 굴착기
+    add_styled_heading(doc, '1. 굴착기 (프론트 경량화 + AI 부하감응)', 2)
+    
+    p1 = doc.add_paragraph()
+    text1 = '전 세계적으로 2050 탄소중립 선언 이후 건설기계 산업에 대한 탈탄소화 압력이 급격히 가중되고 있습니다. 유럽연합(EU)의 Stage V 배출규제와 미국 EPA Tier 4 규제로 친환경 장비 수요가 급증하는 가운데, HD현대는 Concept-X2 무인자동화 솔루션을 공개하며 자율화 기술 경쟁에 본격 돌입했습니다. 국내 건설기계 산업이 선진사 기술 장벽과 중국 저가 공세의 샌드위치 위기를 극복하기 위해서는 복합소재 경량화와 AI 연비최적화 기술의 융합이 필수적입니다.'
+    run1 = p1.add_run(text1)
+    set_run_font(run1, size=10)
+    
+    excavator_data = [
+        ['당위성', '글로벌 탄소중립 규제(EU Stage V, EPA Tier 4) 강화로 친환경·고효율 건설기계 수요 급증. HD현대 Concept-X2 등 자율화 경쟁 심화'],
+        ['경량화', '굴착기 프론트부(붐·암·버킷, 4.5톤) → CFRP 적용 30% 경량화'],
+        ['AI 기술', '실시간 부하감지 + 최적 굴삭경로 생성 AI → 숙련자 수준 연비 달성'],
+        ['효과', '통합 연비 20~25% 개선, 자율작업 정밀도 ±50mm, 탄소배출 저감']
+    ]
+    add_styled_table(doc, excavator_data)
+    
+    doc.add_paragraph()
+    
+    # 2. 고소작업차
+    add_styled_heading(doc, '2. 고소작업차 (작업대 경량화 + AI 안전제어)', 2)
+    
+    p2 = doc.add_paragraph()
+    text2 = '글로벌 고소작업차 시장은 도시화 가속, 인프라 투자 확대, 안전 규제 강화로 연평균 8.2% 이상의 급성장을 기록하고 있습니다. 특히 국내 고소작업차 시장 점유율 1위인 호룡이 전북 익산에 소재하고 있어, 본 사업의 지역 연계성 측면에서 최적의 조건을 갖추고 있습니다. 고소작업차는 건설기계 중 경량화 효과가 가장 직접적으로 나타나는 장비로, 작업대 경량화 시 작업반경 확대, 안정성 향상, 탑승인원 증가, 연비 개선의 다중 효과를 기대할 수 있습니다.'
+    run2 = p2.add_run(text2)
+    set_run_font(run2, size=10)
+    
+    awp_data = [
+        ['당위성', '글로벌 고소작업차 시장 544억$ → 1,197억$(2035년), 연 8.2% 성장. 호룡(익산) 국내 1위'],
+        ['경량화', '작업대·붐말단 → CFRP 적용 30~50% 경량화'],
+        ['AI 기술', '전복예측 AI(95%) + 작업반경 자동제한 + 충돌예측'],
+        ['효과', '작업반경 20% 확대, 안정성 향상, 중대재해 예방, 탑승인원 증가']
+    ]
+    add_styled_table(doc, awp_data)
+    
+    doc.add_paragraph()
+    
+    # 3. RDT 적재함
+    add_styled_heading(doc, '3. 광산트럭(RDT) 적재함 (적재함 경량화 + AI 적재 최적화)', 2)
+    
+    p3 = doc.add_paragraph()
+    text3 = '전기차 배터리(리튬, 니켈), 반도체(희토류) 등 전략 자원 확보 경쟁이 심화되면서 글로벌 광산시장이 급성장하고 있습니다. 2012년 RDT 역대 최고 인도량 기준 15~20년 수명을 고려하면, 2027~2032년 대규모 교체 수요가 예상됩니다. 본 과제는 산업부 광산용 초대형 건설기계 사업(프레임 개발)과 시너지를 창출하여, 프레임(산업부) + 적재함(과기부)이 결합된 완성형 차세대 RDT를 국내 기술로 개발하는 기반을 마련합니다.'
+    run3 = p3.add_run(text3)
+    set_run_font(run3, size=10)
+    
+    rdt_data = [
+        ['당위성', '글로벌 RDT 시장 100억$, 2027~2032년 대규모 교체 수요. 산업부 광산장비 사업과 시너지 (프레임+적재함=완성형 RDT)'],
+        ['경량화', '적재함(25톤) → CFRP+내마모 하이브리드 30% 경량화'],
+        ['AI 기술', '무게중심 실시간 분석(95%) + 과적예측(98%) + 적재패턴 최적화'],
+        ['효과', 'Payload 10%↑ + 연비 5%↑ + 타이어수명↑ → RDT 1대당 연 8억원 절감']
+    ]
+    add_styled_table(doc, rdt_data)
+    
+    doc.add_paragraph()
+    
+    # 4. 사다리차
+    add_styled_heading(doc, '4. 사다리차 (다단 붐 경량화 + AI 안전제어)', 2)
+    
+    p4 = doc.add_paragraph()
+    text4 = '이사용 사다리차는 한국이 세계에서 유일하게 발전시킨 독자적인 장비 시장으로, 고층 아파트 문화와 결합하여 연 2,000억원 규모의 시장을 형성하고 있습니다. 또한 도시 고층화에 따라 소방용 사다리차의 고층 도달 능력이 핵심 과제로 부상하고 있습니다. 전북 김제 소재 호룡은 국내 유일 90m급 고소작업차 제조 기술을 보유하고 있으며, 137억원 규모의 로봇플랫폼 국책과제 주관연구기관으로 선정되어 AI 기술 협업에 최적의 파트너입니다.'
+    run4 = p4.add_run(text4)
+    set_run_font(run4, size=10)
+    
+    ladder_data = [
+        ['당위성', '한국 유일 이사용 사다리차 시장(2,000억원/년) + 소방용 고층화 대응 필수. 호룡(김제) 90m급 제조, 137억 국책과제 주관'],
+        ['경량화', '다단 붐(8톤) → CFRP 하이브리드 30% 경량화'],
+        ['AI 기술', '전복예측(98%) + 충돌예측(95%) + 풍속대응 + 소방용 열화상 연동'],
+        ['효과', '도달높이 +15m(70m→85m), 작업반경 +15%, 안전사고 50% 감소 목표']
+    ]
+    add_styled_table(doc, ladder_data)
+    
+    doc.add_paragraph()
+    
+    # 핵심 포인트
+    add_styled_heading(doc, '핵심 포인트', 2)
+    
+    p5 = doc.add_paragraph()
+    run5a = p5.add_run('4대 아이템 공통 구조: ')
+    set_run_font(run5a, size=11, bold=True)
+    run5b = p5.add_run('복합소재(CFRP) 경량화 + AI 제어 시스템')
+    set_run_font(run5b, size=11)
+    
+    bullets = [
+        '• 핵심 부품 30% 경량화 (전북 탄소클러스터 활용)',
+        '• 안전/효율 AI 알고리즘 (한건연 AI 기술 적용)',
+        '• 공통 효과: 성능 향상 + 연비 개선 + 안전성 강화 + 지역 연계'
+    ]
+    for bullet in bullets:
+        p = doc.add_paragraph()
+        run = p.add_run(bullet)
+        set_run_font(run, size=10)
+    
+    doc.add_paragraph()
+    
+    # 파트너 표
+    partner_data = [
+        ['아이템', '핵심 파트너', '차별점'],
+        ['굴착기', 'HD현대', '산업부 광산사업 연계'],
+        ['고소작업차', '호룡(익산)', '국내 1위 기업 직접 참여'],
+        ['RDT 적재함', 'HD현대', '산업부 사업과 완성형 조합'],
+        ['사다리차', '호룡(김제)', '137억 국책과제 주관기관']
+    ]
+    
+    table = doc.add_table(rows=len(partner_data), cols=3)
+    table.style = 'Table Grid'
+    
+    for i, row_data in enumerate(partner_data):
+        row = table.rows[i]
+        for j, cell_text in enumerate(row_data):
+            cell = row.cells[j]
+            cell.text = ''
+            p = cell.paragraphs[0]
+            run = p.add_run(str(cell_text))
+            is_bold = i == 0  # 헤더 행
+            set_run_font(run, size=10, bold=is_bold)
+    
+    doc.add_paragraph()
+    
+    # 작성일
+    p_date = doc.add_paragraph()
+    run_date = p_date.add_run('작성일: 2026년 1월 2일')
+    set_run_font(run_date, size=10)
+    
+    # 파일 저장
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_path = os.path.join(script_dir, '총괄요약_복합소재_AI_4대아이템_v2.docx')
+    doc.save(output_path)
+    print(f"DOCX 파일 생성 완료: {output_path}")
+
+if __name__ == "__main__":
+    create_docx()
