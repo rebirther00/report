@@ -1,0 +1,360 @@
+FILE: 17_슈어소프트_STATIC
+PATH: ref_docs\260106_할일 및 자료\슈어소프트테크_2025_코드검증솔루션(STATIC, CT, COVER, VPES, V-SPICE)\슈어소프트테크_2025_STATIC.pdf
+================================================================================
+
+Software for Safe World
+STATIC
+코드정적검증도구
+TABLE OF CONTENTS
+Why STATIC
+Needs
+Solution
+Specification
+References
+3p
+4p
+5p
+21p
+22p
+Why STATIC
+3
+차별점
+강점
+Performance
+Management
+Easy 
+Customizing
+분산컴퓨팅을
+활용한빠른분석
+프로젝트의전체추이
+및진척도제공
+사용자추천기반의
+수정가이드제공
+고객사맞춤규칙개발
+(별도협의)
+기대효과
+정적분석시간단축
+01
+결함수정의편의성
+02
+프로젝트관리의용이성
+03
+국제인증
+Cert. from SGS TÜV
+CWE Compatibility
+Tool Qualification 제공
+사용성
+Web기반UI
+손쉬운분석요청유틸리티제공
+Continuous integration 툴연동
+Needs
+4
+Problem
+Benefit
+Mission Critical
+도메인의코딩규칙
+검사및실행시간
+오류(Runtime Error)에
+대한중요도증가
+프로젝트
+대규모화로인한
+정적분석시간증가
+프로젝트
+개발인력의증가로
+인한커뮤니케이션
+비용증가
+결함수정의
+어려움
+다양한
+규칙세트제공
+정적분석
+시간감소
+업무집중도
+향상
+결함수정의
+용이함
+대규모프로젝트의정적분석자동화도구
+Solution
+5
+검출가능한결함(실행시간오류) 유형
+지원도메인
+도메인
+지침
+지원내역
+자동차
+HKMC A/B급
+검증지침
+35개전부지원
+국방
+신뢰성평가
+수행지침
+(CWE 658/659/660)
+C/C++
+90개전부지원
+Java 50개지원
+(추가지원예정)
+그외다수도메인규칙지원
+산술오류
+- 복잡한산술연산
+- 사용자모르게변하는
+타입에대한잘못된
+연산
+배열경계오류
+- 보안취약점관련오류
+- buffer overflow
+- buffer underflow
+메모리오류
+- 잘못된메모리접근
+- 메모리누수, NULL 참조
+- 잘못된메모리해제
+실행시간오류검출
+Solution
+6
+도메인별로준수해야하는코딩규칙을자동으로검사
+코딩규칙검사
+자동차
+MISRA (C, C++)
+ISO 26262/ES 95489-23
+AUTOSAR C++14
+: 자동차내장형시스템국제표준코딩규칙
+: 자동차사이버보안규칙
+국방
+DAPA
+: 방위사업청신뢰성지침안코딩가이드라인및
+국방보안약점점검
+보안
+CWE 658(C) / 659(C++) / 660(Java)
+CERT Secure Coding Standards
+행정안전부시큐어코딩가이드라인
+철도
+IEC 62279/EN 50128 
+: 열차제어시스템SW 국제표준가이드라인
+전기/전자
+IEC 61508 
+: 전기/전자시스템SW 국제표준가이드라인
+원자력
+IEC 60880 
+: 국제원자력안정성표준
+의료
+IEC 62304 
+: Medical device software – Software life cycle 
+processes
+조선/해양
+IEC 61508
+: 전기/전자시스템SW 국제표준가이드라인
+기타
+Naming, Coding style 가이드라인
+항공
+DO-178C
+JSF
+: FAA 항공내장형시스템국제표준코딩규칙
+Solution
+7
+보안코딩가이드라인규칙제공
+언어별ES95489-23 지원
+언어
+전체룰셋지원율
+심각도[ 상] 항목지원율
+C
+100%
+100%
+C++
+100%
+100%
+JAVA
+47%
+45%
+ES95489-23 100% 대응
+4종룰셋제공을통해상세한결함정보파악가능
+사이버보안코딩규칙
+4종룰셋제공
+상세한결함
+정보제공
+Solution
+8
+함수메트릭6종지원(무기체계SW 개발및관리매뉴얼지정메트릭)
+Cyclomatic 
+Complexity
+Number of
+Call Levels
+Number
+of Function 
+Parameters
+Number
+of Calling 
+Functions
+Number
+of Called 
+Functions
+Number of 
+Executable 
+Code Lines
+다양한SW 품질메트릭측정지원
+SW 품질메트릭
+C/C++ 약25종메트릭추가지원
+Java/C# 약10종메트릭추가지원
+Solution
+9
+APU Grid
+분석요청
+여러PC의여유자원을활용하여분석에드는시간과비용을분산
+약300개C++ 소스파일1분이내분석가능(별도APU 서버확보필요)
+분산컴퓨팅을활용한빠른분석
+Solution
+10
+프로젝트관리자와실무자의관심영역을분리한오버뷰
+프로젝트관리자와실무자의업무집중도향상
+관리자영역(프로젝트오버뷰)
+실무자영역(결함)
+Solution
+11
+결함위치확인및담당자/상태변경
+결함수정을위한가이드제공
+결함필터를사용한빠른검색
+결함진행상황추적을통한관리
+쉽고빠른결함수정및관리
+Solution
+12
+프로젝트단위의정보제공
+프로젝트관리자를위한오버뷰
+프로젝트결함
+추이정보
+프로젝트결함
+추이정보
+분석결과
+요약정보
+Solution
+13
+관심있는지표별로프로젝트의목표설정
+Burn down 차트를사용하여달성도확인
+프로젝트관리자를위한목표설정기능
+Solution
+14
+결함의Life Cycle을사용하여상태관리
+결함의History를사용하여진행상황관리
+결함Life Cycle & History
+Solution
+15
+결함필터를사용하여관심있는결함쉽게검색
+결함상태, 담당자, 규칙, 함수등다양한조합으로검색
+결함위치확인및담당자/상태변경
+소스코드상의위배확인
+결함의원인추적을위한추가정보
+제공
+결함신뢰도제공
+다양한결함필터및결함확인
+Solution
+16
+사용자추천버튼
+사용자추천시스템에의한수정이력추천
+사용자가쉽게결함을수정할수있도록가이드
+AI를통한결함수정가이드(Fix Assistant)
+Fix Reference & Fix Assistant
+Solution
+17
+AI를통한chatbot 가이드
+Troubleshooting guide를학습한AI
+Troubleshooting guide기반chatbot
+Solution
+18
+Baseline을설정하여특정시점이후발생하는결함만관리
+Legacy Code 분석제외기능
+Solution
+19
+주요품질메트릭
+Cyclomatic Complexity
+Maximum Nesting Level
+Maximum Function Calling Number
+Maximum Function Called Number
+Recursion Function Number
+다양한단위(모듈, 파일, 클래스, 함수)의SW 품질메트릭(약30종) 제공
+메트릭위배설정및경고표시
+품질메트릭제공
+Solution
+20
+V-SPICE (프로세스리포팅자동화도구)
+VPES (빌드및시험자동화도구)
+정적시험자동화환경구축시자사도구VPES, V-SPICE와연동가능
+지속통합시스템(Jenkins 등)과연동
+다양한시험도구와연동가능
+Specification
+21
+구분
+세부사항
+언어지원
+C/C++, Java, C#
+지원환경
+OS
+Client : Windows 10 이상, Ubuntu OS (기타Linux 환경은문의)
+Server(Was)/Agent(APU) : Windows 10 이상
+컴파일러지원
+ARM 계열
+Freescale 계열
+GreenHills 계열
+Keil 계열
+Renesas 계열
+기타100개이상지원
+신규툴체인2주이내지원가능
+지원환경
+구분
+CPU
+RAM
+HDD
+Server (Was)
+8 Core 3.0GHz 이상64bit
+16GB 이상
+약1T의여유공간
+Agent (APU)
+8 Core 3.0GHz 이상64bit 
+32GB 이상
+약1T의여유공간
+권장사양
+References
+22
+상황
+실제오류를차후방지하기위해맞춤코딩규칙필요
+해결방안
+및결과
+
+오류를분석하여맞춤코딩규칙개발및적용
+
+개발프로세스에개발된코딩규칙검증포함
+※ 적용분야: 엔진설계(C언어)
+상황
+별도의정적분석도구를사용하지않음
+해결방안
+및결과
+
+빌드자동화서버와연동하여효율적으로
+SW 품질관리가가능해짐
+
+MISRA 코딩규칙을적용하여SW의품질향상
+차량부품제조사(H사) 
+반도체제조사(S사) 
+References
+23
+요구사항
+정적시험
+동적시험
+정의
+SW 실행없이
+소스코드내결함검출
+요구사항기반의테스트
+케이스로실행확인
+시험항목
+코딩규칙검출
+실행시간오류검출
+코드실행률측정
+검증대상
+차기전술유도무기발사통제장비사격통제콘솔용GUI SW
+고객사요구사항
+SW 신뢰성시험요구사항만족
+도구적용
+실행시간오류검출
+신뢰성평가수행지침기반규칙으로결함을검출하고수정
+결과
+SW 신뢰성시험기준만족
+LIG 넥스원검수기준만족
+무기체계내장형SW 신뢰성검증적용사례(IMT)
+Software for Safe World
+Thank You
