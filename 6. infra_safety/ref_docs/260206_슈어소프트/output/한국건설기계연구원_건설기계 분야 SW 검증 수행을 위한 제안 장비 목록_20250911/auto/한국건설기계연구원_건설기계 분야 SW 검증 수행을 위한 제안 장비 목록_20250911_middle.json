@@ -1,0 +1,1784 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        192,
+                        186,
+                        650,
+                        298
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                191,
+                                187,
+                                650,
+                                225
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        191,
+                                        187,
+                                        650,
+                                        225
+                                    ],
+                                    "score": 1.0,
+                                    "content": "건설기계 전자제어 및 지능형 핵심부품",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        },
+                        {
+                            "bbox": [
+                                281,
+                                224,
+                                559,
+                                261
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        281,
+                                        224,
+                                        559,
+                                        261
+                                    ],
+                                    "score": 1.0,
+                                    "content": "기능안전평가 기반구축",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                329,
+                                261,
+                                512,
+                                301
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        329,
+                                        261,
+                                        512,
+                                        301
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비 목록",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        }
+                    ],
+                    "index": 1
+                }
+            ],
+            "page_idx": 0,
+            "page_size": [
+                841,
+                595
+            ],
+            "discarded_blocks": [
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        577,
+                        549,
+                        810,
+                        563
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                577,
+                                547,
+                                810,
+                                565
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        577,
+                                        549,
+                                        590,
+                                        562
+                                    ],
+                                    "score": 0.46,
+                                    "content": "\\circled{ c}",
+                                    "type": "inline_equation"
+                                },
+                                {
+                                    "bbox": [
+                                        590,
+                                        547,
+                                        810,
+                                        565
+                                    ],
+                                    "score": 0.972,
+                                    "content": "2025. Suresofttech Inc. All rights reserved.",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        341,
+                        39,
+                        500,
+                        77
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                368,
+                                41,
+                                472,
+                                55
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        368,
+                                        41,
+                                        472,
+                                        55
+                                    ],
+                                    "score": 0.971,
+                                    "content": "SURESOFT",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                343,
+                                61,
+                                499,
+                                77
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        343,
+                                        61,
+                                        499,
+                                        77
+                                    ],
+                                    "score": 1.0,
+                                    "content": "Software for Safe World",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        660,
+                        441,
+                        766,
+                        515
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                688,
+                                443,
+                                766,
+                                464
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        688,
+                                        443,
+                                        766,
+                                        464
+                                    ],
+                                    "score": 1.0,
+                                    "content": "2025. 09.",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                661,
+                                470,
+                                764,
+                                489
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        661,
+                                        470,
+                                        764,
+                                        489
+                                    ],
+                                    "score": 1.0,
+                                    "content": "AX사업개발 1팀",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                690,
+                                495,
+                                765,
+                                515
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        690,
+                                        495,
+                                        765,
+                                        515
+                                    ],
+                                    "score": 1.0,
+                                    "content": "신영만 대리",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        192,
+                        186,
+                        650,
+                        298
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                191,
+                                187,
+                                650,
+                                225
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        191,
+                                        187,
+                                        650,
+                                        225
+                                    ],
+                                    "score": 1.0,
+                                    "content": "건설기계 전자제어 및 지능형 핵심부품",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        },
+                        {
+                            "bbox": [
+                                281,
+                                224,
+                                559,
+                                261
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        281,
+                                        224,
+                                        559,
+                                        261
+                                    ],
+                                    "score": 1.0,
+                                    "content": "기능안전평가 기반구축",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                329,
+                                261,
+                                512,
+                                301
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        329,
+                                        261,
+                                        512,
+                                        301
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비 목록",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        }
+                    ],
+                    "index": 1
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [],
+            "page_idx": 1,
+            "page_size": [
+                841,
+                595
+            ],
+            "discarded_blocks": [
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        350,
+                        241,
+                        492,
+                        298
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                374,
+                                244,
+                                465,
+                                257
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        374,
+                                        244,
+                                        465,
+                                        257
+                                    ],
+                                    "score": 0.862,
+                                    "content": "SURESOIT",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "bbox": [
+                                350,
+                                267,
+                                490,
+                                298
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        350,
+                                        267,
+                                        490,
+                                        298
+                                    ],
+                                    "score": 1.0,
+                                    "content": "주요 제안 장비",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": []
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        57,
+                        66,
+                        129,
+                        88
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                54,
+                                64,
+                                132,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        64,
+                                        132,
+                                        91
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        94,
+                        308,
+                        123
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                69,
+                                94,
+                                309,
+                                111
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        69,
+                                        94,
+                                        309,
+                                        111
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 모빌리티분야주요표준별대응가능한장비목록화",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                108,
+                                108,
+                                290,
+                                123
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        108,
+                                        108,
+                                        290,
+                                        123
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• ISO 26262, IEC 61508 등표준준수",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        }
+                    ],
+                    "index": 1.5
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        46,
+                        140,
+                        792,
+                        503
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                46,
+                                140,
+                                792,
+                                503
+                            ],
+                            "group_id": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        140,
+                                        792,
+                                        503
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                46,
+                                                140,
+                                                792,
+                                                503
+                                            ],
+                                            "score": 0.98,
+                                            "html": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=2>상세활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>정적검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 6• ES 95411-00 4.1, 4.2, 4.3</td><td rowspan=1 colspan=2>:코딩룰,메트릭,실행시간오류 검사결과분석,Report 작성</td><td rowspan=1 colspan=1>STATIC</td><td rowspan=1 colspan=1>80,000,000</td></tr><tr><td rowspan=2 colspan=1>단위테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 9ES 95411-00 5 표 5-1ASPICE 4.4.4 SWE.4</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>·ASIL 등급 별 구조적 목표 커버리지 확인(Statement, Branch, MC/DC)</td><td rowspan=4 colspan=1>CT</td><td rowspan=4 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>요구사항기반</td><td rowspan=1 colspan=1>소스코드의 상세 설계 요구사항 정합성 확인ASIL 등급별 구조적 목표 커버리지 확인Test Spec/Test Case 개발, Test수행(수행 중 이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=2 colspan=1>통합테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 12ES 95411-006표 6-1ASPICE 4.4.5 SWE.5</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>ASIL 등급 별 구조적 목표 커버리지 확인(Function 및 Call)</td></tr><tr><td rowspan=1 colspan=1>요국산항기반</td><td rowspan=1 colspan=1>소스코드의 아키텍처 설계 요구사항 정합성 확인인터페이스의 요구사항 정합성 확인ASIL 등급별구조적 목표커버리지확인Test Spec/Test Case 개발, Test수행(수행중이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=1 colspan=1>결함주입시험</td><td rowspan=1 colspan=1>IS026262 part 6 Table 7.11ES 954115.1</td><td rowspan=1 colspan=2>결함 목록 커버리지기능안전설계 검증리포트</td><td rowspan=1 colspan=1>FIT</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>자원사용량 검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 7.1mES 95411-006.4 표 6-11</td><td rowspan=1 colspan=2>자원 사용량 리포트태스크 타이밍 리포트</td><td rowspan=1 colspan=1>PROV</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>라이프산이클관리및검사</td><td rowspan=1 colspan=1>ASPICE 프로세스 전반 부분</td><td rowspan=1 colspan=2>개발 안전 요구사항 충족을 위한 라이프사이클관리/검사 및검층</td><td rowspan=1 colspan=1>VSPICE</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>통신및네트워크검증</td><td rowspan=1 colspan=1>• ISO 26262 Part 4, 6</td><td rowspan=1 colspan=2>통신 프로토콜,네트워크 인터페이스,데이터 무결성,타이밍요구사항 안전 목표</td><td rowspan=1 colspan=1>AUTORACT</td><td rowspan=1 colspan=1>100,000,000</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "dd83f7fc18a19e4f34401a7dcf70a923f2fd4c4c09b519083bd16c7dc23404e2.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 4,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        140,
+                                        792,
+                                        261.0
+                                    ],
+                                    "spans": [],
+                                    "index": 3
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        261.0,
+                                        792,
+                                        382.0
+                                    ],
+                                    "spans": [],
+                                    "index": 4
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        382.0,
+                                        792,
+                                        503.0
+                                    ],
+                                    "spans": [],
+                                    "index": 5
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                }
+            ],
+            "page_idx": 2,
+            "page_size": [
+                841,
+                595
+            ],
+            "discarded_blocks": [
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        35,
+                        21,
+                        147,
+                        39
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                34,
+                                21,
+                                148,
+                                39
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        34,
+                                        21,
+                                        148,
+                                        39
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비 목록-01",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        785,
+                        23,
+                        805,
+                        35
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                782,
+                                20,
+                                809,
+                                39
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        782,
+                                        20,
+                                        809,
+                                        39
+                                    ],
+                                    "score": 1.0,
+                                    "content": "",
+                                    "type": "text",
+                                    "height": 19,
+                                    "width": 27
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        57,
+                        66,
+                        129,
+                        88
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                54,
+                                64,
+                                132,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        54,
+                                        64,
+                                        132,
+                                        91
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        94,
+                        308,
+                        123
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                69,
+                                94,
+                                309,
+                                111
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        69,
+                                        94,
+                                        309,
+                                        111
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 모빌리티분야주요표준별대응가능한장비목록화",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                108,
+                                108,
+                                290,
+                                123
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        108,
+                                        108,
+                                        290,
+                                        123
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• ISO 26262, IEC 61508 등표준준수",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        }
+                    ],
+                    "index": 1.5,
+                    "bbox_fs": [
+                        69,
+                        94,
+                        309,
+                        123
+                    ]
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        46,
+                        140,
+                        792,
+                        503
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                46,
+                                140,
+                                792,
+                                503
+                            ],
+                            "group_id": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        140,
+                                        792,
+                                        503
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                46,
+                                                140,
+                                                792,
+                                                503
+                                            ],
+                                            "score": 0.98,
+                                            "html": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=2>상세활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>정적검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 6• ES 95411-00 4.1, 4.2, 4.3</td><td rowspan=1 colspan=2>:코딩룰,메트릭,실행시간오류 검사결과분석,Report 작성</td><td rowspan=1 colspan=1>STATIC</td><td rowspan=1 colspan=1>80,000,000</td></tr><tr><td rowspan=2 colspan=1>단위테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 9ES 95411-00 5 표 5-1ASPICE 4.4.4 SWE.4</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>·ASIL 등급 별 구조적 목표 커버리지 확인(Statement, Branch, MC/DC)</td><td rowspan=4 colspan=1>CT</td><td rowspan=4 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>요구사항기반</td><td rowspan=1 colspan=1>소스코드의 상세 설계 요구사항 정합성 확인ASIL 등급별 구조적 목표 커버리지 확인Test Spec/Test Case 개발, Test수행(수행 중 이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=2 colspan=1>통합테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 12ES 95411-006표 6-1ASPICE 4.4.5 SWE.5</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>ASIL 등급 별 구조적 목표 커버리지 확인(Function 및 Call)</td></tr><tr><td rowspan=1 colspan=1>요국산항기반</td><td rowspan=1 colspan=1>소스코드의 아키텍처 설계 요구사항 정합성 확인인터페이스의 요구사항 정합성 확인ASIL 등급별구조적 목표커버리지확인Test Spec/Test Case 개발, Test수행(수행중이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=1 colspan=1>결함주입시험</td><td rowspan=1 colspan=1>IS026262 part 6 Table 7.11ES 954115.1</td><td rowspan=1 colspan=2>결함 목록 커버리지기능안전설계 검증리포트</td><td rowspan=1 colspan=1>FIT</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>자원사용량 검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 7.1mES 95411-006.4 표 6-11</td><td rowspan=1 colspan=2>자원 사용량 리포트태스크 타이밍 리포트</td><td rowspan=1 colspan=1>PROV</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>라이프산이클관리및검사</td><td rowspan=1 colspan=1>ASPICE 프로세스 전반 부분</td><td rowspan=1 colspan=2>개발 안전 요구사항 충족을 위한 라이프사이클관리/검사 및검층</td><td rowspan=1 colspan=1>VSPICE</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>통신및네트워크검증</td><td rowspan=1 colspan=1>• ISO 26262 Part 4, 6</td><td rowspan=1 colspan=2>통신 프로토콜,네트워크 인터페이스,데이터 무결성,타이밍요구사항 안전 목표</td><td rowspan=1 colspan=1>AUTORACT</td><td rowspan=1 colspan=1>100,000,000</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "dd83f7fc18a19e4f34401a7dcf70a923f2fd4c4c09b519083bd16c7dc23404e2.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 4,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        46,
+                                        140,
+                                        792,
+                                        261.0
+                                    ],
+                                    "spans": [],
+                                    "index": 3
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        261.0,
+                                        792,
+                                        382.0
+                                    ],
+                                    "spans": [],
+                                    "index": 4
+                                },
+                                {
+                                    "bbox": [
+                                        46,
+                                        382.0,
+                                        792,
+                                        503.0
+                                    ],
+                                    "spans": [],
+                                    "index": 5
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 4
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        57,
+                        66,
+                        129,
+                        88
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                55,
+                                65,
+                                132,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        65,
+                                        132,
+                                        91
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        95,
+                        370,
+                        135
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                94,
+                                311,
+                                110
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        94,
+                                        311,
+                                        110
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 사이버보안및AI 모델검증수행가능항목추가제안",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                106,
+                                108,
+                                313,
+                                123
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        106,
+                                        108,
+                                        313,
+                                        123
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 사이버보안퍼징테스팅수행–ARCHON Z",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        },
+                        {
+                            "bbox": [
+                                106,
+                                119,
+                                369,
+                                138
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        106,
+                                        119,
+                                        369,
+                                        138
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• AI 모델강건성시험및뉴런커버리지측정- VERIFAI-M",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 3
+                        }
+                    ],
+                    "index": 2
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        135,
+                        247,
+                        149
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                133,
+                                247,
+                                150
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        133,
+                                        247,
+                                        150
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 건설기계주요제어기HILS 검증장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 4
+                        }
+                    ],
+                    "index": 4
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        48,
+                        159,
+                        793,
+                        383
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                48,
+                                159,
+                                793,
+                                383
+                            ],
+                            "group_id": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        159,
+                                        793,
+                                        383
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                48,
+                                                159,
+                                                793,
+                                                383
+                                            ],
+                                            "score": 0.975,
+                                            "html": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=1>상세 활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>AI 모델 검증 장비</td><td rowspan=1 colspan=1>• ISO/IEC TS 4213, ISO/IEC 29119-11</td><td rowspan=1 colspan=1>AI 모델 강건성 시험,성능 시험,뉴런 커버리지 측정표준 기반 ML 모델 평가 지표 계산(ISO4213 기반 평가 지표 진단)</td><td rowspan=1 colspan=1>VERIFAI-M</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>사이버보안</td><td rowspan=1 colspan=1>• IS0/SAE 21434, IEC 62443, IS0/IEC27034</td><td rowspan=1 colspan=1>ES 95489-22 (모의해킹)도구를 통해Fuzzing Test 대을 가능차량 내부 네트워크(CAN/Ethernet)기반 무작위 입력을통해 제어기/실차 오작동 확인차량 외부 네트워크(BLE,WIFI,USB)기반 무작위 입력을통해 제어기/실차 오작동 확인</td><td rowspan=1 colspan=1>ARCHON Z</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>시뮬레이션 검증</td><td rowspan=1 colspan=1>·ISO 26262 Part 4, 6, 8(모델 기반 개발 및시뮬레이션을 통한 검증 수행</td><td rowspan=1 colspan=1>다양한 환경과 상황에서 동작하는 주요 건설 기계의 성능평가 및 검증 수행을 위한 가상 검증 환경 구축가상환경 및 건설기계 주요 부품 모델링 SW,시나리오 저작 및 데이터 수집&amp;분석 장비로 구성</td><td rowspan=1 colspan=1>AUTOSIMDCAT</td><td rowspan=1 colspan=1>350,000,000</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "83a240b835e7986a7b7070f76e2c5ef4851775e0271380aa578b22735ef5c31c.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        159,
+                                        793,
+                                        233.66666666666669
+                                    ],
+                                    "spans": [],
+                                    "index": 5
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        233.66666666666669,
+                                        793,
+                                        308.33333333333337
+                                    ],
+                                    "spans": [],
+                                    "index": 6
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        308.33333333333337,
+                                        793,
+                                        383.00000000000006
+                                    ],
+                                    "spans": [],
+                                    "index": 7
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        48,
+                        397,
+                        792,
+                        464
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                48,
+                                397,
+                                792,
+                                464
+                            ],
+                            "group_id": 1,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        397,
+                                        792,
+                                        464
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                48,
+                                                397,
+                                                792,
+                                                464
+                                            ],
+                                            "score": 0.968,
+                                            "html": "<table><tr><td>검증 항목</td><td>상세 내용</td><td>제안 금액</td></tr><tr><td rowspan=\"2\">제어기 검증을 위한 . HILS 구축</td><td>검증 대상 제어기에 따른 구축 장비 금액 차 발생(1-2억/10억 이상 등)</td><td>평균 2.5억~3.5억</td></tr><tr><td>SW+ECU 시험,SW+HW 통합 시험,시스템 시험을 통한 기능 안전 수행</td><td>(대상 제어기 별 구성 항목에 따라 증액)</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "3f8c856fdb30062ba2b37bf724fe04ec31b8a621420b1f1a71bed6f5c7c229d3.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        397,
+                                        792,
+                                        419.3333333333333
+                                    ],
+                                    "spans": [],
+                                    "index": 8
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        419.3333333333333,
+                                        792,
+                                        441.66666666666663
+                                    ],
+                                    "spans": [],
+                                    "index": 9
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        441.66666666666663,
+                                        792,
+                                        463.99999999999994
+                                    ],
+                                    "spans": [],
+                                    "index": 10
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        50,
+                        483,
+                        504,
+                        540
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                63,
+                                483,
+                                503,
+                                496
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        483,
+                                        503,
+                                        496
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC TS 4213 : 기계학습(ML) 기반분류성능평가방법론을다룬기술사양문서(지표, 평가절차, 통제기준, 데이터구성등)",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 11
+                        },
+                        {
+                            "bbox": [
+                                63,
+                                493,
+                                451,
+                                507
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        493,
+                                        451,
+                                        507
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC 29119-11 : SW및시스템공학-SW테스트시리즈中AI 기반시스템의테스트특성및테스트지침제공",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 12
+                        },
+                        {
+                            "bbox": [
+                                61,
+                                504,
+                                365,
+                                520
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        504,
+                                        365,
+                                        520
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/SAE 21434 : 차량사이버보안공학요구사항, 위험분석, 조직및공급망관리표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 13
+                        },
+                        {
+                            "bbox": [
+                                62,
+                                516,
+                                331,
+                                528
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        516,
+                                        331,
+                                        528
+                                    ],
+                                    "score": 1.0,
+                                    "content": "IEC 62443 : 산업자동화및제어시스템(IACS)을위한국제사이버보안표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 14
+                        },
+                        {
+                            "bbox": [
+                                63,
+                                527,
+                                268,
+                                540
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        527,
+                                        268,
+                                        540
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC 27034 : 정보보안–애플리케이션보안국제표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 15
+                        }
+                    ],
+                    "index": 13
+                }
+            ],
+            "page_idx": 3,
+            "page_size": [
+                841,
+                595
+            ],
+            "discarded_blocks": [
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        35,
+                        21,
+                        150,
+                        39
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                33,
+                                20,
+                                152,
+                                40
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        33,
+                                        20,
+                                        152,
+                                        40
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비 목록-02",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "discarded",
+                    "bbox": [
+                        785,
+                        23,
+                        805,
+                        35
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                782,
+                                21,
+                                808,
+                                38
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        782,
+                                        21,
+                                        808,
+                                        38
+                                    ],
+                                    "score": 1.0,
+                                    "content": "[ 4 ]",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "para_blocks": [
+                {
+                    "type": "title",
+                    "bbox": [
+                        57,
+                        66,
+                        129,
+                        88
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                55,
+                                65,
+                                132,
+                                91
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        55,
+                                        65,
+                                        132,
+                                        91
+                                    ],
+                                    "score": 1.0,
+                                    "content": "제안 장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        95,
+                        370,
+                        135
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                70,
+                                94,
+                                311,
+                                110
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        94,
+                                        311,
+                                        110
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 사이버보안및AI 모델검증수행가능항목추가제안",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 1
+                        },
+                        {
+                            "bbox": [
+                                106,
+                                108,
+                                313,
+                                123
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        106,
+                                        108,
+                                        313,
+                                        123
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 사이버보안퍼징테스팅수행–ARCHON Z",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 2
+                        },
+                        {
+                            "bbox": [
+                                106,
+                                119,
+                                369,
+                                138
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        106,
+                                        119,
+                                        369,
+                                        138
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• AI 모델강건성시험및뉴런커버리지측정- VERIFAI-M",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 3
+                        },
+                        {
+                            "bbox": [
+                                70,
+                                133,
+                                247,
+                                150
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        70,
+                                        133,
+                                        247,
+                                        150
+                                    ],
+                                    "score": 1.0,
+                                    "content": "• 건설기계주요제어기HILS 검증장비",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 4
+                        }
+                    ],
+                    "index": 2,
+                    "bbox_fs": [
+                        70,
+                        94,
+                        369,
+                        138
+                    ]
+                },
+                {
+                    "type": "text",
+                    "bbox": [
+                        71,
+                        135,
+                        247,
+                        149
+                    ],
+                    "lines": [],
+                    "index": 4,
+                    "bbox_fs": [
+                        70,
+                        133,
+                        247,
+                        150
+                    ],
+                    "lines_deleted": true
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        48,
+                        159,
+                        793,
+                        383
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                48,
+                                159,
+                                793,
+                                383
+                            ],
+                            "group_id": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        159,
+                                        793,
+                                        383
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                48,
+                                                159,
+                                                793,
+                                                383
+                                            ],
+                                            "score": 0.975,
+                                            "html": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=1>상세 활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>AI 모델 검증 장비</td><td rowspan=1 colspan=1>• ISO/IEC TS 4213, ISO/IEC 29119-11</td><td rowspan=1 colspan=1>AI 모델 강건성 시험,성능 시험,뉴런 커버리지 측정표준 기반 ML 모델 평가 지표 계산(ISO4213 기반 평가 지표 진단)</td><td rowspan=1 colspan=1>VERIFAI-M</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>사이버보안</td><td rowspan=1 colspan=1>• IS0/SAE 21434, IEC 62443, IS0/IEC27034</td><td rowspan=1 colspan=1>ES 95489-22 (모의해킹)도구를 통해Fuzzing Test 대을 가능차량 내부 네트워크(CAN/Ethernet)기반 무작위 입력을통해 제어기/실차 오작동 확인차량 외부 네트워크(BLE,WIFI,USB)기반 무작위 입력을통해 제어기/실차 오작동 확인</td><td rowspan=1 colspan=1>ARCHON Z</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>시뮬레이션 검증</td><td rowspan=1 colspan=1>·ISO 26262 Part 4, 6, 8(모델 기반 개발 및시뮬레이션을 통한 검증 수행</td><td rowspan=1 colspan=1>다양한 환경과 상황에서 동작하는 주요 건설 기계의 성능평가 및 검증 수행을 위한 가상 검증 환경 구축가상환경 및 건설기계 주요 부품 모델링 SW,시나리오 저작 및 데이터 수집&amp;분석 장비로 구성</td><td rowspan=1 colspan=1>AUTOSIMDCAT</td><td rowspan=1 colspan=1>350,000,000</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "83a240b835e7986a7b7070f76e2c5ef4851775e0271380aa578b22735ef5c31c.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 6,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        159,
+                                        793,
+                                        233.66666666666669
+                                    ],
+                                    "spans": [],
+                                    "index": 5
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        233.66666666666669,
+                                        793,
+                                        308.33333333333337
+                                    ],
+                                    "spans": [],
+                                    "index": 6
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        308.33333333333337,
+                                        793,
+                                        383.00000000000006
+                                    ],
+                                    "spans": [],
+                                    "index": 7
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 6
+                },
+                {
+                    "type": "table",
+                    "bbox": [
+                        48,
+                        397,
+                        792,
+                        464
+                    ],
+                    "blocks": [
+                        {
+                            "type": "table_body",
+                            "bbox": [
+                                48,
+                                397,
+                                792,
+                                464
+                            ],
+                            "group_id": 1,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        397,
+                                        792,
+                                        464
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                48,
+                                                397,
+                                                792,
+                                                464
+                                            ],
+                                            "score": 0.968,
+                                            "html": "<table><tr><td>검증 항목</td><td>상세 내용</td><td>제안 금액</td></tr><tr><td rowspan=\"2\">제어기 검증을 위한 . HILS 구축</td><td>검증 대상 제어기에 따른 구축 장비 금액 차 발생(1-2억/10억 이상 등)</td><td>평균 2.5억~3.5억</td></tr><tr><td>SW+ECU 시험,SW+HW 통합 시험,시스템 시험을 통한 기능 안전 수행</td><td>(대상 제어기 별 구성 항목에 따라 증액)</td></tr></table>",
+                                            "type": "table",
+                                            "image_path": "3f8c856fdb30062ba2b37bf724fe04ec31b8a621420b1f1a71bed6f5c7c229d3.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 9,
+                            "virtual_lines": [
+                                {
+                                    "bbox": [
+                                        48,
+                                        397,
+                                        792,
+                                        419.3333333333333
+                                    ],
+                                    "spans": [],
+                                    "index": 8
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        419.3333333333333,
+                                        792,
+                                        441.66666666666663
+                                    ],
+                                    "spans": [],
+                                    "index": 9
+                                },
+                                {
+                                    "bbox": [
+                                        48,
+                                        441.66666666666663,
+                                        792,
+                                        463.99999999999994
+                                    ],
+                                    "spans": [],
+                                    "index": 10
+                                }
+                            ]
+                        }
+                    ],
+                    "index": 9
+                },
+                {
+                    "type": "list",
+                    "bbox": [
+                        50,
+                        483,
+                        504,
+                        540
+                    ],
+                    "lines": [
+                        {
+                            "bbox": [
+                                63,
+                                483,
+                                503,
+                                496
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        483,
+                                        503,
+                                        496
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC TS 4213 : 기계학습(ML) 기반분류성능평가방법론을다룬기술사양문서(지표, 평가절차, 통제기준, 데이터구성등)",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 11,
+                            "is_list_start_line": true
+                        },
+                        {
+                            "bbox": [
+                                63,
+                                493,
+                                451,
+                                507
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        493,
+                                        451,
+                                        507
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC 29119-11 : SW및시스템공학-SW테스트시리즈中AI 기반시스템의테스트특성및테스트지침제공",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 12,
+                            "is_list_start_line": true
+                        },
+                        {
+                            "bbox": [
+                                61,
+                                504,
+                                365,
+                                520
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        61,
+                                        504,
+                                        365,
+                                        520
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/SAE 21434 : 차량사이버보안공학요구사항, 위험분석, 조직및공급망관리표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 13,
+                            "is_list_start_line": true
+                        },
+                        {
+                            "bbox": [
+                                62,
+                                516,
+                                331,
+                                528
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        62,
+                                        516,
+                                        331,
+                                        528
+                                    ],
+                                    "score": 1.0,
+                                    "content": "IEC 62443 : 산업자동화및제어시스템(IACS)을위한국제사이버보안표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 14,
+                            "is_list_start_line": true
+                        },
+                        {
+                            "bbox": [
+                                63,
+                                527,
+                                268,
+                                540
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        63,
+                                        527,
+                                        268,
+                                        540
+                                    ],
+                                    "score": 1.0,
+                                    "content": "ISO/IEC 27034 : 정보보안–애플리케이션보안국제표준",
+                                    "type": "text"
+                                }
+                            ],
+                            "index": 15,
+                            "is_list_start_line": true
+                        }
+                    ],
+                    "index": 13,
+                    "bbox_fs": [
+                        61,
+                        483,
+                        503,
+                        540
+                    ]
+                }
+            ]
+        }
+    ],
+    "_backend": "pipeline",
+    "_version_name": "2.7.5"
+}

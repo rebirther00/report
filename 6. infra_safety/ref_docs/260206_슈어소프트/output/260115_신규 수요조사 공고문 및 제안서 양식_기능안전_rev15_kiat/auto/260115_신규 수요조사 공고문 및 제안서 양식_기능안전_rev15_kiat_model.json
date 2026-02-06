@@ -1,0 +1,1238 @@
+[
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    160,
+                    301,
+                    1491,
+                    301,
+                    1491,
+                    2156,
+                    160,
+                    2156
+                ],
+                "score": 0.963,
+                "html": "<table><tr><td rowspan=1 colspan=8>&lt;요약서&gt;</td></tr><tr><td rowspan=1 colspan=2>제안과제유형</td><td rowspan=1 colspan=3>1초격차기술기반형</td><td rowspan=1 colspan=3>시설 장비 S/W인력양성</td></tr><tr><td rowspan=1 colspan=2>제안과제명</td><td rowspan=1 colspan=6>자율작업 건설기계를 위한 기능안전 및 사이버보안 적합성 평가 기반 구축</td></tr><tr><td rowspan=5 colspan=1>수요제안처</td><td rowspan=1 colspan=1>제안처구분</td><td rowspan=1 colspan=6>연구기관[출연연등]대학협단체기업지자체기타</td></tr><tr><td rowspan=1 colspan=1>기관[기업]명</td><td rowspan=1 colspan=6>한국건설기계연구원</td></tr><tr><td rowspan=3 colspan=1>제안자</td><td rowspan=1 colspan=1>소속부서</td><td rowspan=1 colspan=2>지능제어연구실</td><td rowspan=1 colspan=2>성명[직급]</td><td rowspan=1 colspan=1>최승준[책임]</td></tr><tr><td rowspan=1 colspan=1>유선번호</td><td rowspan=1 colspan=2>063-447-2570</td><td rowspan=1 colspan=2>휴대폰</td><td rowspan=1 colspan=1>010-3156-5417</td></tr><tr><td rowspan=1 colspan=1>이메일</td><td rowspan=1 colspan=2>sjoon.choi@koceti.re.kr</td><td rowspan=1 colspan=2></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>초격차</td><td rowspan=1 colspan=1>분야</td><td rowspan=1 colspan=6>첨단제조</td></tr><tr><td rowspan=1 colspan=1>프로젝트</td><td rowspan=1 colspan=1>프로젝트명</td><td rowspan=1 colspan=6>자율주행[레벨4이상]융합 기술개발 및 상용화종합연구기반구축</td></tr><tr><td rowspan=2 colspan=2>AI R&amp;DI</td><td rowspan=1 colspan=2>AI연구설계솔루션</td><td rowspan=1 colspan=2>AI자율실험실</td><td rowspan=1 colspan=2>기타</td></tr><tr><td rowspan=1 colspan=2>X</td><td rowspan=1 colspan=2>X</td><td rowspan=1 colspan=2>-</td></tr><tr><td rowspan=2 colspan=2>기술 키워드</td><td rowspan=1 colspan=6>건설기계,피지컬 AI,기능안전,사이버보안,제어시스템</td></tr><tr><td rowspan=1 colspan=6>Construction Equipment, Physical AI, Function safety, Cybersecurity,Control system</td></tr><tr><td rowspan=3 colspan=2>예상사업 규모</td><td rowspan=1 colspan=1>[예상]착수시기[년]</td><td rowspan=1 colspan=5>27년</td></tr><tr><td rowspan=1 colspan=1>[예상]사업기간[년]</td><td rowspan=1 colspan=5>5년</td></tr><tr><td rowspan=1 colspan=1>[예상]소요예산[억원]</td><td rowspan=1 colspan=5>총 180억원 [국비 100억 원,지방비 80억 원]</td></tr><tr><td></td><td></td><td rowspan=1 colspan=1></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td rowspan=1 colspan=2>개요 및 필요성</td><td rowspan=1 colspan=6>(개요) 수출 주력산업인건설기계완성차 및핵심 부품에 대한선진수출시장규제강화에 대응하고Level 4자율작업건설기계의피지컬AI활용기술상용화촉진을 위한 제어시스템 기능안전 및 사이버보안 적합성 평가* 기반 구축적합성 평가: 제품이 관련 법규·표준·안전 요구사항을 충족하는지 시험·검증을 통해 확인(수출규제 강화) EU&#x27;27년기능안전 적합성 평가및 인공지능/사이버보안 검증을포함하는 새로운 기계류 규정(Machinery Regulation)* 시행에 따라 완성차 및 핵심부품은관련기준에따른안전성 적합성 평가 입증이 시급기계류 규정: 기계류의 안전 기준을 강화하고디지털화에 대응하기 위한 EU 신규 법규o(기술 확보) 강화된 규제에 대응 중인 해외 선진사와 격차를 해소하고 수출경쟁력및Level 4자율작업건설기계 초격차 기술 확보를위한 지원 필요o(인프라 부재) AI 등 첨단기술이 적용된 자율작업건설기계는기존장비대비 기능안전·사이버보안 요구사항이 대폭 강화되고 있으나, 이를 체계적으로 검증할 수 있는 적합성 평가 인프라는 국내에 전무한 실정</td></tr><tr><td rowspan=1 colspan=2>목적 및 내용</td><td rowspan=1 colspan=6>O(최종목적) 강화된 해외 수출 규제 대응, AI 등 첨단기술이 적용된Level 4자율작업 건설기계 개발 지원 및 오작동*으로부터 발생할 수 있는 중대안전사고 예방을 위한 차세대 핵심 제어시스템의 기능안전·사이버보안적합성 평가 기반 구축*오작동:소프트웨어 오류 또는 사이버 해킹으로 제어 로직이 왜곡되어 시스템이 잘못된 판단/동작을 수행o(지원 대상 및범위)통합/자율제어 ECU*, 구동액추에이터, 센서/통신 모둘,AI알고리즘및제어/통신소프트웨어등을대상으로자율작업건설기계완성차/제어시스템 적합성 평가,작동 시나리오 기반 시물레이션,실차 실증및 단체표준개발을지원ECU(Electronic Control Unit, 전자제어장치)</td></tr><tr><td rowspan=1 colspan=2>주요 구축 인프라</td><td rowspan=1 colspan=6>(장비1) 자율작업 건설기계 기능안전 설계 및 모델 검증 장비(ML/SL*) (1,500백만원)-가상 ECU 제어로직 모델링 도구 및 건설기계 전용 모델 라이브러리-유압/구동/작업기서브 시스템 모델 라이브러리제공 및 제어로직 최적화지원,자율작업제어시스템 아키텍처의 기능안전 등급적합성 사전 평가MIL(Model-in-the-Loop, 모델 기반 시뮬레이션검증), SlL(Software-in-the-Loop,소프트웨어 기반 시뮬레이션 검증)</td></tr></table>"
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    156,
+                    313,
+                    292,
+                    313,
+                    292,
+                    353,
+                    156,
+                    353
+                ],
+                "score": 0.118
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    151.0,
+                    311.0,
+                    294.0,
+                    311.0,
+                    294.0,
+                    357.0,
+                    151.0,
+                    357.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 0,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    158,
+                    188,
+                    1493,
+                    188,
+                    1493,
+                    1318,
+                    158,
+                    1318
+                ],
+                "score": 0.96,
+                "html": "<table><tr><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>(장비2) 자율작업 건설기계 기능안전 적합성 평가 장비(HS*)(2,980백만원)-SW 코드 품질 분석 도구,실시간 HLS 및 시나리오 기반 시뮬레이터-SW 품질 분석 및 HLS기반 ECU 단위 기능안전 요구사항 검증 지원, 기능안전 검증 및 제출용 기술 문서작성 지원*HLS(Hardware-in-the-Loop Simulation,하드웨어 연동 실시간 시뮬레이션)(장비3) 자율작업 건설기계 실차-가상 연동 및 커넥티비티 실증 장비(1,910백만원)-실차 기반 테스트 장치-통신프로토콜 분석,DS기반 이상 탐지, 실차 연동응답성및 제어 정밀도검증,개별 부품의 실차기반기능/안전성통합검증자율작업알고리즘 성능평가(장비4) 자율작업 건설기계 사이버보안 전주기 평가 장비(1,060백만원)위협·보안 취약점분석SW및 건설기계 통신 프로토콜 퍼징테스터-보안 취약점 정밀 점검 및 보안 컴포년트 적용 검증 지원,사이버보안 관리시스템 구축을 위한 ISO/SAE21434 기반 위험분석 및 보안 검증 지원(장비5) 자율작업 건설기계 무선 업데이트(OTA) 보안 평가 장비(580백만원)-OTA보안 검증및 무결성/롤백기능테스트 도구,업데이트이력관리시스템-제어기 펌웨어 업데이트 보안 검증(서명, 암호화,무결성) 지원,ISO/SAE21434 및 ISO24089 기반 OTA 보안 검증 및 업데이트 이력 관리 지원(장비6) 자율작업 건설기계 AI안전성 검증 장비(970백만원)-AI 학습/추론 검증 도구,적대적 공격 생성기 및 MLOps* 자동화 관리 플랫폼-AI 인식 오류 유도 패턴,LiDAR 센서 기만 신호,AI 모델 강건성 평가 지원,실차 기반 AI 안전성 테스트및EU AI Act 적합성 문서화 지원*MLOps(AI의 전체 수명주기 운영,관리체계)</td></tr><tr><td rowspan=1 colspan=1>기대 효과</td><td rowspan=1 colspan=1>e 현재 국내 건설기계 산업계의 대응이 어려운기능안전·사이버보안·AI 적용 부분에서 최신 표준·규제 수준에 맞춘 평가·검증기반 구축 및 선진시장 기술장벽에 대한 대응력 확보O 선진국시장에서심화되는건설기계기능안전·사이버보안·AI 안전 규제의인증 지원을 통해 국내 제품의 안정적인 시장 점유율 확보 가능Level 4 자율작업 건설기계의핵심기술(피지컬AI,사이버보안)에대한시험평가와 분석 데이터제공을 통해 초격차기술 확보와 국내건설기계해외시장 수출 규모 확대가 예상됨다양한 건설기계 융합 기술과 서비스 아이디어에 대한 다양한 평가 수행및 시나리오 기반 테스트 데이터 확보를통해 국내 건설기계 산업에서기능안전·사이버보안및AI 활용에대한표준화역량강화와표준화논의주도권 확보를기대할 수 있음</td></tr></table>"
+            }
+        ],
+        "page_info": {
+            "page_no": 1,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    157,
+                    1293,
+                    1493,
+                    1293,
+                    1493,
+                    2094,
+                    157,
+                    2094
+                ],
+                "score": 0.98,
+                "html": "<table><tr><td rowspan=1 colspan=1>기반구축 개요</td><td rowspan=1 colspan=1>0 수출 주력 산업인 건설기계 완성차 및 핵심 부품에 대한 선진 수출시장 규제강화에 대응하고 차세대 건설기계의 피지컬 AI 적용 기술 상용화 촉진과관련 생태계 활성화를 위한 제어시스템 성능 및 안전 적합성 평가기반 구축</td></tr><tr><td rowspan=1 colspan=1>추진배경</td><td rowspan=1 colspan=1>(문제/이슈) 건설기계 안전에 대한 선진시장의 규제 패러다임이 AI·사이버보안을 포함한 제어시스템의 HW/SW 통합 검증을 요구하는 방향으로 변화O(현안/당면과제) AI 기반 자율화 등고부가가치기술 개발에필수적인 성능평가 기술 및 검증 인프라 부족으로 하이엔드 제품 개발과 시장확보에 한계</td></tr><tr><td rowspan=1 colspan=1>필요성 및 시급성</td><td rowspan=1 colspan=1>0(수출 규제 강화) EU&#x27;27년 기능안전 적합성 평가 및 인공지능/사이버보안 검증을 포함하는 새로운 기계류 규정(Machinery Regulation)시행에 따라 완성차및핵심 부품은관련기준에 따른 안전성 평가 및적합성 입증이 시급함O 주요 선진사는 지속적으로 강화되는관련 표준에 맞춰 제품 기능 검증 강화,사이버보안 기능 적용 등 적절히 대응 중이나 국내의 경우 성능 검증 인프라와 개발 프로세스 구축에따른비용 부담으로 대응이전무한 실정임O AI등첨단 융합기술이 건설기계에적용되며제품의 복잡도가 증가하는반면 적절한 성능평가, 검증 기술의 부족으로 새로운 기술의 상품화를 위한개발기간 및 비용부담이크게증가하고 있어관련 인프라 확보가절실함</td></tr><tr><td rowspan=1 colspan=1>환경분석</td><td rowspan=1 colspan=1>(정책 동향) Level 4 자율작업 건설기계의 기능안전·사이버보안 적합성평가지원은주력산업 혁신을위한 피지컬AI 초격차 프로젝트에부합O (시장 동향) 선진 시장을 중심으로 제품의 생애주기에 걸쳐 안전한 작동을보장하는 것이 제품의 핵심 경쟁력으로 작용하고 있음0  (기술동향)AI·OTA(Over-the-Air)등 네트워크, SW 기반 기술이 적극적으로도입되며 제품의 품질 확보와 장기적인 고객 만족도 향상을 위해 개발 단계별검증과 검증 시나리오 활용이 필수 요소로 대두</td></tr></table>"
+            },
+            {
+                "category_id": 5,
+                "poly": [
+                    157,
+                    401,
+                    1494,
+                    401,
+                    1494,
+                    1175,
+                    157,
+                    1175
+                ],
+                "score": 0.978,
+                "html": "<table><tr><td rowspan=1 colspan=2>제안과제유형</td><td rowspan=1 colspan=4>1초격차기술기반형</td><td rowspan=1 colspan=3>시설 장비 S/W 인력양성</td></tr><tr><td rowspan=1 colspan=2>제안과제명</td><td rowspan=1 colspan=7>자율작업 건설기계를 위한 기능안전 및 사이버보안 적합성 평가 기반 구축</td></tr><tr><td rowspan=5 colspan=1>수요제안처</td><td rowspan=1 colspan=1>제안처구분</td><td rowspan=1 colspan=7>연구기관[출연연 등]대학 협단체 기업 지자체 기타</td></tr><tr><td rowspan=1 colspan=1>기관[기업]명</td><td rowspan=1 colspan=7>한국건설기계연구원</td></tr><tr><td rowspan=3 colspan=1>제안자</td><td rowspan=1 colspan=1>소속부서</td><td rowspan=1 colspan=3>지능제어연구실</td><td rowspan=1 colspan=2>성명[직급]</td><td rowspan=1 colspan=1>최승준[책임]</td></tr><tr><td rowspan=1 colspan=1>유선번호</td><td rowspan=1 colspan=3>063-447-2570</td><td rowspan=1 colspan=2>휴대폰</td><td rowspan=1 colspan=1>010-3156-5417</td></tr><tr><td rowspan=1 colspan=1>이메일</td><td rowspan=1 colspan=3>sjoon.choi@koceti.re.kr</td><td rowspan=1 colspan=2></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>초격차</td><td rowspan=1 colspan=1>분야</td><td rowspan=1 colspan=7>첨단제조</td></tr><tr><td rowspan=1 colspan=1>프로젝트</td><td rowspan=1 colspan=1>프로젝트명</td><td rowspan=1 colspan=7>자율주행[레벨4이상] 융합 기술개발 및 상용화 종합연구기반 구축</td></tr><tr><td rowspan=2 colspan=2>AI R&amp;DI</td><td rowspan=1 colspan=3>AI연구설계솔루션</td><td rowspan=1 colspan=2>AI자율실험실</td><td rowspan=1 colspan=2>기타</td></tr><tr><td rowspan=1 colspan=3>X</td><td rowspan=1 colspan=2>X</td><td rowspan=1 colspan=2></td></tr><tr><td rowspan=2 colspan=2>기술 키워드</td><td rowspan=1 colspan=7>건설기계,피지컬 AI,기능안전,사이버보안,제어시스템</td></tr><tr><td rowspan=1 colspan=7>Construction Equipment, Physical AI, Function safety, Cybersecurity,Control system</td></tr><tr><td rowspan=3 colspan=2>예상사업 규모</td><td rowspan=1 colspan=2>[예상]착수시기[년]</td><td rowspan=1 colspan=5>27년</td></tr><tr><td rowspan=1 colspan=2>[예상]사업기간[년]</td><td rowspan=1 colspan=5>5년</td></tr><tr><td rowspan=1 colspan=2>[예상]소요예산[억원]</td><td rowspan=1 colspan=5>총 180억원 [국비 100억 원, 지방비 80억원]</td></tr></table>"
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    154,
+                    1218,
+                    505,
+                    1218,
+                    505,
+                    1275,
+                    154,
+                    1275
+                ],
+                "score": 0.875
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    311,
+                    218,
+                    1347,
+                    218,
+                    1347,
+                    286,
+                    311,
+                    286
+                ],
+                "score": 0.854
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    157,
+                    326,
+                    404,
+                    326,
+                    404,
+                    382,
+                    157,
+                    382
+                ],
+                "score": 0.505
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    147.0,
+                    1214.0,
+                    512.0,
+                    1214.0,
+                    512.0,
+                    1280.0,
+                    147.0,
+                    1280.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    306.0,
+                    215.0,
+                    1352.0,
+                    215.0,
+                    1352.0,
+                    290.0,
+                    306.0,
+                    290.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    149.0,
+                    321.0,
+                    408.0,
+                    321.0,
+                    408.0,
+                    387.0,
+                    149.0,
+                    387.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 2,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    161,
+                    222,
+                    1502,
+                    222,
+                    1502,
+                    2134,
+                    161,
+                    2134
+                ],
+                "score": 0.884,
+                "html": "<table><tr><td colspan=\"2\">제인학다 갓 피재대증 (최종목적)강화된해외 수출 규제 대응, AI 등첨단기술이 적용된Level 4자율</td></tr><tr><td>기반구축 목적</td><td>작업 건설기계 개발 지원및 오작동*으로부터발생할수있는 중대 안전사고 예방을 위한 차세대 핵심 제어시스템의 기능안전 및 사이버보안 적합성 평가 기반 구축 오작동: 소프트웨어 오류 또는 사이버 해킹으로 제어 로직이 왜곡되어 시스템이잘못 된 판단/동작을 수행 (지원대상) 통합제어/자율제어ECU, 조향/주행/작업 구동액추에이터, 센서류 (LiDAR, Radar, IMU 등), 통신 모둘(CAN), 자율주행/자율작업 AI 알고리즘, 안전제어 소프트웨어,통신/원격제어 소프트웨어 및 OTA 시스템 (지원범위)자율작업 건설기계완성차/제어시스템 적합성 평가,건설기계작동 시나리오 기반 시뮬레이션 및 실차 실증, 단체 표준 개발 등 ㅇ(장비구축)자율작업 건설기계의 기능안전·사이버보안·AI 안전성 검증을위</td></tr><tr><td>과제 내용</td><td>해 총 6종의전문장비를단계별로 구축할예정.이를통해 국내건설기계 부품사/완성차의제품개발 전주기 검증 역량 강화 및 글로벌 규제EU MR, EU CRA, EU AI Act) 인증대응 기반 마련이 기대됨 *EU MR(Machinery Regulation), EU CRA(Cyber Resilience Act) (장비1) 자율작업 건설기계 기능안전 설계 및 모델 검증 장비(ML/SIL) -가상 ECU 제어로직 모델링 도구 및 건설기계 전용 모델 라이브러리 유압/구동/작업기서브 시스템 모델 라이브러리제공 및 제어로직 최적화 지원, 자율작업 제어시스템 아키텍처의 기능안전 등급적합성 사전평가 (장비2) 자율작업 건설기계 기능안전 적합성 평가 장비(HLS) -SW 코드품질분석 도구,실시간HLS및시나리오 기반 시뮬레이터 -SW 품질 분석 및 HLS 기반 ECU 단위 기능안전 요구사항 검증지원,기능 안전 검증 및 제출용 기술 문서 작성 지원 (장비3) 자율작업 건설기계 실차-가상 연동 및 커넥티비티 실증 장비 실차 기반 테스트 장치 통신 프로토콜 분석,DS(침입탐지시스템) 기반 이상 탐지,실차연동 응답성및제 어정밀도검증,개별부품의 실차기반 기능/안전성통합검증 자율작업알 고리즘성능평가 (장비4) 자율작업 건설기계 사이버보안 전주기 평가 장비 위협·보안취약점분석SW및 건설기계 통신 프로토콜퍼징테스터 -보안 취약점 정밀 점검 및 보안 컴포년트 적용 검증 지원,사이버보안관리 시스템 구축을위한ISO/SAE21434기반위험분석및 보안 검증지원 (장비5) 자율작업 건설기계 무선업데이트(OTA) 보안 평가 장비 -OTA 보안 검증및무결성/롤백 기능테스트도구,업데이트이력관리시스템 -제어기 펌웨어 업데이트 보안 검증(서명,암호화, 무결성) 지원,ISO/SAE 21434 및ISO24089 기반OTA 보안 검증및 업데이트 이력 관리 지원 (장비6) 자율작업건설기계AI 안전성검증 장비 -AI 학습/추론 검증 도구, 적대적 공격 생성기 및 MLOps* 자동화 관리 플랫폼 AI 인식 오류 유도 패턴,LiDAR 센서 기만 신호, AI모델 강건성 평가 지원, 실차 기반AI 안전성 테스트 및 EU AIAct 적합성 문서화지원 *MLOps(AI의 전체 수명주기 운영,관리체계) ㅇ(기업지원) 수출 규제 대응기능안전·사이버보안 적합성 평가,건설기계 작 업/안전 실증시나리오평가,설계/검증/평가 결과물의 기술문서화 및 제 조자적합성 선언 지원,소프트웨어 아키텍처 초기 설계 컨설팅등 (적합성 평가) 통합 제어 ECU 대상 안전 요구사항 분석 및 설계 검증을 수행하고,오작동/고장 주입,센서/통신 장애 및 사이버보안 시험을 통해 기능안전·사이버보안 규정 충족 여부를 평가 (작업/안전 실증 시나리오 평가) 실제 작업 환경을모사한시나리오에정상 작업과 함께돌발상황/센서오류/통신 지연 등을 부여하고 자율제어ECU의 판단 비상정지및 안전 동작을 검증하여 작업 안전성과 사고예방 능력 평가 (문서화 및 적합성 선언 지원)ECU 설계/검증/시험 결과의 기술문서 작성 및 기능안전사이버보안충족근거 검증을통한 적합성선언절차지원 (소프트웨어 컨설팅)기능안전등급을고려한계층형 아키텍처설계,AI 판단 모들,제어 로직,통신 스택 구성, 이중화/모니터링 구조 적용 등 오작동 및 사이버 위협에 대비한 초기 설계 컨설팅 지원</td></tr></table>"
+            },
+            {
+                "category_id": 6,
+                "poly": [
+                    153,
+                    189,
+                    630,
+                    189,
+                    630,
+                    244,
+                    153,
+                    244
+                ],
+                "score": 0.512
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    153,
+                    189,
+                    630,
+                    189,
+                    630,
+                    244,
+                    153,
+                    244
+                ],
+                "score": 0.471
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    149.0,
+                    186.0,
+                    634.0,
+                    186.0,
+                    634.0,
+                    248.0,
+                    149.0,
+                    248.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    149.0,
+                    186.0,
+                    634.0,
+                    186.0,
+                    634.0,
+                    248.0,
+                    149.0,
+                    248.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 3,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    160,
+                    279,
+                    1481,
+                    279,
+                    1481,
+                    2122,
+                    160,
+                    2122
+                ],
+                "score": 0.879,
+                "html": "<table><tr><td rowspan=2 colspan=1>기관명</td><td rowspan=2 colspan=2>센터명[지역]</td><td rowspan=2 colspan=1>주요기반기술 및인프라</td><td rowspan=1 colspan=5>주요서비스</td></tr><tr><td rowspan=1 colspan=1>설계</td><td rowspan=1 colspan=1>시제품제작</td><td rowspan=1 colspan=1>시험평가신뢰성인증</td><td rowspan=1 colspan=1>판매마케팅</td><td rowspan=1 colspan=1>품질관리</td></tr><tr><td rowspan=1 colspan=1>한국건설기계연구원</td><td rowspan=1 colspan=2>스마트건설기계시험센터(군산)</td><td rowspan=1 colspan=1>제어 HW신리성평가건설기계 작업자보조기능성능시험</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국지동차연구원</td><td rowspan=1 colspan=2>본원(천안)</td><td rowspan=1 colspan=1>자동차 기능안전SWEJ설계 및평가</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국기계전기전자시험연구원</td><td rowspan=1 colspan=2>AI·SW융합센터(군포)</td><td rowspan=1 colspan=1>SW품질인증, SW기능안전, A인증</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국화학융합시험연구원</td><td rowspan=1 colspan=2>SW시험인증지원센터(판교)</td><td rowspan=1 colspan=1>자동차 기능안전,자동차사이버보안</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>시험원</td><td rowspan=1 colspan=2>연구센터(화성) 자율주행기능안전</td><td rowspan=1 colspan=1>연구센터(화성) 자율주행기능안전</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=9>*시험·평가·신뢰성 인증: (건설기계)HW 신뢰성,(자동차)자율주행 분야 시험·평가·인증 지원</td></tr><tr><td rowspan=1 colspan=9>제안수요 산업의 연구개발구조 기술 포지셔닝(전후방 연계기술 및 산업)</td></tr><tr><td rowspan=1 colspan=9>제안수요범위[피지컬A초격차 프로젝트](자율작업기계)LeVe4자율작업을 위한 건설·농기계 핵심기술 개발④무인작업을위한건설/농기계충전인프라및제어시스템기술개발·기능안전/사이버보안통합적합성평가인프라구축•디지털시율레이션+완성자실증지원[후방 부품 산업]                      [건설기계 산업]                    [전방산업]·통합/자율제어ECU                    Level4자율작업건설기계           •건설산업•서(LiDAR, Radar, IMU등)            ·통합/자율제어시스템                ·물류산업제어/통신SW및AI알고리즘            ·자율작업기능</td></tr><tr><td rowspan=2 colspan=9>ㅇ제안수요 기반구축사업의 포지셔닝 따른 추진전략 기술자율작업 건설기계를위한기능안전 및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=7>자율작업 건설기계를위한기능안전 및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=2>주요 내용[정의]</td><td rowspan=1 colspan=7>건설기계 수출 규제 대응 및 LeVe 4 자율작업 건설기계 초격차 기술확보를위한 기능안전및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=2>주요 주체수요처</td><td rowspan=1 colspan=7>(건설기계 완성차) HD현대사이트솔루션, HD건설기계,두산밥켓, 호룡등으(부품 제조사) 경우시스테크,동서콘트롤,태하,컴씨스,기원전자등</td></tr><tr><td rowspan=1 colspan=2>제안수요도입전구조적문제점</td><td rowspan=1 colspan=7>ㅇ&#x27;27년 강화되는 기계류 규정의 시행에 따라,완성차와 핵심 부품은 TRL 6~8단계의 적합성 평가가 필수지만 국내 대응 역량은 매우 부족한 상황ㅇ해외 선진사는 설계 단계부터(TRL5) 기능안전·사이버보안 검증을 수행하고 있으나,국내는 검증 인프라와 개발 프로세스 구축 비용 부담으로대응 미흡ㅇ건설기계 AI활용기술은TRL 4~6단계 수준으로 양산제품 적용을 위한 성능·안전성 검증 필요</td></tr><tr><td rowspan=1 colspan=2>제안수요의 예상기능역할수행</td><td rowspan=1 colspan=7>(기능) 차세대 고부가가치 지능형핵심 부품의 제품화를 촉진하고, 해외수출 규제 대응에 필요한 성능·안전성 평가 및 입증근거 제공(역할) 구축 설비 및 기업지원 프로그램을 통해 국내 건설기계 공급망및완성차 규제대응역량 확보</td></tr><tr><td rowspan=1 colspan=2>제안수요 도입후예상성과</td><td rowspan=1 colspan=7>건설기계의 해외 규제 맞춤형 안전 적합성평가 체계 구축(설계·검증결과물의 기술 문서화 및 제조자 적합성 선언 지원)ㅇ차세대 핵심기술인 Level 4 자율작업 건설기계 적용기술의 기능안전·사이버보안 검증지원기반마련</td></tr></table>"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    1050,
+                    1801,
+                    1092,
+                    1801,
+                    1092,
+                    1827,
+                    1050,
+                    1827
+                ],
+                "score": 0.78,
+                "latex": "4 ^ { \\sim } 6"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    669,
+                    739,
+                    684,
+                    739,
+                    684,
+                    755,
+                    669,
+                    755
+                ],
+                "score": 0.46,
+                "latex": "\\cdot"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    547,
+                    1160,
+                    573,
+                    1160,
+                    573,
+                    1188,
+                    547,
+                    1188
+                ],
+                "score": 0.4,
+                "latex": "\\textcircled{4}"
+            }
+        ],
+        "page_info": {
+            "page_no": 4,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    501,
+                    531,
+                    1473,
+                    531,
+                    1473,
+                    1239,
+                    501,
+                    1239
+                ],
+                "score": 0.976,
+                "html": "<table><tr><td rowspan=2 colspan=1>군</td><td rowspan=2 colspan=1>산업기반</td><td rowspan=2 colspan=1>산업기술</td><td rowspan=1 colspan=5>구축년도</td><td rowspan=2 colspan=1>활용방안[지원내용]</td></tr><tr><td rowspan=1 colspan=1>1차년도</td><td rowspan=1 colspan=1>년도</td><td rowspan=1 colspan=1>년도</td><td rowspan=1 colspan=1>4차년도</td><td rowspan=1 colspan=1>5차년도</td></tr><tr><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>기능안전모델기반설계·검증기술</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>기능안전 제어로직·모델 검증(부품사/완성차 초기 sW설계·검증 지원)</td></tr><tr><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>HLS 기반기능안전적합성 평가기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>SW품질 분석 및 HLS 기반 ECU단위기능·시나리오기반기능안전 요구사항 검증(EU MR 대응)</td></tr><tr><td rowspan=1 colspan=1>3</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>실차-가상연동검증기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>실차+가상 연동및커넥티비티·보안평가지원</td></tr><tr><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>전주기사이버보안검증 기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>단계별(TARA→보안코딩→침투테스트)시험을 통한 설계~운영 전주기사이버보안 검증지원 (EU CRA대응)</td></tr><tr><td rowspan=1 colspan=1>5</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>OTA 보안 검증기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>OTA 보안 프로토콜 및 데이터무결성 검증,업데이트 실패 시롤백·시스템 복구 안전성 테스트(EU CRA 대응)</td></tr><tr><td rowspan=1 colspan=1>6</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>XAI - MLOps*기반AI 안전성검증 기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>설명가능한 AI 기반 판단 근거분석 및 데이터 무결성 검증,적대적 공격 방어력 테스트(EU AI Act 대응)</td></tr></table>"
+            },
+            {
+                "category_id": 7,
+                "poly": [
+                    494,
+                    1253,
+                    870,
+                    1253,
+                    870,
+                    1284,
+                    494,
+                    1284
+                ],
+                "score": 0.892
+            },
+            {
+                "category_id": 6,
+                "poly": [
+                    497,
+                    487,
+                    1290,
+                    487,
+                    1290,
+                    522,
+                    497,
+                    522
+                ],
+                "score": 0.762
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    511,
+                    241,
+                    1488,
+                    241,
+                    1488,
+                    469,
+                    511,
+                    469
+                ],
+                "score": 0.747
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    501,
+                    204,
+                    955,
+                    204,
+                    955,
+                    237,
+                    501,
+                    237
+                ],
+                "score": 0.733
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    246,
+                    721,
+                    402,
+                    721,
+                    402,
+                    768,
+                    246,
+                    768
+                ],
+                "score": 0.591
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    246,
+                    721,
+                    402,
+                    721,
+                    402,
+                    768,
+                    246,
+                    768
+                ],
+                "score": 0.174
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    497,
+                    487,
+                    1290,
+                    487,
+                    1290,
+                    522,
+                    497,
+                    522
+                ],
+                "score": 0.109
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    714,
+                    1141,
+                    731,
+                    1141,
+                    731,
+                    1156,
+                    714,
+                    1156
+                ],
+                "score": 0.27,
+                "latex": "\\cdot"
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    496.0,
+                    1251.0,
+                    868.0,
+                    1251.0,
+                    868.0,
+                    1287.0,
+                    496.0,
+                    1287.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    497.0,
+                    486.0,
+                    1291.0,
+                    486.0,
+                    1291.0,
+                    525.0,
+                    497.0,
+                    525.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    240.0,
+                    716.0,
+                    409.0,
+                    716.0,
+                    409.0,
+                    771.0,
+                    240.0,
+                    771.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    519.0,
+                    238.0,
+                    1486.0,
+                    238.0,
+                    1486.0,
+                    276.0,
+                    519.0,
+                    276.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    542.0,
+                    271.0,
+                    986.0,
+                    271.0,
+                    986.0,
+                    307.0,
+                    542.0,
+                    307.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    519.0,
+                    300.0,
+                    1489.0,
+                    300.0,
+                    1489.0,
+                    341.0,
+                    519.0,
+                    341.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    544.0,
+                    332.0,
+                    1346.0,
+                    332.0,
+                    1346.0,
+                    373.0,
+                    544.0,
+                    373.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    517.0,
+                    362.0,
+                    1491.0,
+                    362.0,
+                    1491.0,
+                    409.0,
+                    517.0,
+                    409.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    549.0,
+                    398.0,
+                    1490.0,
+                    398.0,
+                    1490.0,
+                    437.0,
+                    549.0,
+                    437.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    550.0,
+                    429.0,
+                    1198.0,
+                    429.0,
+                    1198.0,
+                    470.0,
+                    550.0,
+                    470.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    496.0,
+                    204.0,
+                    955.0,
+                    204.0,
+                    955.0,
+                    240.0,
+                    496.0,
+                    240.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    240.0,
+                    716.0,
+                    409.0,
+                    716.0,
+                    409.0,
+                    771.0,
+                    240.0,
+                    771.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    497.0,
+                    486.0,
+                    1291.0,
+                    486.0,
+                    1291.0,
+                    525.0,
+                    497.0,
+                    525.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 5,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    161,
+                    247,
+                    1489,
+                    247,
+                    1489,
+                    1933,
+                    161,
+                    1933
+                ],
+                "score": 0.971,
+                "html": "<table><tr><td rowspan=2 colspan=1>군</td><td rowspan=2 colspan=1>시설·장비([S/W]명</td><td rowspan=2 colspan=1>활용용도[업체] 지원 수요 내용</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=2>구축년도</td><td rowspan=1 colspan=1></td><td rowspan=2 colspan=1>비용[백만원]</td><td rowspan=2 colspan=1>궁축유형</td></tr><tr><td rowspan=1 colspan=1>1차년도년도</td><td rowspan=1 colspan=1>2차년도년도</td><td rowspan=1 colspan=1>3차년도</td><td rowspan=1 colspan=1>4차년도</td><td rowspan=1 colspan=1>5차년도</td></tr><tr><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>자율작업 건설기계기능안전 설계 및 모델[기업지원]검증 장비[MIL/SIL]</td><td rowspan=1 colspan=1>[활용용도]실제 ECU 제작 전, HostPC 환경에서가상 모델과 제어 로직을 구동하여 기능안전요구사항만족 여부 사전 검증초기단계에서의설계결함조기 발견·(부품사)유압/구동/작업기 서브 시스템개발용 모델 라이브러리 제공 및 제어로직최적화지원·(완성차)지율작업 제어시스템 아키텍처의기능안전등급 적합성사전확인</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>1,500</td><td rowspan=1 colspan=1>신규구축</td></tr><tr><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=1>자율작업 건설기계기능안전 적합성 평가장비[HLS]</td><td rowspan=1 colspan=1>[활용용도]·시나리오(토공 작업,장애물 회피,작업자감지 등)기반ECU 실시간 통합 검증 수행센서등ECU인터페이스고장주입시험[기업지원]:(부품사) SW 품질 분석 및 HLS 기반 ECU단위기능안전 요구사항검증지원·(완성차)EUMR 대응을 위한 기능안전검증및 제출용 기술문서작성 지원</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>2,980</td><td rowspan=1 colspan=1>수국</td></tr><tr><td rowspan=1 colspan=1>3</td><td rowspan=1 colspan=1>자율작업 건설기계실차-가상 연동 및커넥티비티 실증 장비</td><td rowspan=1 colspan=1>[활용용도]·실차 데이터와 가상 환경을 동기화하여통신 지연,센서 이상,GPS 교란 등 위험시나리오기반기능검증·작업현장의 다양한 변수경사도, 노면조건등를반영한실차작업·주행안전성평가[기업지원]·(부품사) 통신 프로토콜 분석, IDS 기반이상 탐지,실차 연동 환경에서의 부품응답성 및 제어 정밀도검증, 개별 부품의실차기반기능·안전성통합검증(완성차) 복합 작업 환경에서의 지율작업기능성능평가</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>oO</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>1,910</td><td rowspan=1 colspan=1>신규구축</td></tr><tr><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>자율작업 건설기계사이버보안 전주기평가장비</td><td rowspan=1 colspan=1>[활용용도]·설계(TARA)→구현(보안코딩)→검증(침투테스트)→운영(이상탐지·사고대응)의 전주기 보안 검증·모의 해킹 및 퍼징 테스트를 통한 제어권탈취취약점사전 검출[기업지원]·(부품사) 보안 취약점 정밀 점검 및 보안컴포넌트 적용검증지원·(완성차)사이버보안 관리시스템 구축을위한ISO/SAE21434기반위험분석및보안검증지원</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>1,060</td><td rowspan=1 colspan=1>신규구축</td></tr></table>"
+            },
+            {
+                "category_id": 6,
+                "poly": [
+                    153,
+                    188,
+                    548,
+                    188,
+                    548,
+                    243,
+                    153,
+                    243
+                ],
+                "score": 0.804
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    153,
+                    188,
+                    548,
+                    188,
+                    548,
+                    243,
+                    153,
+                    243
+                ],
+                "score": 0.23
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    680,
+                    1581,
+                    705,
+                    1581,
+                    705,
+                    1604,
+                    680,
+                    1604
+                ],
+                "score": 0.68,
+                "latex": ""
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    853,
+                    1581,
+                    878,
+                    1581,
+                    878,
+                    1605,
+                    853,
+                    1605
+                ],
+                "score": 0.61,
+                "latex": ""
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    621,
+                    1614,
+                    646,
+                    1614,
+                    646,
+                    1636,
+                    621,
+                    1636
+                ],
+                "score": 0.45,
+                "latex": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    148.0,
+                    187.0,
+                    551.0,
+                    187.0,
+                    551.0,
+                    246.0,
+                    148.0,
+                    246.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    148.0,
+                    187.0,
+                    551.0,
+                    187.0,
+                    551.0,
+                    246.0,
+                    148.0,
+                    246.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 6,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    158,
+                    195,
+                    1492,
+                    195,
+                    1492,
+                    1004,
+                    158,
+                    1004
+                ],
+                "score": 0.973,
+                "html": "<table><tr><td rowspan=1 colspan=1>5</td><td rowspan=1 colspan=1>자율작업 건설기계무선 업데이트[OTA]보안 평가 장비</td><td rowspan=1 colspan=1>[활용용도]·제어기SW업데이트 기능의 보안 프로토콜 및 데이터 무결성 검증·업데이트 실패 시의 롤백 및 시스템 복구안전성 테스트[기업지원]•(부품사)제어기 펌웨어 업데이트 보안검증(서명,암호화,무결성)지원(완성차)ISO/SAE21434 및ISO24089기반 OTA 보안 검증 및 업데이트 이력 관리 지원</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>580</td><td rowspan=1 colspan=1>실국</td></tr><tr><td rowspan=1 colspan=1>6</td><td rowspan=1 colspan=1>자율작업 건설기계AI 안전성 검증 장비</td><td rowspan=1 colspan=1>[활용용도]·설명가능한 AI 기반 판단 근거 분석 및데이터 무결성 검증·적대적 공격 방어력 테스트MLOps 기반 모델생애주기 관리 및 성능추적검증[기업지원]•(부품사) A 인식 오류 유도 패턴, LiDAR센서 기만 신호,오분류테스트로 A모델 강건성 평가 지원(완성차)자율작업 건설기계의 실차 기반AI 안전성 테스트 및 EU AI Act 적합성문서화지원</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>970</td><td rowspan=1 colspan=1>식꽃구축</td></tr></table>"
+            },
+            {
+                "category_id": 5,
+                "poly": [
+                    157,
+                    1137,
+                    1494,
+                    1137,
+                    1494,
+                    2132,
+                    157,
+                    2132
+                ],
+                "score": 0.96,
+                "html": "<table><tr><td>구분</td><td>ㅇ(정성적 기대효과) 산업적 측면,경제적 측면, 기술적 측면으로 기대효과를 구분 ㅇ (정량적 기대효과) 매출 증대 효과, 수출 증대 효과로 구분 0(산업적 측면)</td></tr><tr><td>정성적 기대효과</td><td>-현재 국내 건설기계 산업계의 대응이 어려운기능안전·사이버보안 적용 부분에서 최신 표준·규제 수준에 맞춘 평가·검증기반 구축 및 기업체 인 증을 위한 기술지원을 통해 선진 시장의 기술장벽에 대한 대응력 확보 가능 AI,네트워크 기반 서비스 등 첨단·융합 신제품 및 서비스의 사전 검증 관련 표준 분석 서비스 제공 등 종합지원 플랫폼으로서 Level 4 자율작업 건설기계 등 초격차 기술확보의 토대 마련 기능안전·사이버보안 제품적용을 위해서는 건설기계 설계단계부터 완성 차 업체와 부품공급업체간 기능 검증 및 인증관련 각종 기술자료 확보를 위한 긴밀한 협업이 필요하므로 국내 건설기계 관련 생태계의 활성화가 기대됨 인프라 구축과 기능안전·AI,사이버보안 안전성 확보를 위한 기업지원을 통해 제품개발 단계별 시험평가 및 보완이 가능해져 국내 건설기계관련 업체의 신제품 개발기간의 단축과 제품 신뢰성 향상 효과가 기대됨 O (경제적 측면) 선진국 시장에서 강화되는 건설기계 기능안전·사이버보안 안전 규제의 인증 지원을 통해 국내 제품의 안정적인 시장 점유율 확보 가능 Level 4 자율작업 건설기계의 핵심기술(피지컬 AI, 사이버보안)에 대한 시 험평가와 분석 데이터 제공을 통해 초격차 기술 확보와 건설기계 해외시장 수출규모 확대가 예상됨</td></tr></table>"
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    153,
+                    1062,
+                    381,
+                    1062,
+                    381,
+                    1116,
+                    153,
+                    1116
+                ],
+                "score": 0.815
+            },
+            {
+                "category_id": 6,
+                "poly": [
+                    153,
+                    1062,
+                    381,
+                    1062,
+                    381,
+                    1116,
+                    153,
+                    1116
+                ],
+                "score": 0.178
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    147.0,
+                    1059.0,
+                    387.0,
+                    1059.0,
+                    387.0,
+                    1122.0,
+                    147.0,
+                    1122.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    147.0,
+                    1059.0,
+                    387.0,
+                    1059.0,
+                    387.0,
+                    1122.0,
+                    147.0,
+                    1122.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 7,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 5,
+                "poly": [
+                    159,
+                    193,
+                    1493,
+                    193,
+                    1493,
+                    894,
+                    159,
+                    894
+                ],
+                "score": 0.974,
+                "html": "<table><tr><td></td><td>(기술적 측면) 기반구축 및 기업지원 활동을 통해 제품 생애주기 기반의 복합규제에 대 응할 수 있는 건설기계의 기능안전·사이버보안 평가 기술을 확보하고 검 증 노하우를 축적할 수 있음 구축 장비를 활용한 피지컬 AI 응용기술 평가 및 안전 적합성 검증을 통 해 건설기계 완성차 및 핵심 부품에 대한 AI 적용 수준 고도화 가능 다양한 건설기계 융합기술과 서비스 아이디어에 대한 다양한 평가 수행 및 시나리오 기반 테스트 데이터 확보를 통해 국내 건설기계 산업에서 기 능안전·사이버보안 및 AI 활용에 대한 표준화 역량 강화와 표준화 논의</td></tr><tr><td>정량적 기대효과</td><td>주도권 확보를 기대할 수 있음 0(매출 증대 효과)&#x27;26년 3.4조원에서 &#x27;35년 6.7조원으로 매출액 약 3.3조원 증가 [산출 근거]&#x27;22년 국내 건설기계 총생산액 11.4조원(11만대/연)(건설기계산 업협회 자료)을 바탕으로&#x27;26~’35년 연평균 7.8 % 성장률(Market Research Future의 자율 작업형 건설기계 시장 규모), 자율 작업형 건설기계 비중은 국내 전체 건설기계 생산액의 30%를 가정할 경우 0(수출 중대 효과)&#x27;26년 2.05조원에서&#x27;35년 4.03조원으로 수출액 약 1.98조원 증대 효과 [산출 근거]&#x27;22년 국내 건설기계 총생산액 및 자율 작업형 건설기계 성장률 7.8 %(예상치), 자율작업 건설기계 비중(전체 건설기계 생산액의 30 %),수 출 비중(전체 생산액의 60 %)</td></tr></table>"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    908,
+                    710,
+                    962,
+                    710,
+                    962,
+                    742,
+                    908,
+                    742
+                ],
+                "score": 0.65,
+                "latex": "30 \\%"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    815,
+                    851,
+                    885,
+                    851,
+                    885,
+                    883,
+                    815,
+                    883
+                ],
+                "score": 0.55,
+                "latex": "60 \\%"
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    1086,
+                    637,
+                    1166,
+                    637,
+                    1166,
+                    670,
+                    1086,
+                    670
+                ],
+                "score": 0.49,
+                "latex": "7 . 8 \\%"
+            }
+        ],
+        "page_info": {
+            "page_no": 8,
+            "width": 1653,
+            "height": 2337
+        }
+    },
+    {
+        "layout_dets": [
+            {
+                "category_id": 1,
+                "poly": [
+                    213,
+                    687,
+                    1141,
+                    687,
+                    1141,
+                    730,
+                    213,
+                    730
+                ],
+                "score": 0.331
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    201,
+                    443,
+                    1265,
+                    443,
+                    1265,
+                    531,
+                    201,
+                    531
+                ],
+                "score": 0.258
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    203,
+                    566,
+                    1224,
+                    566,
+                    1224,
+                    654,
+                    203,
+                    654
+                ],
+                "score": 0.238
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    205,
+                    361,
+                    810,
+                    361,
+                    810,
+                    401,
+                    205,
+                    401
+                ],
+                "score": 0.23
+            },
+            {
+                "category_id": 0,
+                "poly": [
+                    608,
+                    216,
+                    1055,
+                    216,
+                    1055,
+                    257,
+                    608,
+                    257
+                ],
+                "score": 0.18
+            },
+            {
+                "category_id": 2,
+                "poly": [
+                    608,
+                    216,
+                    1055,
+                    216,
+                    1055,
+                    257,
+                    608,
+                    257
+                ],
+                "score": 0.159
+            },
+            {
+                "category_id": 1,
+                "poly": [
+                    192,
+                    306,
+                    560,
+                    306,
+                    560,
+                    345,
+                    192,
+                    345
+                ],
+                "score": 0.146
+            },
+            {
+                "category_id": 13,
+                "poly": [
+                    200,
+                    365,
+                    228,
+                    365,
+                    228,
+                    394,
+                    200,
+                    394
+                ],
+                "score": 0.28,
+                "latex": "\\bigcirc"
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    604.0,
+                    212.0,
+                    1060.0,
+                    212.0,
+                    1060.0,
+                    261.0,
+                    604.0,
+                    261.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    604.0,
+                    212.0,
+                    1060.0,
+                    212.0,
+                    1060.0,
+                    261.0,
+                    604.0,
+                    261.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    213.0,
+                    687.0,
+                    1136.0,
+                    687.0,
+                    1136.0,
+                    730.0,
+                    213.0,
+                    730.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    195.0,
+                    443.0,
+                    693.0,
+                    443.0,
+                    693.0,
+                    482.0,
+                    195.0,
+                    482.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    201.0,
+                    492.0,
+                    1265.0,
+                    492.0,
+                    1265.0,
+                    528.0,
+                    201.0,
+                    528.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    197.0,
+                    567.0,
+                    721.0,
+                    567.0,
+                    721.0,
+                    606.0,
+                    197.0,
+                    606.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    200.0,
+                    614.0,
+                    1220.0,
+                    614.0,
+                    1220.0,
+                    653.0,
+                    200.0,
+                    653.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    229.0,
+                    360.0,
+                    809.0,
+                    360.0,
+                    809.0,
+                    402.0,
+                    229.0,
+                    402.0
+                ],
+                "score": 1.0,
+                "text": ""
+            },
+            {
+                "category_id": 15,
+                "poly": [
+                    189.0,
+                    306.0,
+                    556.0,
+                    306.0,
+                    556.0,
+                    347.0,
+                    189.0,
+                    347.0
+                ],
+                "score": 1.0,
+                "text": ""
+            }
+        ],
+        "page_info": {
+            "page_no": 9,
+            "width": 1653,
+            "height": 2337
+        }
+    }
+]

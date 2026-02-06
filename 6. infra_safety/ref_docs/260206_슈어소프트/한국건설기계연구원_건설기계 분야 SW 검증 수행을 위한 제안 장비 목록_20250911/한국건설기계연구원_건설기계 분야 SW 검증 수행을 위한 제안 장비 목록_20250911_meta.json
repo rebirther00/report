@@ -1,0 +1,232 @@
+{
+  "table_of_contents": [
+    {
+      "title": "\uac74\uc124\uae30\uacc4 \uc804\uc790\uc81c\uc5b4 \ubc0f \uc9c0\ub2a5\ud615 \ud575\uc2ec\ubd80\ud488\n\uae30\ub2a5\uc548\uc804\ud3c9\uac00 \uae30\ubc18\uad6c\ucd95\n\uc81c\uc548 \uc7a5\ube44 \ubaa9\ub85d",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          189.12109375,
+          188.578125
+        ],
+        [
+          649.58984375,
+          188.578125
+        ],
+        [
+          649.58984375,
+          298.873046875
+        ],
+        [
+          189.12109375,
+          298.873046875
+        ]
+      ]
+    },
+    {
+      "title": "\uc81c\uc548 \uc7a5\ube44",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.983971504897596,
+          66.05541561712846
+        ],
+        [
+          131.21104185218164,
+          66.05541561712846
+        ],
+        [
+          131.21104185218164,
+          89.99658203125
+        ],
+        [
+          53.983971504897596,
+          89.99658203125
+        ]
+      ]
+    },
+    {
+      "title": "\uc81c\uc548 \uc7a5\ube44",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          56.736328125,
+          65.733154296875
+        ],
+        [
+          128.95379638671875,
+          65.733154296875
+        ],
+        [
+          128.95379638671875,
+          89.923828125
+        ],
+        [
+          56.736328125,
+          89.923828125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          45
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Span",
+          5
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListItem",
+          1
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          354
+        ],
+        [
+          "Line",
+          41
+        ],
+        [
+          "TableCell",
+          29
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\\ud55c\uad6d\uac74\uc124\uae30\uacc4\uc5f0\uad6c\uc6d0_\uac74\uc124\uae30\uacc4 \ubd84\uc57c SW \uac80\uc99d \uc218\ud589\uc744 \uc704\ud55c \uc81c\uc548 \uc7a5\ube44 \ubaa9\ub85d_20250911"
+}

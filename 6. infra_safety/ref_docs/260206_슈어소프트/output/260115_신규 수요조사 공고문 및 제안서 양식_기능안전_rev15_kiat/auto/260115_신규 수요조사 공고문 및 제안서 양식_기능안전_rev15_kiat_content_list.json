@@ -1,0 +1,308 @@
+[
+    {
+        "type": "table",
+        "img_path": "images/cdccb35b33b79e26db5c7d1ca77bc8efad0e103da358a937d153d9d335a9624e.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"8\" rowspan=\"1\">&lt;요약서&gt;</td></tr><tr><td colspan=\"2\" rowspan=\"1\">제안과제유형</td><td colspan=\"3\" rowspan=\"1\">1초격차기술기반형</td><td colspan=\"3\" rowspan=\"1\">시설 장비 S/W인력양성</td></tr><tr><td colspan=\"2\" rowspan=\"1\">제안과제명</td><td colspan=\"6\" rowspan=\"1\">자율작업 건설기계를 위한 기능안전 및 사이버보안 적합성 평가 기반 구축</td></tr><tr><td colspan=\"1\" rowspan=\"5\">수요제안처</td><td colspan=\"1\" rowspan=\"1\">제안처구분</td><td colspan=\"6\" rowspan=\"1\">연구기관[출연연등]대학협단체기업지자체기타</td></tr><tr><td colspan=\"1\" rowspan=\"1\">기관[기업]명</td><td colspan=\"6\" rowspan=\"1\">한국건설기계연구원</td></tr><tr><td colspan=\"1\" rowspan=\"3\">제안자</td><td colspan=\"1\" rowspan=\"1\">소속부서</td><td colspan=\"2\" rowspan=\"1\">지능제어연구실</td><td colspan=\"2\" rowspan=\"1\">성명[직급]</td><td colspan=\"1\" rowspan=\"1\">최승준[책임]</td></tr><tr><td colspan=\"1\" rowspan=\"1\">유선번호</td><td colspan=\"2\" rowspan=\"1\">063-447-2570</td><td colspan=\"2\" rowspan=\"1\">휴대폰</td><td colspan=\"1\" rowspan=\"1\">010-3156-5417</td></tr><tr><td colspan=\"1\" rowspan=\"1\">이메일</td><td colspan=\"2\" rowspan=\"1\">sjoon.choi@koceti.re.kr</td><td colspan=\"2\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td></tr><tr><td colspan=\"1\" rowspan=\"1\">초격차</td><td colspan=\"1\" rowspan=\"1\">분야</td><td colspan=\"6\" rowspan=\"1\">첨단제조</td></tr><tr><td colspan=\"1\" rowspan=\"1\">프로젝트</td><td colspan=\"1\" rowspan=\"1\">프로젝트명</td><td colspan=\"6\" rowspan=\"1\">자율주행[레벨4이상]융합 기술개발 및 상용화종합연구기반구축</td></tr><tr><td colspan=\"2\" rowspan=\"2\">AI R&amp;DI</td><td colspan=\"2\" rowspan=\"1\">AI연구설계솔루션</td><td colspan=\"2\" rowspan=\"1\">AI자율실험실</td><td colspan=\"2\" rowspan=\"1\">기타</td></tr><tr><td colspan=\"2\" rowspan=\"1\">X</td><td colspan=\"2\" rowspan=\"1\">X</td><td colspan=\"2\" rowspan=\"1\">-</td></tr><tr><td colspan=\"2\" rowspan=\"2\">기술 키워드</td><td colspan=\"6\" rowspan=\"1\">건설기계,피지컬 AI,기능안전,사이버보안,제어시스템</td></tr><tr><td colspan=\"6\" rowspan=\"1\">Construction Equipment, Physical AI, Function safety, Cybersecurity,Control system</td></tr><tr><td colspan=\"2\" rowspan=\"3\">예상사업 규모</td><td colspan=\"1\" rowspan=\"1\">[예상]착수시기[년]</td><td colspan=\"5\" rowspan=\"1\">27년</td></tr><tr><td colspan=\"1\" rowspan=\"1\">[예상]사업기간[년]</td><td colspan=\"5\" rowspan=\"1\">5년</td></tr><tr><td colspan=\"1\" rowspan=\"1\">[예상]소요예산[억원]</td><td colspan=\"5\" rowspan=\"1\">총 180억원 [국비 100억 원,지방비 80억 원]</td></tr><tr><td></td><td></td><td colspan=\"1\" rowspan=\"1\"></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td colspan=\"2\" rowspan=\"1\">개요 및 필요성</td><td colspan=\"6\" rowspan=\"1\">(개요) 수출 주력산업인건설기계완성차 및핵심 부품에 대한선진수출시장규제강화에 대응하고Level 4자율작업건설기계의피지컬AI활용기술상용화촉진을 위한 제어시스템 기능안전 및 사이버보안 적합성 평가* 기반 구축적합성 평가: 제품이 관련 법규·표준·안전 요구사항을 충족하는지 시험·검증을 통해 확인(수출규제 강화) EU'27년기능안전 적합성 평가및 인공지능/사이버보안 검증을포함하는 새로운 기계류 규정(Machinery Regulation)* 시행에 따라 완성차 및 핵심부품은관련기준에따른안전성 적합성 평가 입증이 시급기계류 규정: 기계류의 안전 기준을 강화하고디지털화에 대응하기 위한 EU 신규 법규o(기술 확보) 강화된 규제에 대응 중인 해외 선진사와 격차를 해소하고 수출경쟁력및Level 4자율작업건설기계 초격차 기술 확보를위한 지원 필요o(인프라 부재) AI 등 첨단기술이 적용된 자율작업건설기계는기존장비대비 기능안전·사이버보안 요구사항이 대폭 강화되고 있으나, 이를 체계적으로 검증할 수 있는 적합성 평가 인프라는 국내에 전무한 실정</td></tr><tr><td colspan=\"2\" rowspan=\"1\">목적 및 내용</td><td colspan=\"6\" rowspan=\"1\">O(최종목적) 강화된 해외 수출 규제 대응, AI 등 첨단기술이 적용된Level 4자율작업 건설기계 개발 지원 및 오작동*으로부터 발생할 수 있는 중대안전사고 예방을 위한 차세대 핵심 제어시스템의 기능안전·사이버보안적합성 평가 기반 구축*오작동:소프트웨어 오류 또는 사이버 해킹으로 제어 로직이 왜곡되어 시스템이 잘못된 판단/동작을 수행o(지원 대상 및범위)통합/자율제어 ECU*, 구동액추에이터, 센서/통신 모둘,AI알고리즘및제어/통신소프트웨어등을대상으로자율작업건설기계완성차/제어시스템 적합성 평가,작동 시나리오 기반 시물레이션,실차 실증및 단체표준개발을지원ECU(Electronic Control Unit, 전자제어장치)</td></tr><tr><td colspan=\"2\" rowspan=\"1\">주요 구축 인프라</td><td colspan=\"6\" rowspan=\"1\">(장비1) 자율작업 건설기계 기능안전 설계 및 모델 검증 장비(ML/SL*) (1,500백만원)-가상 ECU 제어로직 모델링 도구 및 건설기계 전용 모델 라이브러리-유압/구동/작업기서브 시스템 모델 라이브러리제공 및 제어로직 최적화지원,자율작업제어시스템 아키텍처의 기능안전 등급적합성 사전 평가MIL(Model-in-the-Loop, 모델 기반 시뮬레이션검증), SlL(Software-in-the-Loop,소프트웨어 기반 시뮬레이션 검증)</td></tr><tr><td colspan=\"2\" rowspan=\"1\"></td><td colspan=\"6\" rowspan=\"1\">(장비2) 자율작업 건설기계 기능안전 적합성 평가 장비(HS*)(2,980백만원)-SW 코드 품질 분석 도구,실시간 HLS 및 시나리오 기반 시뮬레이터-SW 품질 분석 및 HLS기반 ECU 단위 기능안전 요구사항 검증 지원, 기능안전 검증 및 제출용 기술 문서작성 지원*HLS(Hardware-in-the-Loop Simulation,하드웨어 연동 실시간 시뮬레이션)(장비3) 자율작업 건설기계 실차-가상 연동 및 커넥티비티 실증 장비(1,910백만원)-실차 기반 테스트 장치-통신프로토콜 분석,DS기반 이상 탐지, 실차 연동응답성및 제어 정밀도검증,개별 부품의 실차기반기능/안전성통합검증자율작업알고리즘 성능평가(장비4) 자율작업 건설기계 사이버보안 전주기 평가 장비(1,060백만원)위협·보안 취약점분석SW및 건설기계 통신 프로토콜 퍼징테스터-보안 취약점 정밀 점검 및 보안 컴포년트 적용 검증 지원,사이버보안 관리시스템 구축을 위한 ISO/SAE21434 기반 위험분석 및 보안 검증 지원(장비5) 자율작업 건설기계 무선 업데이트(OTA) 보안 평가 장비(580백만원)-OTA보안 검증및 무결성/롤백기능테스트 도구,업데이트이력관리시스템-제어기 펌웨어 업데이트 보안 검증(서명, 암호화,무결성) 지원,ISO/SAE21434 및 ISO24089 기반 OTA 보안 검증 및 업데이트 이력 관리 지원(장비6) 자율작업 건설기계 AI안전성 검증 장비(970백만원)-AI 학습/추론 검증 도구,적대적 공격 생성기 및 MLOps* 자동화 관리 플랫폼-AI 인식 오류 유도 패턴,LiDAR 센서 기만 신호,AI 모델 강건성 평가 지원,실차 기반 AI 안전성 테스트및EU AI Act 적합성 문서화 지원*MLOps(AI의 전체 수명주기 운영,관리체계)</td></tr><tr><td colspan=\"2\" rowspan=\"1\">기대 효과</td><td colspan=\"6\" rowspan=\"1\">e 현재 국내 건설기계 산업계의 대응이 어려운기능안전·사이버보안·AI 적용 부분에서 최신 표준·규제 수준에 맞춘 평가·검증기반 구축 및 선진시장 기술장벽에 대한 대응력 확보O 선진국시장에서심화되는건설기계기능안전·사이버보안·AI 안전 규제의인증 지원을 통해 국내 제품의 안정적인 시장 점유율 확보 가능Level 4 자율작업 건설기계의핵심기술(피지컬AI,사이버보안)에대한시험평가와 분석 데이터제공을 통해 초격차기술 확보와 국내건설기계해외시장 수출 규모 확대가 예상됨다양한 건설기계 융합 기술과 서비스 아이디어에 대한 다양한 평가 수행및 시나리오 기반 테스트 데이터 확보를통해 국내 건설기계 산업에서기능안전·사이버보안및AI 활용에대한표준화역량강화와표준화논의주도권 확보를기대할 수 있음</td></tr></table>",
+        "bbox": [
+            94,
+            128,
+            900,
+            922
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            94,
+            79,
+            902,
+            563
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "산업혁신기반구축 신규과제 수요조사 제안서",
+        "text_level": 1,
+        "bbox": [
+            186,
+            92,
+            813,
+            121
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "1. 제안 개요",
+        "text_level": 1,
+        "bbox": [
+            94,
+            139,
+            243,
+            162
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/b48a8e2b01efd2fc40a72d6d6a9d17d3d80dc29bb48c607398628c7a5a90c04a.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=1 colspan=2>제안과제유형</td><td rowspan=1 colspan=4>1초격차기술기반형</td><td rowspan=1 colspan=3>시설 장비 S/W 인력양성</td></tr><tr><td rowspan=1 colspan=2>제안과제명</td><td rowspan=1 colspan=7>자율작업 건설기계를 위한 기능안전 및 사이버보안 적합성 평가 기반 구축</td></tr><tr><td rowspan=5 colspan=1>수요제안처</td><td rowspan=1 colspan=1>제안처구분</td><td rowspan=1 colspan=7>연구기관[출연연 등]대학 협단체 기업 지자체 기타</td></tr><tr><td rowspan=1 colspan=1>기관[기업]명</td><td rowspan=1 colspan=7>한국건설기계연구원</td></tr><tr><td rowspan=3 colspan=1>제안자</td><td rowspan=1 colspan=1>소속부서</td><td rowspan=1 colspan=3>지능제어연구실</td><td rowspan=1 colspan=2>성명[직급]</td><td rowspan=1 colspan=1>최승준[책임]</td></tr><tr><td rowspan=1 colspan=1>유선번호</td><td rowspan=1 colspan=3>063-447-2570</td><td rowspan=1 colspan=2>휴대폰</td><td rowspan=1 colspan=1>010-3156-5417</td></tr><tr><td rowspan=1 colspan=1>이메일</td><td rowspan=1 colspan=3>sjoon.choi@koceti.re.kr</td><td rowspan=1 colspan=2></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>초격차</td><td rowspan=1 colspan=1>분야</td><td rowspan=1 colspan=7>첨단제조</td></tr><tr><td rowspan=1 colspan=1>프로젝트</td><td rowspan=1 colspan=1>프로젝트명</td><td rowspan=1 colspan=7>자율주행[레벨4이상] 융합 기술개발 및 상용화 종합연구기반 구축</td></tr><tr><td rowspan=2 colspan=2>AI R&amp;DI</td><td rowspan=1 colspan=3>AI연구설계솔루션</td><td rowspan=1 colspan=2>AI자율실험실</td><td rowspan=1 colspan=2>기타</td></tr><tr><td rowspan=1 colspan=3>X</td><td rowspan=1 colspan=2>X</td><td rowspan=1 colspan=2></td></tr><tr><td rowspan=2 colspan=2>기술 키워드</td><td rowspan=1 colspan=7>건설기계,피지컬 AI,기능안전,사이버보안,제어시스템</td></tr><tr><td rowspan=1 colspan=7>Construction Equipment, Physical AI, Function safety, Cybersecurity,Control system</td></tr><tr><td rowspan=3 colspan=2>예상사업 규모</td><td rowspan=1 colspan=2>[예상]착수시기[년]</td><td rowspan=1 colspan=5>27년</td></tr><tr><td rowspan=1 colspan=2>[예상]사업기간[년]</td><td rowspan=1 colspan=5>5년</td></tr><tr><td rowspan=1 colspan=2>[예상]소요예산[억원]</td><td rowspan=1 colspan=5>총 180억원 [국비 100억 원, 지방비 80억원]</td></tr></table>",
+        "bbox": [
+            94,
+            171,
+            902,
+            502
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "2. 배경 및 필요성",
+        "text_level": 1,
+        "bbox": [
+            92,
+            520,
+            304,
+            545
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/d3ee2416e5978eac661f1f0c4126df8f8c160115931f89063d3803f0a6327394.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=1 colspan=1>기반구축 개요</td><td rowspan=1 colspan=1>0 수출 주력 산업인 건설기계 완성차 및 핵심 부품에 대한 선진 수출시장 규제강화에 대응하고 차세대 건설기계의 피지컬 AI 적용 기술 상용화 촉진과관련 생태계 활성화를 위한 제어시스템 성능 및 안전 적합성 평가기반 구축</td></tr><tr><td rowspan=1 colspan=1>추진배경</td><td rowspan=1 colspan=1>(문제/이슈) 건설기계 안전에 대한 선진시장의 규제 패러다임이 AI·사이버보안을 포함한 제어시스템의 HW/SW 통합 검증을 요구하는 방향으로 변화O(현안/당면과제) AI 기반 자율화 등고부가가치기술 개발에필수적인 성능평가 기술 및 검증 인프라 부족으로 하이엔드 제품 개발과 시장확보에 한계</td></tr><tr><td rowspan=1 colspan=1>필요성 및 시급성</td><td rowspan=1 colspan=1>0(수출 규제 강화) EU&#x27;27년 기능안전 적합성 평가 및 인공지능/사이버보안 검증을 포함하는 새로운 기계류 규정(Machinery Regulation)시행에 따라 완성차및핵심 부품은관련기준에 따른 안전성 평가 및적합성 입증이 시급함O 주요 선진사는 지속적으로 강화되는관련 표준에 맞춰 제품 기능 검증 강화,사이버보안 기능 적용 등 적절히 대응 중이나 국내의 경우 성능 검증 인프라와 개발 프로세스 구축에따른비용 부담으로 대응이전무한 실정임O AI등첨단 융합기술이 건설기계에적용되며제품의 복잡도가 증가하는반면 적절한 성능평가, 검증 기술의 부족으로 새로운 기술의 상품화를 위한개발기간 및 비용부담이크게증가하고 있어관련 인프라 확보가절실함</td></tr><tr><td rowspan=1 colspan=1>환경분석</td><td rowspan=1 colspan=1>(정책 동향) Level 4 자율작업 건설기계의 기능안전·사이버보안 적합성평가지원은주력산업 혁신을위한 피지컬AI 초격차 프로젝트에부합O (시장 동향) 선진 시장을 중심으로 제품의 생애주기에 걸쳐 안전한 작동을보장하는 것이 제품의 핵심 경쟁력으로 작용하고 있음0  (기술동향)AI·OTA(Over-the-Air)등 네트워크, SW 기반 기술이 적극적으로도입되며 제품의 품질 확보와 장기적인 고객 만족도 향상을 위해 개발 단계별검증과 검증 시나리오 활용이 필수 요소로 대두</td></tr></table>",
+        "bbox": [
+            94,
+            552,
+            902,
+            895
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/78954f5917039d480fabe567422e756af14a7d0647ae508b077924ff2f214387.jpg",
+        "table_caption": [
+            "3. 제안목적 및 과제내용"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"2\">제인학다 갓 피재대증 (최종목적)강화된해외 수출 규제 대응, AI 등첨단기술이 적용된Level 4자율</td></tr><tr><td>기반구축 목적</td><td>작업 건설기계 개발 지원및 오작동*으로부터발생할수있는 중대 안전사고 예방을 위한 차세대 핵심 제어시스템의 기능안전 및 사이버보안 적합성 평가 기반 구축 오작동: 소프트웨어 오류 또는 사이버 해킹으로 제어 로직이 왜곡되어 시스템이잘못 된 판단/동작을 수행 (지원대상) 통합제어/자율제어ECU, 조향/주행/작업 구동액추에이터, 센서류 (LiDAR, Radar, IMU 등), 통신 모둘(CAN), 자율주행/자율작업 AI 알고리즘, 안전제어 소프트웨어,통신/원격제어 소프트웨어 및 OTA 시스템 (지원범위)자율작업 건설기계완성차/제어시스템 적합성 평가,건설기계작동 시나리오 기반 시뮬레이션 및 실차 실증, 단체 표준 개발 등 ㅇ(장비구축)자율작업 건설기계의 기능안전·사이버보안·AI 안전성 검증을위</td></tr><tr><td>과제 내용</td><td>해 총 6종의전문장비를단계별로 구축할예정.이를통해 국내건설기계 부품사/완성차의제품개발 전주기 검증 역량 강화 및 글로벌 규제EU MR, EU CRA, EU AI Act) 인증대응 기반 마련이 기대됨 *EU MR(Machinery Regulation), EU CRA(Cyber Resilience Act) (장비1) 자율작업 건설기계 기능안전 설계 및 모델 검증 장비(ML/SIL) -가상 ECU 제어로직 모델링 도구 및 건설기계 전용 모델 라이브러리 유압/구동/작업기서브 시스템 모델 라이브러리제공 및 제어로직 최적화 지원, 자율작업 제어시스템 아키텍처의 기능안전 등급적합성 사전평가 (장비2) 자율작업 건설기계 기능안전 적합성 평가 장비(HLS) -SW 코드품질분석 도구,실시간HLS및시나리오 기반 시뮬레이터 -SW 품질 분석 및 HLS 기반 ECU 단위 기능안전 요구사항 검증지원,기능 안전 검증 및 제출용 기술 문서 작성 지원 (장비3) 자율작업 건설기계 실차-가상 연동 및 커넥티비티 실증 장비 실차 기반 테스트 장치 통신 프로토콜 분석,DS(침입탐지시스템) 기반 이상 탐지,실차연동 응답성및제 어정밀도검증,개별부품의 실차기반 기능/안전성통합검증 자율작업알 고리즘성능평가 (장비4) 자율작업 건설기계 사이버보안 전주기 평가 장비 위협·보안취약점분석SW및 건설기계 통신 프로토콜퍼징테스터 -보안 취약점 정밀 점검 및 보안 컴포년트 적용 검증 지원,사이버보안관리 시스템 구축을위한ISO/SAE21434기반위험분석및 보안 검증지원 (장비5) 자율작업 건설기계 무선업데이트(OTA) 보안 평가 장비 -OTA 보안 검증및무결성/롤백 기능테스트도구,업데이트이력관리시스템 -제어기 펌웨어 업데이트 보안 검증(서명,암호화, 무결성) 지원,ISO/SAE 21434 및ISO24089 기반OTA 보안 검증및 업데이트 이력 관리 지원 (장비6) 자율작업건설기계AI 안전성검증 장비 -AI 학습/추론 검증 도구, 적대적 공격 생성기 및 MLOps* 자동화 관리 플랫폼 AI 인식 오류 유도 패턴,LiDAR 센서 기만 신호, AI모델 강건성 평가 지원, 실차 기반AI 안전성 테스트 및 EU AIAct 적합성 문서화지원 *MLOps(AI의 전체 수명주기 운영,관리체계) ㅇ(기업지원) 수출 규제 대응기능안전·사이버보안 적합성 평가,건설기계 작 업/안전 실증시나리오평가,설계/검증/평가 결과물의 기술문서화 및 제 조자적합성 선언 지원,소프트웨어 아키텍처 초기 설계 컨설팅등 (적합성 평가) 통합 제어 ECU 대상 안전 요구사항 분석 및 설계 검증을 수행하고,오작동/고장 주입,센서/통신 장애 및 사이버보안 시험을 통해 기능안전·사이버보안 규정 충족 여부를 평가 (작업/안전 실증 시나리오 평가) 실제 작업 환경을모사한시나리오에정상 작업과 함께돌발상황/센서오류/통신 지연 등을 부여하고 자율제어ECU의 판단 비상정지및 안전 동작을 검증하여 작업 안전성과 사고예방 능력 평가 (문서화 및 적합성 선언 지원)ECU 설계/검증/시험 결과의 기술문서 작성 및 기능안전사이버보안충족근거 검증을통한 적합성선언절차지원 (소프트웨어 컨설팅)기능안전등급을고려한계층형 아키텍처설계,AI 판단 모들,제어 로직,통신 스택 구성, 이중화/모니터링 구조 적용 등 오작동 및 사이버 위협에 대비한 초기 설계 컨설팅 지원</td></tr></table>",
+        "bbox": [
+            95,
+            93,
+            907,
+            913
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/ad0f6c0419e3d0084cd19062b7d7f484c7663278556c9e2d4dddc0ee322f64ac.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=2 colspan=1>기관명</td><td rowspan=2 colspan=2>센터명[지역]</td><td rowspan=2 colspan=1>주요기반기술 및인프라</td><td rowspan=1 colspan=5>주요서비스</td></tr><tr><td rowspan=1 colspan=1>설계</td><td rowspan=1 colspan=1>시제품제작</td><td rowspan=1 colspan=1>시험평가신뢰성인증</td><td rowspan=1 colspan=1>판매마케팅</td><td rowspan=1 colspan=1>품질관리</td></tr><tr><td rowspan=1 colspan=1>한국건설기계연구원</td><td rowspan=1 colspan=2>스마트건설기계시험센터(군산)</td><td rowspan=1 colspan=1>제어 HW신리성평가건설기계 작업자보조기능성능시험</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국지동차연구원</td><td rowspan=1 colspan=2>본원(천안)</td><td rowspan=1 colspan=1>자동차 기능안전SWEJ설계 및평가</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국기계전기전자시험연구원</td><td rowspan=1 colspan=2>AI·SW융합센터(군포)</td><td rowspan=1 colspan=1>SW품질인증, SW기능안전, A인증</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>한국화학융합시험연구원</td><td rowspan=1 colspan=2>SW시험인증지원센터(판교)</td><td rowspan=1 colspan=1>자동차 기능안전,자동차사이버보안</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=1>시험원</td><td rowspan=1 colspan=2>연구센터(화성) 자율주행기능안전</td><td rowspan=1 colspan=1>연구센터(화성) 자율주행기능안전</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>o</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td></tr><tr><td rowspan=1 colspan=9>*시험·평가·신뢰성 인증: (건설기계)HW 신뢰성,(자동차)자율주행 분야 시험·평가·인증 지원</td></tr><tr><td rowspan=1 colspan=9>제안수요 산업의 연구개발구조 기술 포지셔닝(전후방 연계기술 및 산업)</td></tr><tr><td rowspan=1 colspan=9>제안수요범위[피지컬A초격차 프로젝트](자율작업기계)LeVe4자율작업을 위한 건설·농기계 핵심기술 개발④무인작업을위한건설/농기계충전인프라및제어시스템기술개발·기능안전/사이버보안통합적합성평가인프라구축•디지털시율레이션+완성자실증지원[후방 부품 산업]                      [건설기계 산업]                    [전방산업]·통합/자율제어ECU                    Level4자율작업건설기계           •건설산업•서(LiDAR, Radar, IMU등)            ·통합/자율제어시스템                ·물류산업제어/통신SW및AI알고리즘            ·자율작업기능</td></tr><tr><td rowspan=2 colspan=9>ㅇ제안수요 기반구축사업의 포지셔닝 따른 추진전략 기술자율작업 건설기계를위한기능안전 및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=7>자율작업 건설기계를위한기능안전 및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=2>주요 내용[정의]</td><td rowspan=1 colspan=7>건설기계 수출 규제 대응 및 LeVe 4 자율작업 건설기계 초격차 기술확보를위한 기능안전및사이버보안 적합성평가기반 구축</td></tr><tr><td rowspan=1 colspan=2>주요 주체수요처</td><td rowspan=1 colspan=7>(건설기계 완성차) HD현대사이트솔루션, HD건설기계,두산밥켓, 호룡등으(부품 제조사) 경우시스테크,동서콘트롤,태하,컴씨스,기원전자등</td></tr><tr><td rowspan=1 colspan=2>제안수요도입전구조적문제점</td><td rowspan=1 colspan=7>ㅇ&#x27;27년 강화되는 기계류 규정의 시행에 따라,완성차와 핵심 부품은 TRL 6~8단계의 적합성 평가가 필수지만 국내 대응 역량은 매우 부족한 상황ㅇ해외 선진사는 설계 단계부터(TRL5) 기능안전·사이버보안 검증을 수행하고 있으나,국내는 검증 인프라와 개발 프로세스 구축 비용 부담으로대응 미흡ㅇ건설기계 AI활용기술은TRL 4~6단계 수준으로 양산제품 적용을 위한 성능·안전성 검증 필요</td></tr><tr><td rowspan=1 colspan=2>제안수요의 예상기능역할수행</td><td rowspan=1 colspan=7>(기능) 차세대 고부가가치 지능형핵심 부품의 제품화를 촉진하고, 해외수출 규제 대응에 필요한 성능·안전성 평가 및 입증근거 제공(역할) 구축 설비 및 기업지원 프로그램을 통해 국내 건설기계 공급망및완성차 규제대응역량 확보</td></tr><tr><td rowspan=1 colspan=2>제안수요 도입후예상성과</td><td rowspan=1 colspan=7>건설기계의 해외 규제 맞춤형 안전 적합성평가 체계 구축(설계·검증결과물의 기술 문서화 및 제조자 적합성 선언 지원)ㅇ차세대 핵심기술인 Level 4 자율작업 건설기계 적용기술의 기능안전·사이버보안 검증지원기반마련</td></tr></table>",
+        "bbox": [
+            95,
+            118,
+            895,
+            907
+        ],
+        "page_idx": 4
+    },
+    {
+        "type": "text",
+        "text": "ㅇ 제안수요 기반구축사업 추진계획",
+        "bbox": [
+            302,
+            86,
+            576,
+            101
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "- (도입기) 핵심 인프라 구축 및 파일럿 지원 활동, 자율작업을 위한 AI 성능 및 안전성 평가 장비구축 준비  \n- (활용기) 규제 대응 적합성 평가 지원, 시나리오 기반 기능·안전 검증 통합지원, 단계별 검증 절차를 연계한 통합 검증 파이프라인 구축  \n- (성과 확산기) 중소·중견기업 대상 적합성 평가 및 컨설팅 서비스 제공,주요 핵심 부품에 대한 인증·시험 체계 구축, 다양한 실적용 사례 확보를 통한 안전성 검증 데이터 축적 및 노하우 공유",
+        "bbox": [
+            307,
+            102,
+            899,
+            199
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "text",
+        "text": "추진 계획",
+        "bbox": [
+            147,
+            307,
+            242,
+            328
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/ff1266b292e496a8a14557a6e916cf0380f802ac1a028affe7acef0bf4294fa9.jpg",
+        "table_caption": [
+            "ㅇ 제안수요 사업의 필요 주요 인프라 구축계획 및 활용 방안"
+        ],
+        "table_footnote": [
+            "\\*XAI(eXplainable AI, 설명가능한 AI)"
+        ],
+        "table_body": "<table><tr><td rowspan=2 colspan=1>군</td><td rowspan=2 colspan=1>산업기반</td><td rowspan=2 colspan=1>산업기술</td><td rowspan=1 colspan=5>구축년도</td><td rowspan=2 colspan=1>활용방안[지원내용]</td></tr><tr><td rowspan=1 colspan=1>1차년도</td><td rowspan=1 colspan=1>년도</td><td rowspan=1 colspan=1>년도</td><td rowspan=1 colspan=1>4차년도</td><td rowspan=1 colspan=1>5차년도</td></tr><tr><td rowspan=1 colspan=1>1</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>기능안전모델기반설계·검증기술</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>기능안전 제어로직·모델 검증(부품사/완성차 초기 sW설계·검증 지원)</td></tr><tr><td rowspan=1 colspan=1>2</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>HLS 기반기능안전적합성 평가기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>SW품질 분석 및 HLS 기반 ECU단위기능·시나리오기반기능안전 요구사항 검증(EU MR 대응)</td></tr><tr><td rowspan=1 colspan=1>3</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>실차-가상연동검증기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1>실차+가상 연동및커넥티비티·보안평가지원</td></tr><tr><td rowspan=1 colspan=1>4</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>전주기사이버보안검증 기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>단계별(TARA→보안코딩→침투테스트)시험을 통한 설계~운영 전주기사이버보안 검증지원 (EU CRA대응)</td></tr><tr><td rowspan=1 colspan=1>5</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>OTA 보안 검증기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>OTA 보안 프로토콜 및 데이터무결성 검증,업데이트 실패 시롤백·시스템 복구 안전성 테스트(EU CRA 대응)</td></tr><tr><td rowspan=1 colspan=1>6</td><td rowspan=1 colspan=1>건설기계</td><td rowspan=1 colspan=1>XAI - MLOps*기반AI 안전성검증 기술</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>O</td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1></td><td rowspan=1 colspan=1>설명가능한 AI 기반 판단 근거분석 및 데이터 무결성 검증,적대적 공격 방어력 테스트(EU AI Act 대응)</td></tr></table>",
+        "bbox": [
+            302,
+            227,
+            890,
+            530
+        ],
+        "page_idx": 5
+    },
+    {
+        "type": "table",
+        "img_path": "images/af948651a770d9428f7ca98413af31dca07f92362eb4a5d274c4fc396a648930.jpg",
+        "table_caption": [
+            "4. 인프라 구축 계획"
+        ],
+        "table_footnote": [],
+        "table_body": "<table><tr><td colspan=\"1\" rowspan=\"2\">군</td><td colspan=\"1\" rowspan=\"2\">시설·장비([S/W]명</td><td colspan=\"1\" rowspan=\"2\">활용용도[업체] 지원 수요 내용</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"2\" rowspan=\"1\">구축년도</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"2\">비용[백만원]</td><td colspan=\"1\" rowspan=\"2\">궁축유형</td></tr><tr><td colspan=\"1\" rowspan=\"1\">1차년도년도</td><td colspan=\"1\" rowspan=\"1\">2차년도년도</td><td colspan=\"1\" rowspan=\"1\">3차년도</td><td colspan=\"1\" rowspan=\"1\">4차년도</td><td colspan=\"1\" rowspan=\"1\">5차년도</td></tr><tr><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계기능안전 설계 및 모델[기업지원]검증 장비[MIL/SIL]</td><td colspan=\"1\" rowspan=\"1\">[활용용도]실제 ECU 제작 전, HostPC 환경에서가상 모델과 제어 로직을 구동하여 기능안전요구사항만족 여부 사전 검증초기단계에서의설계결함조기 발견·(부품사)유압/구동/작업기 서브 시스템개발용 모델 라이브러리 제공 및 제어로직최적화지원·(완성차)지율작업 제어시스템 아키텍처의기능안전등급 적합성사전확인</td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">1,500</td><td colspan=\"1\" rowspan=\"1\">신규구축</td></tr><tr><td colspan=\"1\" rowspan=\"1\">2</td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계기능안전 적합성 평가장비[HLS]</td><td colspan=\"1\" rowspan=\"1\">[활용용도]·시나리오(토공 작업,장애물 회피,작업자감지 등)기반ECU 실시간 통합 검증 수행센서등ECU인터페이스고장주입시험[기업지원]:(부품사) SW 품질 분석 및 HLS 기반 ECU단위기능안전 요구사항검증지원·(완성차)EUMR 대응을 위한 기능안전검증및 제출용 기술문서작성 지원</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">2,980</td><td colspan=\"1\" rowspan=\"1\">수국</td></tr><tr><td colspan=\"1\" rowspan=\"1\">3</td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계실차-가상 연동 및커넥티비티 실증 장비</td><td colspan=\"1\" rowspan=\"1\">[활용용도]·실차 데이터와 가상 환경을 동기화하여통신 지연,센서 이상,GPS 교란 등 위험시나리오기반기능검증·작업현장의 다양한 변수경사도, 노면조건등를반영한실차작업·주행안전성평가[기업지원]·(부품사) 통신 프로토콜 분석, IDS 기반이상 탐지,실차 연동 환경에서의 부품응답성 및 제어 정밀도검증, 개별 부품의실차기반기능·안전성통합검증(완성차) 복합 작업 환경에서의 지율작업기능성능평가</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">oO</td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\">1,910</td><td colspan=\"1\" rowspan=\"1\">신규구축</td></tr><tr><td colspan=\"1\" rowspan=\"1\">4</td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계사이버보안 전주기평가장비</td><td colspan=\"1\" rowspan=\"1\">[활용용도]·설계(TARA)→구현(보안코딩)→검증(침투테스트)→운영(이상탐지·사고대응)의 전주기 보안 검증·모의 해킹 및 퍼징 테스트를 통한 제어권탈취취약점사전 검출[기업지원]·(부품사) 보안 취약점 정밀 점검 및 보안컴포넌트 적용검증지원·(완성차)사이버보안 관리시스템 구축을위한ISO/SAE21434기반위험분석및보안검증지원</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">1,060</td><td colspan=\"1\" rowspan=\"1\">신규구축</td></tr><tr><td colspan=\"1\" rowspan=\"1\">5</td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계무선 업데이트[OTA]보안 평가 장비</td><td colspan=\"1\" rowspan=\"1\">[활용용도]·제어기SW업데이트 기능의 보안 프로토콜 및 데이터 무결성 검증·업데이트 실패 시의 롤백 및 시스템 복구안전성 테스트[기업지원]•(부품사)제어기 펌웨어 업데이트 보안검증(서명,암호화,무결성)지원(완성차)ISO/SAE21434 및ISO24089기반 OTA 보안 검증 및 업데이트 이력 관리 지원</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">580</td><td colspan=\"1\" rowspan=\"1\">실국</td></tr><tr><td colspan=\"1\" rowspan=\"1\">6</td><td colspan=\"1\" rowspan=\"1\">자율작업 건설기계AI 안전성 검증 장비</td><td colspan=\"1\" rowspan=\"1\">[활용용도]·설명가능한 AI 기반 판단 근거 분석 및데이터 무결성 검증·적대적 공격 방어력 테스트MLOps 기반 모델생애주기 관리 및 성능추적검증[기업지원]•(부품사) A 인식 오류 유도 패턴, LiDAR센서 기만 신호,오분류테스트로 A모델 강건성 평가 지원(완성차)자율작업 건설기계의 실차 기반AI 안전성 테스트 및 EU AI Act 적합성문서화지원</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">O</td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\"></td><td colspan=\"1\" rowspan=\"1\">970</td><td colspan=\"1\" rowspan=\"1\">식꽃구축</td></tr></table>",
+        "bbox": [
+            95,
+            104,
+            900,
+            826
+        ],
+        "page_idx": 6
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            94,
+            83,
+            902,
+            429
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "text",
+        "text": "5. 기대효과",
+        "text_level": 1,
+        "bbox": [
+            92,
+            454,
+            230,
+            476
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "images/be2ee102f8b20b4f0f4b71dc8c0f27f3eab4860dde20eef753a8eccdf321ee11.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>구분</td><td>ㅇ(정성적 기대효과) 산업적 측면,경제적 측면, 기술적 측면으로 기대효과를 구분 ㅇ (정량적 기대효과) 매출 증대 효과, 수출 증대 효과로 구분 0(산업적 측면)</td></tr><tr><td>정성적 기대효과</td><td>-현재 국내 건설기계 산업계의 대응이 어려운기능안전·사이버보안 적용 부분에서 최신 표준·규제 수준에 맞춘 평가·검증기반 구축 및 기업체 인 증을 위한 기술지원을 통해 선진 시장의 기술장벽에 대한 대응력 확보 가능 AI,네트워크 기반 서비스 등 첨단·융합 신제품 및 서비스의 사전 검증 관련 표준 분석 서비스 제공 등 종합지원 플랫폼으로서 Level 4 자율작업 건설기계 등 초격차 기술확보의 토대 마련 기능안전·사이버보안 제품적용을 위해서는 건설기계 설계단계부터 완성 차 업체와 부품공급업체간 기능 검증 및 인증관련 각종 기술자료 확보를 위한 긴밀한 협업이 필요하므로 국내 건설기계 관련 생태계의 활성화가 기대됨 인프라 구축과 기능안전·AI,사이버보안 안전성 확보를 위한 기업지원을 통해 제품개발 단계별 시험평가 및 보완이 가능해져 국내 건설기계관련 업체의 신제품 개발기간의 단축과 제품 신뢰성 향상 효과가 기대됨 O (경제적 측면) 선진국 시장에서 강화되는 건설기계 기능안전·사이버보안 안전 규제의 인증 지원을 통해 국내 제품의 안정적인 시장 점유율 확보 가능 Level 4 자율작업 건설기계의 핵심기술(피지컬 AI, 사이버보안)에 대한 시 험평가와 분석 데이터 제공을 통해 초격차 기술 확보와 건설기계 해외시장 수출규모 확대가 예상됨</td></tr><tr><td></td><td>(기술적 측면) 기반구축 및 기업지원 활동을 통해 제품 생애주기 기반의 복합규제에 대 응할 수 있는 건설기계의 기능안전·사이버보안 평가 기술을 확보하고 검 증 노하우를 축적할 수 있음 구축 장비를 활용한 피지컬 AI 응용기술 평가 및 안전 적합성 검증을 통 해 건설기계 완성차 및 핵심 부품에 대한 AI 적용 수준 고도화 가능 다양한 건설기계 융합기술과 서비스 아이디어에 대한 다양한 평가 수행 및 시나리오 기반 테스트 데이터 확보를 통해 국내 건설기계 산업에서 기 능안전·사이버보안 및 AI 활용에 대한 표준화 역량 강화와 표준화 논의</td></tr><tr><td>정량적 기대효과</td><td>주도권 확보를 기대할 수 있음 0(매출 증대 효과)'26년 3.4조원에서 '35년 6.7조원으로 매출액 약 3.3조원 증가 [산출 근거]'22년 국내 건설기계 총생산액 11.4조원(11만대/연)(건설기계산 업협회 자료)을 바탕으로'26~’35년 연평균 7.8 % 성장률(Market Research Future의 자율 작업형 건설기계 시장 규모), 자율 작업형 건설기계 비중은 국내 전체 건설기계 생산액의 30%를 가정할 경우 0(수출 중대 효과)'26년 2.05조원에서'35년 4.03조원으로 수출액 약 1.98조원 증대 효과 [산출 근거]'22년 국내 건설기계 총생산액 및 자율 작업형 건설기계 성장률 7.8 %(예상치), 자율작업 건설기계 비중(전체 건설기계 생산액의 30 %),수 출 비중(전체 생산액의 60 %)</td></tr></table>",
+        "bbox": [
+            94,
+            486,
+            902,
+            912
+        ],
+        "page_idx": 7
+    },
+    {
+        "type": "table",
+        "img_path": "",
+        "table_caption": [],
+        "table_footnote": [],
+        "bbox": [
+            95,
+            82,
+            902,
+            381
+        ],
+        "page_idx": 8
+    },
+    {
+        "type": "text",
+        "text": "□ 개인정보 수집ㆍ이용 목적",
+        "bbox": [
+            115,
+            130,
+            337,
+            147
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "$\\bigcirc$ 수요조사 내용 활용 및 필요시 기획위원 활용",
+        "bbox": [
+            122,
+            153,
+            489,
+            171
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "□ 수집하는 개인정보 및 과세정보 항목◦ 제안자 성명, 소속 기관명, 부서명, 직급명, 전화번호, 휴대전화번호, 전자우편주소",
+        "bbox": [
+            121,
+            189,
+            764,
+            227
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "□ 개인정보 및 과세정보 보유ㆍ이용 기간◦ 동의서가 작성된 시점부터 상기 개인정보 수집·이용 목적이 종료되는 시점까지",
+        "bbox": [
+            122,
+            241,
+            739,
+            279
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "text",
+        "text": "※ 개인정보 수집․이용에 관한 동의 여부 : 동의함 ■ 동의하지 않음 ☐",
+        "bbox": [
+            127,
+            293,
+            689,
+            311
+        ],
+        "page_idx": 9
+    },
+    {
+        "type": "discarded",
+        "text": "개인정보 수집 및 이용에 대한 동의",
+        "bbox": [
+            366,
+            91,
+            636,
+            109
+        ],
+        "page_idx": 9
+    }
+]

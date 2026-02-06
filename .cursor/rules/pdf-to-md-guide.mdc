@@ -1,0 +1,153 @@
+---
+description: PDF를 마크다운으로 변환할 때 참고하는 가이드
+globs: 
+alwaysApply: false
+---
+
+# PDF → Markdown 변환 가이드
+
+## 사용 가능한 도구 비교
+
+| 항목 | MinerU | Marker |
+|------|--------|--------|
+| 설치 위치 | `C:\mineru-env` | `report\marker-env` |
+| 표 추출 품질 | 높음 (HTML table) | 보통 (Markdown table) |
+| 한국어 OCR | `-l korean` 옵션 | `--langs ko,en` 옵션 |
+| GPU 필요 | 선택 (pipeline=CPU) | 선택 (CUDA) |
+| 속도 (CPU) | 10페이지 약 3분 | 10페이지 약 2분 |
+| Windows 한글경로 | FastText 오류 발생 → 우회 필요 | marker-env 경로에 한글 없으면 OK |
+
+## 권장 도구: MinerU (pipeline 모드)
+
+표가 많은 문서에서 MinerU가 더 정확하게 추출함.
+
+## 핵심 주의사항 (Windows 한글 경로 문제)
+
+### 문제
+- **FastText 라이브러리**가 한글이 포함된 경로(`문서`, `슈어소프트` 등)에서 모델 파일을 로드하지 못함
+- `fast_langdetect.ft_detect.infer.DetectError: Failed to load FastText model` 오류 발생
+- Cursor Shell 도구도 한글 경로를 `臾몄꽌`으로 깨뜨림
+
+### 해결 방법
+- **가상환경은 반드시 영문 경로에 설치**: `C:\mineru-env` (O) / `report\mineru-env` (X)
+- **변환 작업은 Python 스크립트 파일을 통해 실행** (Shell 직접 실행 시 한글 깨짐)
+
+## 변환 실행 방법 (검증된 워크플로우)
+
+### 1단계: 가상환경 설치 (최초 1회)
+
+```powershell
+python -m venv C:\mineru-env
+C:\mineru-env\Scripts\python.exe -m pip install --upgrade pip
+C:\mineru-env\Scripts\pip.exe install uv
+C:\mineru-env\Scripts\uv.exe pip install -U "mineru[all]" --python C:\mineru-env\Scripts\python.exe
+```
+
+### 2단계: PDF를 임시 폴더로 복사
+
+한글 파일명은 MinerU가 처리 가능하지만, **Cursor Shell에서 한글 경로를 전달할 수 없으므로** 배치 파일 또는 Python 스크립트를 사용.
+
+```powershell
+# 임시 폴더 생성
+New-Item -ItemType Directory -Path C:\temp_mineru -Force
+
+# PDF 복사 (영문 파일명으로)
+Copy-Item "원본경로\파일.pdf" "C:\temp_mineru\file1.pdf"
+```
+
+### 3단계: Python 스크립트로 변환 실행
+
+`C:\temp_mineru\run_convert.py` 파일을 만들어 실행:
+
+```python
+import sys
+
+# 로그를 파일로 저장 (터미널 출력이 안 보일 수 있으므로)
+log_file = open(r'C:\temp_mineru\mineru_log.txt', 'w', encoding='utf-8')
+sys.stdout = log_file
+sys.stderr = log_file
+
+try:
+    print("Starting conversion...", flush=True)
+    from mineru.cli.client import main
+    sys.argv = [
+        'mineru',
+        '-p', r'C:\temp_mineru\file1.pdf',
+        '-o', r'C:\temp_mineru\output',
+        '-b', 'pipeline',     # CPU 모드 (GPU 없어도 됨)
+        '-l', 'korean'        # 한국어 OCR
+    ]
+    main(standalone_mode=False)
+    print("COMPLETED!", flush=True)
+except Exception as e:
+    print(f"ERROR: {e}", flush=True)
+    import traceback
+    traceback.print_exc(file=log_file)
+finally:
+    log_file.flush()
+    log_file.close()
+```
+
+실행:
+```powershell
+C:\mineru-env\Scripts\python.exe C:\temp_mineru\run_convert.py
+```
+
+진행 상태 확인:
+```powershell
+Get-Content C:\temp_mineru\mineru_log.txt -Tail 5
+```
+
+### 4단계: 결과물 복사
+
+변환 결과는 `C:\temp_mineru\output\{파일명}\auto\{파일명}.md`에 생성됨.
+
+배치 파일로 복사하면 한글 경로도 처리 가능:
+```bat
+@echo off
+chcp 65001 >nul
+copy "C:\temp_mineru\output\file1\auto\file1.md" "원본PDF가있는폴더\결과파일명.md"
+```
+
+## MinerU 주요 옵션
+
+```
+-p, --path      입력 파일 또는 디렉토리 (pdf, png, jpg 지원)
+-o, --output    출력 디렉토리
+-b, --backend   파싱 백엔드
+                  pipeline: CPU 전용, 범용 (권장)
+                  vlm-auto-engine: 고정확도, GPU VRAM 10GB+ 필요
+                  hybrid-auto-engine: 차세대 고정확도, GPU 필요
+-l, --lang      OCR 언어 (korean, en, ch, japan 등)
+-m, --method    파싱 방법 (auto/txt/ocr)
+-d, --device    장치 (cpu, cuda, cuda:0 등)
+-s, --start     시작 페이지 (0부터)
+-e, --end       끝 페이지 (0부터)
+-f, --formula   수식 파싱 (True/False)
+-t, --table     표 파싱 (True/False)
+```
+
+## 여러 PDF 한번에 변환
+
+디렉토리를 입력으로 주면 폴더 내 모든 PDF를 한꺼번에 변환:
+```python
+sys.argv = [
+    'mineru',
+    '-p', r'C:\temp_mineru',      # 폴더 전체
+    '-o', r'C:\temp_mineru\output',
+    '-b', 'pipeline',
+    '-l', 'korean'
+]
+```
+
+## 트러블슈팅
+
+| 증상 | 원인 | 해결 |
+|------|------|------|
+| `FastText model cannot be opened` | 가상환경 경로에 한글 포함 | `C:\mineru-env`처럼 영문 경로에 설치 |
+| `transformers.onnx` 오류 | marker의 transformers 버전 불일치 | MinerU 사용 권장 |
+| GPU 1GB로 극도로 느림 | hybrid 백엔드가 GPU 강제 사용 | `-b pipeline` 옵션으로 CPU 모드 사용 |
+| Cursor Shell 한글 깨짐 | PowerShell 인코딩 문제 | Python 스크립트 파일로 실행 |
+| 출력 없이 프로세스 종료 | Cursor Shell이 출력 캡처 실패 | 로그를 파일로 리다이렉트하는 Python 스크립트 사용 |
+| f-string SyntaxError | f-string 안에 `\` 백슬래시 사용 불가 | 경로를 변수에 먼저 할당 후 f-string에서 참조 |
+| Shell에서 python 즉시 종료 | Shell 도구 프로세스 관리 문제 | `Start-Process -NoNewWindow -PassThru`로 실행 |

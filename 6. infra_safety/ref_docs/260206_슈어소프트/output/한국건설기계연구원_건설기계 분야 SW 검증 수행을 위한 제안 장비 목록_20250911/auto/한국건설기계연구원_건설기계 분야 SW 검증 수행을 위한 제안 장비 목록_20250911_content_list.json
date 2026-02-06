@@ -1,0 +1,212 @@
+[
+    {
+        "type": "text",
+        "text": "건설기계 전자제어 및 지능형 핵심부품기능안전평가 기반구축제안 장비 목록",
+        "text_level": 1,
+        "bbox": [
+            228,
+            312,
+            772,
+            500
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "discarded",
+        "text": "$\\circled{ c}$ 2025. Suresofttech Inc. All rights reserved. ",
+        "bbox": [
+            686,
+            922,
+            963,
+            946
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "discarded",
+        "text": "SURESOFT Software for Safe World ",
+        "bbox": [
+            405,
+            65,
+            594,
+            129
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "discarded",
+        "text": "2025. 09.AX사업개발 1팀신영만 대리",
+        "bbox": [
+            784,
+            741,
+            910,
+            865
+        ],
+        "page_idx": 0
+    },
+    {
+        "type": "discarded",
+        "text": "SURESOIT주요 제안 장비",
+        "bbox": [
+            416,
+            405,
+            585,
+            500
+        ],
+        "page_idx": 1
+    },
+    {
+        "type": "text",
+        "text": "제안 장비",
+        "text_level": 1,
+        "bbox": [
+            67,
+            110,
+            153,
+            147
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "• 모빌리티분야주요표준별대응가능한장비목록화• ISO 26262, IEC 61508 등표준준수",
+        "bbox": [
+            84,
+            157,
+            366,
+            206
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "table",
+        "img_path": "images/dd83f7fc18a19e4f34401a7dcf70a923f2fd4c4c09b519083bd16c7dc23404e2.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=2>상세활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>정적검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 6• ES 95411-00 4.1, 4.2, 4.3</td><td rowspan=1 colspan=2>:코딩룰,메트릭,실행시간오류 검사결과분석,Report 작성</td><td rowspan=1 colspan=1>STATIC</td><td rowspan=1 colspan=1>80,000,000</td></tr><tr><td rowspan=2 colspan=1>단위테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 9ES 95411-00 5 표 5-1ASPICE 4.4.4 SWE.4</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>·ASIL 등급 별 구조적 목표 커버리지 확인(Statement, Branch, MC/DC)</td><td rowspan=4 colspan=1>CT</td><td rowspan=4 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>요구사항기반</td><td rowspan=1 colspan=1>소스코드의 상세 설계 요구사항 정합성 확인ASIL 등급별 구조적 목표 커버리지 확인Test Spec/Test Case 개발, Test수행(수행 중 이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=2 colspan=1>통합테스트</td><td rowspan=2 colspan=1>IS0 26262 Part 6 Table 12ES 95411-006표 6-1ASPICE 4.4.5 SWE.5</td><td rowspan=1 colspan=1>구조기반</td><td rowspan=1 colspan=1>ASIL 등급 별 구조적 목표 커버리지 확인(Function 및 Call)</td></tr><tr><td rowspan=1 colspan=1>요국산항기반</td><td rowspan=1 colspan=1>소스코드의 아키텍처 설계 요구사항 정합성 확인인터페이스의 요구사항 정합성 확인ASIL 등급별구조적 목표커버리지확인Test Spec/Test Case 개발, Test수행(수행중이슈 대응)결과분석,Report 작성</td></tr><tr><td rowspan=1 colspan=1>결함주입시험</td><td rowspan=1 colspan=1>IS026262 part 6 Table 7.11ES 954115.1</td><td rowspan=1 colspan=2>결함 목록 커버리지기능안전설계 검증리포트</td><td rowspan=1 colspan=1>FIT</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>자원사용량 검증</td><td rowspan=1 colspan=1>ISO 26262 Part 6 Table 7.1mES 95411-006.4 표 6-11</td><td rowspan=1 colspan=2>자원 사용량 리포트태스크 타이밍 리포트</td><td rowspan=1 colspan=1>PROV</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>라이프산이클관리및검사</td><td rowspan=1 colspan=1>ASPICE 프로세스 전반 부분</td><td rowspan=1 colspan=2>개발 안전 요구사항 충족을 위한 라이프사이클관리/검사 및검층</td><td rowspan=1 colspan=1>VSPICE</td><td rowspan=1 colspan=1>100,000,000</td></tr><tr><td rowspan=1 colspan=1>통신및네트워크검증</td><td rowspan=1 colspan=1>• ISO 26262 Part 4, 6</td><td rowspan=1 colspan=2>통신 프로토콜,네트워크 인터페이스,데이터 무결성,타이밍요구사항 안전 목표</td><td rowspan=1 colspan=1>AUTORACT</td><td rowspan=1 colspan=1>100,000,000</td></tr></table>",
+        "bbox": [
+            54,
+            235,
+            941,
+            845
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "discarded",
+        "text": "제안 장비 목록-01",
+        "bbox": [
+            41,
+            35,
+            174,
+            65
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "discarded",
+        "text": "",
+        "bbox": [
+            933,
+            38,
+            957,
+            58
+        ],
+        "page_idx": 2
+    },
+    {
+        "type": "text",
+        "text": "제안 장비",
+        "text_level": 1,
+        "bbox": [
+            67,
+            110,
+            153,
+            147
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "• 사이버보안및AI 모델검증수행가능항목추가제안• 사이버보안퍼징테스팅수행–ARCHON Z• AI 모델강건성시험및뉴런커버리지측정- VERIFAI-M• 건설기계주요제어기HILS 검증장비",
+        "bbox": [
+            84,
+            159,
+            439,
+            226
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "",
+        "bbox": [
+            84,
+            226,
+            293,
+            250
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/83a240b835e7986a7b7070f76e2c5ef4851775e0271380aa578b22735ef5c31c.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td rowspan=1 colspan=1>검증항목</td><td rowspan=1 colspan=1>근거</td><td rowspan=1 colspan=1>상세 활동</td><td rowspan=1 colspan=1>제안 장비</td><td rowspan=1 colspan=1>금액</td></tr><tr><td rowspan=1 colspan=1>AI 모델 검증 장비</td><td rowspan=1 colspan=1>• ISO/IEC TS 4213, ISO/IEC 29119-11</td><td rowspan=1 colspan=1>AI 모델 강건성 시험,성능 시험,뉴런 커버리지 측정표준 기반 ML 모델 평가 지표 계산(ISO4213 기반 평가 지표 진단)</td><td rowspan=1 colspan=1>VERIFAI-M</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>사이버보안</td><td rowspan=1 colspan=1>• IS0/SAE 21434, IEC 62443, IS0/IEC27034</td><td rowspan=1 colspan=1>ES 95489-22 (모의해킹)도구를 통해Fuzzing Test 대을 가능차량 내부 네트워크(CAN/Ethernet)기반 무작위 입력을통해 제어기/실차 오작동 확인차량 외부 네트워크(BLE,WIFI,USB)기반 무작위 입력을통해 제어기/실차 오작동 확인</td><td rowspan=1 colspan=1>ARCHON Z</td><td rowspan=1 colspan=1>200,000,000</td></tr><tr><td rowspan=1 colspan=1>시뮬레이션 검증</td><td rowspan=1 colspan=1>·ISO 26262 Part 4, 6, 8(모델 기반 개발 및시뮬레이션을 통한 검증 수행</td><td rowspan=1 colspan=1>다양한 환경과 상황에서 동작하는 주요 건설 기계의 성능평가 및 검증 수행을 위한 가상 검증 환경 구축가상환경 및 건설기계 주요 부품 모델링 SW,시나리오 저작 및 데이터 수집&amp;분석 장비로 구성</td><td rowspan=1 colspan=1>AUTOSIMDCAT</td><td rowspan=1 colspan=1>350,000,000</td></tr></table>",
+        "bbox": [
+            57,
+            267,
+            942,
+            643
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "table",
+        "img_path": "images/3f8c856fdb30062ba2b37bf724fe04ec31b8a621420b1f1a71bed6f5c7c229d3.jpg",
+        "table_caption": [],
+        "table_footnote": [],
+        "table_body": "<table><tr><td>검증 항목</td><td>상세 내용</td><td>제안 금액</td></tr><tr><td rowspan=\"2\">제어기 검증을 위한 . HILS 구축</td><td>검증 대상 제어기에 따른 구축 장비 금액 차 발생(1-2억/10억 이상 등)</td><td>평균 2.5억~3.5억</td></tr><tr><td>SW+ECU 시험,SW+HW 통합 시험,시스템 시험을 통한 기능 안전 수행</td><td>(대상 제어기 별 구성 항목에 따라 증액)</td></tr></table>",
+        "bbox": [
+            57,
+            667,
+            941,
+            779
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "text",
+        "text": "ISO/IEC TS 4213 : 기계학습(ML) 기반분류성능평가방법론을다룬기술사양문서(지표, 평가절차, 통제기준, 데이터구성등)  \nISO/IEC 29119-11 : SW및시스템공학-SW테스트시리즈中AI 기반시스템의테스트특성및테스트지침제공  \nISO/SAE 21434 : 차량사이버보안공학요구사항, 위험분석, 조직및공급망관리표준  \nIEC 62443 : 산업자동화및제어시스템(IACS)을위한국제사이버보안표준  \nISO/IEC 27034 : 정보보안–애플리케이션보안국제표준",
+        "bbox": [
+            59,
+            811,
+            599,
+            907
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "discarded",
+        "text": "제안 장비 목록-02",
+        "bbox": [
+            41,
+            35,
+            178,
+            65
+        ],
+        "page_idx": 3
+    },
+    {
+        "type": "discarded",
+        "text": "[ 4 ] ",
+        "bbox": [
+            933,
+            38,
+            957,
+            58
+        ],
+        "page_idx": 3
+    }
+]
