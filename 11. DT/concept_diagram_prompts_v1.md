@@ -1,9 +1,13 @@
-# 개념도 작성용 GPT 프롬프트 모음 (v1.1)
+# 개념도 작성용 GPT 프롬프트 모음 (v1.5)
 
 > 대상: GPT 5.5 (또는 ChatGPT 이미지 생성)
-> 용도: 사업 외부 공유용 개념도 6종
+> 용도: 사업 외부 공유용 개념도 7종
 >
 > **v1.1 보정 (2026-05-04)** — 사업기획_업무상세화_v1.2와 동기화. *BIM·외부 측량 통합 등 사업화 단계 표현 제거*. TRL 3~5에 맞춰 *TB(테스트베드) 환경 공정 계획* 중심으로 표현 수정.
+>
+> **v1.4 추가 (2026-05-07)** — **#7 건설기계 DT 모델 구성도 신설** — 굴착기의 다관절 동역학(MBD) 구조 + 도메인 물리(유압·MCV·실린더·ECU) + 토사 반력 + 파라미터 가변 + 정밀도 모드 한 장 통합. 모든 미팅(HDX·심지·평가위원) 공용.
+>
+> **v1.5 변경 (2026-05-07)** — **#7 스타일 전면 변경** — 굴착기 일러스트 → **순수 블록 다이어그램**(rounded boxes + arrows + legend)으로 재작성. 사용자 요청 *"실제 예시 그리기보다 모듈별 연계와 구성을 심플하게 도식화"* 반영. MBD 솔버를 중심 노드로 하는 control loop + MBD↔토사 양방향 결합 강조.
 
 ---
 
@@ -335,6 +339,130 @@ Avoid: photorealistic, 3D pie chart, busy backgrounds
 
 ---
 
+## 7. 건설기계 DT 모델 구성도 (Multi-physics 결합 + 파라미터·정밀도 가변)
+
+### 목적
+*건설기계가 DT 안에서 어떻게 구성되어 있는지* 한 장으로 보여주기. **모든 미팅 공용** (HDX·심지·평가위원·CAE 후보 등).
+
+### 핵심 메시지
+
+- **블록 다이어그램 형식** — 굴착기 일러스트 X. 모듈(ECU·MCV·실린더·MBD·토사)과 *연계·환류 화살표*만 표시
+- DT는 **MBD(다관절 동역학) 솔버를 중심으로 한 control loop**: ECU → MCV → 실린더 → MBD → (관절 피드백) → ECU
+- 버킷이 토사를 만나면 **MBD ↔ 토사 양방향 결합** — 운동 정보가 토사로, 6축 반력이 MBD로 환류
+- *같은 모듈 구성에* 파라미터(실린더 보어·유압 압력·관절 길이·토사 종류)를 외부 주입 → 신차·변형 모델 검증
+- *같은 모듈 구성에* 정밀도 모드(정밀↔실시간↔도메인 mix)를 외부 적용 → OEM 정밀 검증과 AI 실시간 학습 모두 수용
+- → **차별화 ① "파라미터화 + 정밀도 가변 multi-physics 통합 DT"의 모듈 연계 시각화**
+
+### GPT 프롬프트
+
+```
+Create a clean SYSTEM BLOCK DIAGRAM (16:9 widescreen) titled
+"건설기계 디지털 트윈 모델 구성도" with subtitle
+"모듈 결합 · 파라미터 가변 · 정밀도 모드 가변" in Korean.
+
+This is a PURE BLOCK DIAGRAM (rounded rectangles + labeled arrows + legend).
+DO NOT illustrate an excavator or any machinery. Visualize ONLY modules
+and their connections — like a system architecture or P&ID schematic.
+
+LAYOUT — 3 zones in a single panel:
+
+[ZONE A — LEFT-CENTER (50% width)]
+A large rounded panel labeled "건설기계 DT 모델" containing 4 module blocks.
+Arrange them like a control loop:
+
+  Top:    [ECU<br/>차량 제어기]
+  Middle: [MCV<br/>메인 제어 밸브 (Main Control Valve)]
+  Bottom-left: [유압 실린더 ×3<br/>(Hydraulic Cylinders)]
+  Center (largest, emphasized): [MBD 솔버<br/>다관절 동역학<br/>(Multi-body Dynamics)]
+
+  Arrows inside Zone A (with style/color per type — see LEGEND below):
+    - ECU → MCV : 제어 신호 (dashed green arrow, label "제어 명령")
+    - MCV → 유압 실린더 : 유압 흐름 (thick blue arrow, label "유압 압력·유량")
+    - 유압 실린더 → MBD : 힘 입력 (orange arrow, label "실린더 힘")
+    - MBD → ECU : 관절 상태 피드백 (thin grey arrow, label "관절각·속도 피드백")
+
+[ZONE B — RIGHT-CENTER (30% width)]
+A separate rounded panel labeled "환경 (토사)" containing one block:
+  [토사 모델<br/>DEM (입자 단위 토사 해석)<br/>+ SPH (점성토)]
+
+  Bidirectional coupling between Zone A's MBD-Bucket and Zone B's 토사:
+    - MBD → 토사 : 버킷 위치·속도 (blue arrow, label "버킷 운동")
+    - 토사 → MBD : 6축 반력 (THICK red arrow, label "버킷 반력 (6축 힘·토크)<br/>Fx Fy Fz Mx My Mz")
+  This bidirectional pair is THE KEY visual — make it visually prominent.
+
+[ZONE C — RIGHT-EDGE / TOP-RIGHT (20% width, two stacked sub-panels)]
+
+  Sub-panel C1 (top): "파라미터 입력"
+    A small box with 4 stacked rows showing parameter names + values:
+      실린더 보어 = D mm
+      유압 압력   = P bar
+      관절 길이   = L m
+      토사 종류   = {모래·진흙·자갈}
+    From this box, dashed orange "fan-out" arrows reach to ALL modules
+    in Zone A and Zone B (use thin dashed lines so they don't overwhelm).
+    Caption (small): "OEM 신차·변형 모델 검증 (HDX)"
+
+  Sub-panel C2 (bottom): "정밀도 모드"
+    A small box with 3 mode tags in a row (one highlighted active):
+      [정밀 (OEM)] [실시간 (AI)] [도메인 mix]
+    Below, 3 short labels:
+      유압 : 고차 / 근사
+      토사 : DEM full / ML 근사
+      MBD  : full / 단순화
+    From this box, dashed green "fan-out" arrows reach to ALL modules
+    in Zone A and Zone B.
+    Caption (small): "한 모델이 정밀↔실시간 자동 전환"
+
+[LEGEND — bottom strip, full width, small]
+Show 5 arrow style swatches with labels:
+  ▬▬▬ (thick blue)   = 유압 흐름
+  ▬▬▬ (thick red)    = 반력·힘
+  ▬▬▬ (thin orange)  = 실린더 힘
+  ─ ─ ─ (dashed green) = 제어 신호 / 정밀도 모드 적용
+  ─ ─ ─ (dashed orange) = 파라미터 주입
+  ───── (thin grey)  = 상태 피드백
+
+STYLE:
+- Pure system block diagram (think system architecture / P&ID / Simulink)
+- Rounded rectangles with thin colored borders, white fills
+- All labels in Korean (with English in parens for industry terms)
+- Color palette:
+  - Zone A panel border: navy blue (#1565C0)
+  - Zone B panel border: brown (#8D6E63)
+  - Zone C panel border: dark grey (#616161)
+  - MBD module (largest): yellow accent border to emphasize central role
+  - Arrow colors per LEGEND
+- Background: white, very subtle grid optional
+- Typography: bold sans-serif Korean for module names, smaller for sub-labels
+
+AVOID:
+- ANY illustration of an excavator, machinery, or 3D objects
+- Photorealistic rendering
+- Showing 전동 모터, 배터리, 파워트레인 (out of scope per user)
+- Showing physical construction site
+- Decorative shadows, gradients, ornaments
+- Crossing arrows that hurt readability — re-route if needed
+```
+
+### 수정 지시 예시
+
+- "버킷 반력 화살표(red, thick)를 더 굵게, *Fx Fy Fz Mx My Mz* 라벨이 잘 보이게"
+- "MBD 솔버 박스를 가장 크게, 모든 화살표가 결국 MBD를 거치는 구조 부각"
+- "오른쪽 *정밀도 모드* 패널의 3개 모드 중 *정밀 (OEM)* 만 색깔 채워서 활성화 표시"
+- "ECU → MCV → 실린더 → MBD 흐름이 *위→아래로 자연스러운 control loop*가 되게 재배치"
+- "Zone B의 *MBD ↔ 토사* 양방향 화살표가 시선의 중심에 오도록 강조"
+- "파라미터 주입 fan-out 화살표가 너무 많아 복잡하면, 대표 모듈 1~2개에만 그리고 *"전 모듈 적용"* 으로 라벨"
+
+### 사용 시 주의
+
+- 블록 다이어그램은 **A4 1장 또는 PPT 1슬라이드**로 충분 (정보가 모듈로 압축되어 작아도 읽힘)
+- HDX 미팅 시: *Zone C1 파라미터 입력*을 짚으며 *"이 값을 바꾸면 모든 모듈 거동이 자동 재계산"* 설명
+- 평가위원 발표 시: *MBD 솔버를 중심으로 한 모듈 결합 구조* 강조 — *"단순 시각 시뮬이 아닌 control loop + multi-physics 통합"*
+- 심지·CAE 후보 미팅 시: *MBD ↔ 토사 양방향 결합*을 짚으며 *"이 환류가 기술적으로 가장 어려운 부분"*
+- GPT 결과가 복잡하면 *수정 지시 6번* (fan-out 화살표 단순화) 적용 권장
+
+---
+
 ## 후속 작업 시 권장 사항
 
 1. **GPT 5.5 결과를 받은 후, *PPT/Visio에서 텍스트 다시 입력*** — 한글 깨짐 방지
@@ -352,3 +480,5 @@ Avoid: photorealistic, 3D pie chart, busy backgrounds
 | v1.1 | 2026-05-04 | 사업기획_업무상세화 v1.2 동기화 — *BIM·드론 측량 통합* 표현 제거. *TB 환경·작업 시나리오* 입력으로 변경. "임무 계획" → "공정 계획" 명칭 통일. TRL 3~5 범위에 부합하도록 사업화 단계 표현 회피. |
 | v1.2 | 2026-05-04 | **#3 AI 모듈 개념도 재구성** — 6단계(안전/Curriculum 포함) → **4단계 + AI 정책 모델 중심**. 안전 레이어와 Curriculum을 사이클 외부의 보조 footer로 강등. AI 정책 모델을 중앙 protagonist로 부각. |
 | v1.3 | 2026-05-04 | **용어 한글화** — "Curriculum 시험"·"Curriculum Deployment" → "단계별 시험 캠페인"으로 통일. 학술 외래어 대신 평가위원·정부 보고용 표준 표현 채택. 영문 학술용어는 괄호 병기 형태로만 남김. |
+| v1.4 | 2026-05-07 | **#7 건설기계 DT 모델 구성도 신설** — 모든 미팅 공용. 한 장 레이아웃 3-zone 구조: Zone A 굴착기 멀티바디 결합 (유압·MCV·실린더·ECU·revolute joint) / Zone B 버킷-토사 6축 반력 (DEM 입자 + 환류) / Zone C 오른쪽 패널 (C1 파라미터 슬라이더 + 변형 모델 silhouette / C2 정밀도 모드 토글 + 도메인별 fidelity 바). 컬러 팔레트: 굴착기 오렌지 / 유압 블루 / ECU 그린 / 토사 브라운 / 반력 레드. 미팅별 활용 팁 추가. |
+| v1.5 | 2026-05-07 | **#7 스타일 전면 재작성** — 굴착기 isometric 일러스트 → **순수 시스템 블록 다이어그램**(rounded boxes + 화살표 + legend). 사용자 요청 *"실제 예시 그리기보다 모듈별 연계와 구성을 심플하게 도식화"* 반영. Zone A: ECU → MCV → 실린더 → MBD → 관절 피드백 control loop / Zone B: MBD ↔ 토사 양방향 결합 (6축 반력 환류) / Zone C: 파라미터·정밀도 fan-out 주입 패널 / 하단 legend (5가지 화살표 종류). |
