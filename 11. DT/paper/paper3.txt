@@ -1,0 +1,798 @@
+                                        High Precision Hydraulic Excavator Control for
+                                                        Heavy-Duty Grading
+
+                                                  Lennart Werner1, Pol Eyschen1, Sean Costello2, Andrei Cramariuc1 and Marco Hutter1
+                                                                            1ETH Zu¨rich, Robotic Systems Lab, Zu¨rich, Switzerland
+                                                                                       2Hexagon AB, Heerbrugg, Switzerland
+
+                                                      Email: {lennartwerner, peyschen, crandrei, mahutter}@ethz.ch, sean.costello@hexagon.com
+
+arXiv:2605.09465v1 [cs.RO] 10 May 2026     Abstract--High-precision heavy-duty grading is a common step    Fig. 1. Heavy-duty grading with the Menzi Muck M445. Grading denotes
+                                        in earthworks, traditionally carried out manually by skilled       the removal of uneven ground to form a prescribed planar surface. In the
+                                        operators. Removing a significant amount of material while         shown setting, this requires substantial soil interaction while maintaining
+                                        achieving a high-precision surface requires substantial machine-   the bucket edge on the target plane. The proposed retrofittable, hydraulics-
+                                        specific experience. Different hydraulic architectures react dif-  aware controller automates such in-soil grading passes across excavators and
+                                        ferently to operator inputs and soil interaction forces, which     achieves centimeter-level surface accuracy.
+                                        makes generalizable controllers challenging. In this paper, we
+                                        present an autonomous controller that achieves high-precision      is reached, and deviate from the target surface. State-of-the-
+                                        grading at expert-operator speed on Load Sensing and Negative      art Inverse Kinematics (IK)-based methods also lose accuracy
+                                        Flow Control machines alike. We split our controller into two      across soils, since joint responses are load-dependent and
+                                        parts: (1) a hydraulic-aware low-level loop that is hydraulic      are not fully modeled [32]. Prior work has not shown real
+                                        architecture-specific and (2) a path-tracking layer that coordi-   in-soil centimeter-level grading that combines soft hydraulic
+                                        nates joint motions and responses. Through a calibration process,  actuation, load-dependent compensation, short calibration, and
+                                        our technique is applicable to load-sensing and negative-flow-     transfer across hydraulic architectures.
+                                        control machinery. To showcase its versatility, we benchmark
+                                        our approach on two excavators with different hydraulics and          We propose a retrofittable2, machine-agnostic3 controller for
+                                        compare it against a commercial state-of-the-art solution. Our     LS and NFC hydraulic excavators. It combines NFC-specific
+                                        technique (RMSE 1.8 cm) outperforms the commercial solution        hydraulic compensation for soft, load-dependent actuation, a
+                                        (RMSE 4.7 cm) in precision by a factor of 2.6 and improves         fast one-time calibration without vendor-specific access, and
+                                        machine usage by leveraging the maximum function pressure, as      a Model Predictive Control (MPC) path-tracking layer for
+                                        opposed to commercial solutions that stall prematurely.            precise in-soil grading under varying load. LS hydraulics
+                                                                                                           are modeled with a simple mapping between Directional
+                                                                  I. INTRODUCTION                          Control Valve (DCV) displacement and function flow, while
+                                                                                                           NFC machines require a load-dependent function flow model.
+                                           Despite significant progress in industrial automation, heavy    We introduce a new NFC model that accurately inverts the
+                                        machinery on construction sites is still largely operated manu-    hydraulically soft behavior and matches the target function
+                                        ally. Operators are exposed to hazardous environments and          flow under load. Velocity transients are modeled as a second-
+                                        face high physical and cognitive loads. At the same time,          order system with added dead time for the MPC path tracking.
+                                        the industry struggles to meet demand due to persistent
+                                        labor shortages. Intelligent assistive systems and automation         We validate the method on two excavators with different
+                                        for heavy equipment can enable safer, more consistent, and         weight classes and hydraulics. Velocity tracking experiments
+                                        more efficient operation, especially for users with limited        show that the calibrated hydraulic models match target joint
+                                        experience. Yet automating earthmoving tasks such as dig-          rates under varying loads. We compare in-soil deep grading
+                                        ging, trenching, and grading is difficult due to the complex       performance to a commercial state-of-the-art system. In a
+                                        coupling between the soil and the machine as well as the
+                                        high complexity associated with precision hydraulic control.            2can be calibrated without vendor-specific access
+                                        In particular, high-precision tasks such as grading require             3generalizes across machines without changes to the method
+                                        substantial operator experience and are time-consuming to
+                                        perform.
+
+                                           In this paper, we address autonomous high-accuracy grading
+                                        with substantial ground interaction, as shown in Figure 1 and
+                                        in our supplementary video1. We propose a technique that
+                                        generalizes across excavators and hydraulic architectures such
+                                        as Load Sensing (LS) and Negative Flow Control (NFC). We
+                                        define heavy-duty grading as cuts that fill the bucket in less
+                                        than one stroke. Current commercial systems perform poorly
+                                        in deep grading, stall before the maximum function pressure
+
+                                             1https://youtu.be/bCOMYbRWv5I
+test campaign on the NFC excavator, our controller achieves         capturing internal switching, joint coupling, and shared pump-
+an RMSE height error of 1.8 cm at different cutting depths,         flow constraints, and use constrained optimization to scale the
+compared to 4.7 cm for the commercial system. Experiments           desired bucket motion under flow saturation.
+on the 11.5 t LS machine confirm a precision of 1.4 cm across
+various cutting depths. We assess surface quality and preci-           Learning-based and reduced-order approaches often trade
+sion of the graded areas with a high-precision laser scanner.       modeling effort for data or structural assumptions. Lee et al.
+The proposed system stalls only at the maximum function             [18] learn an inverse mapping from desired joint velocities to
+pressure, unlike commercial controllers, which stall earlier,       valve commands with delay compensation, reporting  2 cm
+thereby under-utilizing the machinery. Our framework presents       tracking after several hours of machine-specific data collec-
+a significant advance in grading quality, enabling direct use       tion. Wang et al. [27] propose an observer-based approxi-
+of the prepared terrain. In our tested setting, the commercial      mate affine nonlinear MPC to improve tracking with reduced
+system required additional passes to reach comparable surface       computational cost, and Msaad et al. [21] apply data-driven
+quality.                                                            nonlinear MPC via local model networks for grading on a
+                                                                    single machine and hydraulic architecture.
+   In sum, the contributions of this paper are:
+                                                                       Reinforcement-learning methods have been tested on full-
+   · A hydraulics-aware control stack for heavy-duty high-          scale hydraulic machines, including sim-to-real trajectory con-
+     precision grading that achieves 2.6 times lower error than     trol [7], end-to-end bucket filling for soil manipulation [8],
+     the baseline.                                                  offline Reinforcement Learning (RL) for rigid-object excava-
+                                                                    tion [13, 20], and learned rock or bulk manipulation [10].
+   · A novel pressure-adaptive NFC model that compensates           For grading, Kim and Kim [16] use RL to tune a neural-
+     soft, load-dependent hydraulic actuation.                      network inversion layer, while Spinelli et al. [23] and Werner
+                                                                    et al. [29] control hydraulic material-handling machines with
+   · A one-time retrofit calibration routine and path-tracking      underactuated tools. In our preliminary light-grading tests, an
+     layer that achieve sub-2 cm in-soil grading.                   end-to-end RL policy reached about 6 cm tracking error. It
+                                                                    relied on a task-specific simulator and did not handle load-
+                         II. RELATED WORK                           dependent NFC hydraulics or transfer across excavators.
+
+   Automation of earthmoving equipment has been inves-                 Overall, model-based and data-driven motion controllers can
+tigated from early assistive systems to fully autonomous            be accurate, but most assume one hydraulic topology, abstract
+platforms. Reviews of earthmoving automation and construc-          hydraulics as joint actuation or need machine-specific data,
+tion robotics summarize sensing, perception, and control ap-        tuning or simulation. They do not treat LS and NFC machines
+proaches across excavators, wheel loaders, and bulldozers,          in a unified way. Model-free RL can be robust, but has not
+and highlight the trend toward tighter integration of machine       shown centimeter-level accuracy in deep heavy-duty grading.
+control with digital site models and fleet-level planning [2, 22].  None of these works provides a short retrofit calibration
+                                                                    procedure for hydraulic adaptation across excavators.
+A. Automation of Heavy Machinery
+                                                                    C. Grading and Surface Flattening
+   Robotic excavation has progressed from early research pro-
+totypes to full-scale autonomous machines. Free-form trench-           Several works address grading and surface flattening with
+ing and foundation work is demonstrated using a walking ex-         hydraulic excavators. Xu et al. [31] proposed an automated
+cavator in [14]. Autonomous short-cycle loading with standard       grading controller based on Inverse Kinematics and PI hy-
+tracked excavators has been shown in a complete system that         draulic control. Coupling the PI controllers can lead to im-
+performs material loading in a quarry, including perception,        proved precision as shown by Wang et al. [26]. Lee et al. [17]
+planning, and robust execution in varied terrain [33]. Recent       formulated contour control for leveling tasks based on geomet-
+work on excavation planning extends these results to higher-        ric path-following of the bucket edge by decoupling the target
+level task and motion planning for bulk earth removal [25].         surface objective from pure position control. More recent work
+                                                                    uses contouring-error formulations and disturbance observers
+   Beyond excavators, autonomous and semi-autonomous                to achieve high-accuracy flattening: Dao et al. [5] presents
+wheel loaders and haul trucks have been studied for mining          contouring control for surface flattening and later extends
+and earthworks. Simulation-based optimization and, more re-         the approach with active disturbance rejection and sliding-
+cently, learned world models are used to tune loading cycles        mode observation to better cope with external disturbances
+and bucket trajectories under granular material interaction [1].    and model mismatch [4]. These techniques are evaluated in
+These systems focus on productivity and cycle time and              simulation only. Yang et al. [32] present a leveling controller
+typically rely on proprietary machine-control layers tuned to       for hydraulic excavators that combines a force pre-load term
+a specific hydraulic architecture and task.                         with cross-coupling compensation to synchronize cylinder
+                                                                    motions on a small LS excavator.
+B. Hydraulic Motion Control
+                                                                       Commercial solutions such as Trimble Earthworks and ear-
+   Hydraulic excavator motion control research spans physics-       lier GCS900 systems provide GNSS- and total-station-based
+based modeling, optimization, and learned abstractions. A           guidance and semi-automatic boom, stick, and bucket control
+complete grading pipeline with perception, stroke planning,
+and motion control is presented by Jang et al. [12]. On the
+modeling side, Kim et al. [15] derive a nonlinear DCV model
+                                                                            TABLE I
+                              COMPARISON TO PRIOR GRADING AND HYDRAULIC MOTION-CONTROL METHODS.
+
+Ref.  Technology                    Val.  Performance             Machine specificity                                  Arch.
+
+[31]  IK + PI                       Sim.  4 cm in sim, slow       single-machine model                            simplified
+
+[5]   Contouring + ESO              Sim.  N/A                     simulation-only                                 not considered
+
+[4]   ADRC + SMO contouring         Sim.  N/A                     simulation-only                                 not considered
+
+[16]  Hybrid model-based + RL       Sim.  2.3 cm                  tuned one simulated 30 t excavator              in-air LS
+
+[32]  Force preload + cross-coupling Real light grad. only: 1 cm tuned on 6 t LS excavator                          LS
+                                                                                                                   N/A
+[26]  Coupled non-linear PI         Real  in-air only: 2­9 cm     tuned on one machine                             N/A
+                                                                                                                  unclear
+[17]  Contour following + PI        Real light grad. only: 2.34 cm avg tuned on 1.5 t machine                       LS
+                                                                                                                  various
+[18]  Learned model inversion       Real  < 2 cm path RMSE        several hours of machine-specific data
+
+[21]  Data-driven nonlinear MPC Real      cyl vel tracking only   identified on one excavator
+
+[11, 3, 9] Commercial, Proprietary  Real > 4 cm or light grading only retrofittable
+
+Ours  Hydraulic FF + PID + MPC Real       1.4 / 1.8 cm RMSE       20 min, explicit calibration                    LS + NFC
+
+Val.: validation type. Arch.: whether the method explicitly addresses hydraulic architectures. N/A: not available in public description.
+
+for excavator grading [11]. Caterpillar's Cat Grade Control                                         joint positions, joint cylinder pressure, joint
+offers assistive modes to reach design surfaces and slopes and                                      velocities
+is tightly integrated with machine telematics and payload sys-                                                    position, joint acceleration
+tems [3]. Leica's MC1 platform provides 2D machine control
+for multiple earthmoving machines, including excavators, and      target height,            cmd joint             Calibrated              valve
+focuses on unified user interfaces and integration with survey    target velocity           velocities            Hydraulic               commands
+equipment [9]. Details of the hydraulic control strategies
+and their adaptation to different hydraulic architectures are                              MPC      joint to         Model
+typically not disclosed in public documentation. However,                            Path Tracking  piston
+as construction robotics is a more mature field, commercial                                         space                                 +      Excavator
+solutions tend to match the performance of what is presented                           Controller
+in literature. Empirically, these systems perform well in light
+grading and finishing, but are limited in deeply loaded cuts                                        cmd cylinder  PID                     valve
+and their use of the full hydraulic torque envelope.                                                velocities
+                                                                                                                                          commands
+   All methods operate mainly in the kinematic or joint-
+velocity domain. They generally assume relatively light terrain                                                               joint velocities
+interaction, do not explicitly model hydraulic dynamics or
+load-dependent effects, and ignore differences in joint response  Path Tracking Controller          Hydraulic Joint Velocity Controller (LL) and Excavator
+to input commands. In contrast, our controller is retrofittable,
+hydraulics-aware, and machine-agnostic for heavy-duty high-       Fig. 2. Flow graph of the grading controller and split between path tracking
+precision grading.                                                and joint velocity stage. The user sets the design surface and EE speed. The
+                                                                  MPC path-tracking controller outputs joint velocities, which are tracked by
+   Table I compares previous methods by validation type,          the hydraulic controller consisting of a hydraulic model and a parallel PID
+performance, machine specificity, and hydraulic handling used.    element.
+Because many prior methods require vendor-level access, large
+datasets, extensive tuning, tuned simulation, or assumptions      we separate machine-agnostic path tracking from hydraulics-
+that do not hold on both excavators, we use a transferable        aware joint velocity control, as shown in Figure 2.
+commercial system deployed on the same machine as the
+practical baseline. To the best of our knowledge, no prior        A. Joint Velocity Controller
+method combines real in-soil validation, sub-2 cm RMSE,
+short calibration, cross-machine deployment, and explicit han-       Our core innovation includes a hydraulic-aware joint ve-
+dling of soft NFC actuation.                                      locity controller that tracks target joint rates by computing a
+                                                                  valve command or pilot-stage current. Since joint-level effects
+               III. CONTROLLER ARCHITECTURE                       occur at the cylinder level and are more linear there, we map
+                                                                  the target joint rates [rad/s] to cylinder speeds [m s-1] via the
+   The presented controller executes a single grading pass in     closed-loop kinematics of each joint, as shown by Werner et al.
+the soil until the end of travel is reached or the machine        [30]. The target cylinder velocity is then fed to a calibrated
+stalls at maximum function pressure. Our control pipeline         hydraulic model as a Feed Forward (FF) element and to
+receives as input from the user or a higher-level planner the     a parallel PID controller. During calibration, an appropriate
+height and inclination of the design surface, along with the      hydraulic model is selected, enabling our method to generalize
+desired grading velocity in end-effector (EE) space. To keep      across hydraulic control loops such as LS and NFC. Different
+the motion controller adaptable across different machine types,   hydraulic architectures vary significantly in their response to
+                                                                  joint loading, making this adaptation vital. The PID controller
+                                                                  compensates for unmodeled effects and disturbances, such as
+                                                                  flow sharing, pump boost, or recuperation, while most of the
+                                                                  command comes from the calibrated, load-aware hydraulic
+                                                                  FF model. While cross-coupling effects are present on all
+                                                                  architectures, we found them to be compensatable with just
+                                                                  the PID for our target speed and precision. Implemented as a
+                                                                  multidimensional Lookup Table (LUT), our hydraulic model
+                                                                  maps desired cylinder velocities or function flows to valve
+commands using other measurements such as cylinder back          with  =  and  = . For the controlled joints, we define
+pressure and joint acceleration. It acts as a Multiple Input     joint positions   R3, velocities   R3, and accelerations
+Single Output (MISO) element and is calibrated for each joint      R3. The control input is the commanded joint velocity u =
+individually. Finally, the FF and PID signals are combined and   cmd  R3. The model is discretized at  = 0.1 s, matching
+sent to the valves.                                              the controller update rate.
+
+   1) Hydraulic Model Load Sensing: Due to the load-aware           Dead time is represented using a discrete input buffer of
+and compensating behavior of LS hydraulics, the calibrated       length  that is part of the MPC state. Let u,   R3 denote
+hydraulic model can be designed in a straightforward way. A
+1:1 LUT, mapping from desired oil flow to valve command,         the -th delayed-input state, with  = 1 the most recent, and
+calibrated on the machine as described in Section IV-A is        (·)+ denoting the next-step value. The buffer dynamics are
+sufficient. Appendix A-A explains the hydraulic mechanisms
+behind this model.                                               u+,1 = u,      u+    =  u,  -1,    = 2, . . . ,  . (2)
+
+   2) Hydraulic Model NFC: NFC hydraulics differ from LS                          , 
+in how function loading affects motion [19]. Appendix A-B
+describes the more complex relationship between function load    For joint , the delayed input used in (1) is selected as  ( -
+and flow in NFC systems. It also describes the underlying hy-    )  (u, ) with
+draulic model, that we calibrate as shown in Section IV-B for
+the hydraulic-aware feed-forward element in our load-sensitive               = clip         , 1,   ,             (3)
+controller. The simplified model is our key contribution, as it                          
+lets us calibrate and model NFC hydraulics with a task-specific
+goal. Hydraulic modeling is otherwise practically unviable for   where · is the floor operator and clip(·, 1, ) saturates the
+researchers due to the unavailability of core information from   value to the interval [1, ].
+manufacturers and the difficulty of characterizing individual
+components, which requires full disassembly.                           b) Task-space quantities.: The MPC cost is defined in
+                                                                 task space. The excavator forward kinematics are evaluated
+                                                                 inside the optimization using the predicted joint states. Specif-
+                                                                 ically, the full configuration used for kinematics is
+
+B. Path Tracking Controller                                      qfull = cab                                     (4)
+
+   Our path tracking controller uses the machine kinematics                           boom  stick  bucket ,
+and transient behavior of the plant, which includes our joint
+velocity controller and the machine itself. A standard MPC       where cab is the measured cabin pitch. For machines with
+formulation is deployed, which uses a per-joint second-order     a telescopic stick, stick extension measurements tele can be
+transfer function with added dead-time delay as a system         added to the state. From qfull and qfull we obtain the predicted
+model. By accounting for joint transients, the MPC path track-   EE state  including position pEE (·), EE linear velocity
+ing controller commands joint velocities that avoid the typical  vEE(·), and EE angular velocity EE(·), all expressed in a
+overshoot of the target surface at the start of a grading pass.  local gravity-aligned frame. The bucket pitch angle EE is
+We neglect joint coupling effects in favor of execution time,    extracted from the predicted EE rotation matrix.
+since they have shown limited influence on joint dynamics at
+the speeds targeted by this work. Future work could include            c) Optimization problem and cost function.: At each con-
+them by explicitly modeling them in the MPC formulation.
+                                                                 trol step, the MPC solves a finite-horizon nonlinear program
+   The MPC's objective is to execute a single grading pass
+along the design surface while respecting joint and actuator     in receding-horizon fashion:
+limits, outputting target joint rates for the joint velocity
+controller. As an input, it gets the design surface height ,                 -1
+inclination  and EE velocity  . The controller is formulated                
+as a discrete-time nonlinear MPC in joint space with a task-
+space tracking objective, where the EE pose and twist are        min             (x, u, ) +  (x ,  )             (5)
+predicted through forward kinematics.                            {u }=-01
+                                                                            =0
+      a) Prediction model.: The MPC state models the dom-
+inant closed-loop transient of each joint, including the cali-   s.t. x+1 =  (x, u, ),                           (6)
+brated hydraulic feedforward element, PID velocity loop and
+hydro-mechanical motion of the machine. Each joint  is                      x0 = x^ (), u  U,   . (7)
+approximated as a second-order system in velocity with gain
+, damping ratio , natural frequency ,, acceleration              Here, x is the MPC state at step  (containing the joint states
+and dead time  acting on the commanded joint velocity            and the delayed-input buffer), and x^ () is the estimated current
+at time :                                                        state at time . The mapping  (·) denotes the (discretized)
+                                                                 state-transition function induced by (1) and the delay-buffer
+  =  -2 ,    -  2              +    2      (  -   ) ,  (1)       dynamics (2). The stage cost (·) and terminal cost (·) are
+                                                                 scalar-valued functions. The admissible input set U encodes
+                   ,                   ,                         joint-rate limits, and the admissible set  encodes joint-
+                                                                 position limits.
+
+                                                                    For slope grading, the running cost penalizes deviation from
+                                                                 the desired forward velocity, enforces near-zero vertical EE
+                                                                 velocity and pitch rate, regulates the EE height to the target
+plane, and regulates the blade pitch:                                                                                   Joint Transient: Boom
+
+                                              2                                                        0.10                                                   -0.85
+                                                                                                       0.05                                                   -0.75
+(x , u ,  ) =    EE,   (x    )  -                                         Cylinder Velocity [m/s]      0.00                                                   -0.65
+                                                                                                       0.05                                                   -0.55
+                                                                                                       0.10                                                   ---00000000........4237546355555555
+                                                                                                                                                               0.85
+                                       2                                                                      0.0
+
++  EE, (x) - 0
+
+                                       2
+
++   EE, (x) - 0
+
++               EE (x)    -               2
+
+                                
+
+                                                                    2                                              0.5  1.0  1.5       2.0   2.5       3.0
+                                                                                                                             Time [s]
++               EE,   (x  )  -         (      +       EE,   (x ) )
+
+                                                 
+
++               u  -  u  -1     2      .                                  Fig. 3. FF data collection for the Boom joint. Normalized commands from
+                                2                                         -0.85 to 0.85 in steps of 0.1 with the resulting joint velocity response and
+                                                                          steady-state part shown as a solid line. Data from Menzi Muck M445.
+The increment penalty on u - u-1 promotes smooth joint
+velocity commands and reduces excitation of unmodeled ef-                 Steady State Velocity [m/s]                   LUTs for all Joints
+fects in the low-level hydraulic loop. The terminal cost focuses
+on converging to the target height,                                                                                          JBOOM
+                                                                                                                             JSTICK
+                                                                    2                                  0.2
+
+ (x ,  ) = ,  EE, (x ) -                      +       EE,   (x  )      .                                                     JBUCKET
+
+                                                 
+
+                                                                    (8)                                0.0
+
+In the implementation,   is set to zero when the bucket joint                                          -0.2
+is disabled.
+                                                                                                                -0.75 -0.50 -0.25 0.00 0.25 0.50 0.75
+      d) Constraints.: We enforce actuator and joint limits                                                                        Command
+through the constraint sets U and .
+
+umin  u  umax, min    max.                                          (9)   Fig. 4. Hydraulic FF model of the LS M445. LS enables a direct mapping
+                                                                          between cylinder velocity and command.
+
+When bucket motion is disabled, we tighten the bounds at each                In order to perform the calibration in the more linear
+step to the current measured value and constrain the bucket               cylinder space, we convert between cylinder and joint space
+velocity, acceleration, and input to zero. This preserves a fixed         using the position-dependent sensitivity factor  (). It maps
+state dimension while enforcing the desired reduced actuation.            cylinder forces f to joint torques  and cylinder velocities v
+                                                                          to joint rates . The measured cylinder force fm is computed
+      e) Real-time implementation.: The MPC is solved at                  from pressure readings on the  and  sides together with the
+10 Hz with horizon length  = 20. The solver receives the                  corresponding plunger areas, as shown in Equation (10) for
+current joint state estimate x^ () and the delayed input buffer           one cylinder.
+from the previously applied commands. The commanded task-
+space velocity v is treated as a time-varying parameter and                                                         =   -                                                                          (10)
+updated at each step. In MPC fashion, only the first control
+input is executed in each tick.
+
+                          IV. CALIBRATION                                 A. Load Sensing
+
+   This section describes the calibration of all free parameters             As LS hydraulics show no significant load-dependent behav-
+in the controller pipeline, which is our second major con-                ior, calibration reduces to the mapping from valve command 
+tribution. Our calibration procedure takes about 20 min and               to cylinder velocity . We collect a dataset that spans the oper-
+requires no disassembly of the system. Each joint is calibrated           ational range of valve commands with small increments. Fig-
+sequentially and in isolation, since coupling effects are not             ure 3 shows the measured cylinder responses for normalized
+included in the model, starting with the joint velocity controller        commands in [-0.85, . . . , 0.85]. The average velocity over
+and finishing with the path tracking controller. For the joint            the third second after applying the command is used as the
+velocity controller, we calibrate our hydraulic FF model as a             steady-state value. We then apply linear interpolation between
+LUT. Lookup values are directly sampled on LS machines and                sampled velocities  to obtain the final lookup function, as
+derived from our variable displacement pump- and function                 shown in Figure 4.
+orifice model on NFC hydraulics according to Section III-A2
+and detailed in A-B. After calibrating the hydraulic FF model             B. Negative Flow Control
+(Sections IV-A and IV-B), the PID controller is tuned using
+standard methods [34]. For the path-tracking controller, we                  We propose a novel procedure for calibrating the FF element
+identify the transient response of the plant, containing the FF           in NFC hydraulics, taking the load-dependent behavior into
+element, PID controller, and hydraulic system.                            consideration. Our method outputs a 2D LUT that maps the
+                                                                          desired cylinder speed and the current cylinder force to a
+target cylinder velocity                                                                                     Orifice R value vs Valve Opening
+
+cylinder pressure          pressure                                       valve                      4                            Measured
+                            to force                                      commands
+joint position                                         Hydraulic Model                                                            Fit
+joint acceleration                        -             Negative Flow               Orifice R value
+                                                                                                     3
+                          proprioception                    Control
+                              module inertia
+                                               forces         Calibrated                             2
+                                                       Hydraulic Model
+
+                                                                                                     1
+
+Fig. 5. Flow chart of the FF element for NFC hydraulics. Inertia compen-                             0
+sation for removal of system torques.
+                                                                                                        0.0  0.2   0.4    0.6     0.8          1.0
+
+                                                                                                                   Valve Opening
+
+valve command. Since it is not feasible to excite a fine grid                       Fig. 6. Identified orifice function for Stick. It maps hydraulic resistance to
+of all speed and load combinations for direct calibration,                          the valve command.
+we derive the LUT from our simplified hydraulic model in
+Section III-A2, A-B, thus enabling straightforward calibration                       is a lumped parameter derived from the turbulent orifice
+of NFC hydraulics. We identify the dependence of valve                              equation (13), which is simplified to (14).
+command on pump pressure and the free parameters of the
+function orifice in the DCV.                                                                                            2 
+                                                                                                                    =
+   1) Inertia Compensation: The pressure-derived cylinder                                                                 22 2                      (13)
+force includes internal system forces and external forces from
+shovel­ground interaction. System forces depend on joint                                                                
+position (gravity), velocity (friction), and acceleration (inertia).
+Gravity and friction create a quasi-static load, that is therefore                                                  =  · 2                          (14)
+compensated for by the FF element. On the other hand, inertia-
+induced forces can create a positive feedback loop: a higher                        In practice, identification of  requires a dataset with different
+valve command increases acceleration, which causes a spike                          joint loadings for the same valve command .
+in reaction cylinder force, which then leads the FF element
+to command an even higher valve command in order to                                       a) Stick, Bucket: For the Stick and Bucket joints we
+compensate for the perceived increase in momentary load. This                       command a constant valve opening and progressively stall the
+can make transients highly unstable. We therefore estimate the                      bucket in the ground until standstill, which increases the joint
+inertia forces at the cylinder as described by Werner et al. [30]                   load. This motion generates trajectories of increasing   and
+and use inertia-compensated forces for the NFC FF element                           decreasing   that we use to fit the parameter test, for each
+as shown in Figure 5.                                                               test command .
+
+   2) Hydraulic Model: From the inertia-compensated cylin-                                b) Boom: Since for the lifting direction of the Boom joint
+der forces, we compute an artificial cylinder back pressure                         progressive stalling is not feasible, we record trajectories with
+at the function line as in Equation (11), where articulation is                     different joint loads at the same command. The configurations
+the effective area of the active cylinder side in the calibrated                    curled, erected, and erected with a full bucket are sufficient for
+direction. Since external loading may act opposite to the                           calibration. Each configuration yields one data point that we
+articulation, the resulting function pseudo back pressure                           use in the same way as the trajectories of the previous joints.
+can also be negative.
+                                                                                       3) Lookup Table: We fit Equation (12) to the experimen-
+                                                                                    tally determined test, values with a logarithmic cost to
+                                                                                    preserve precision for small  as shown in Equation (15).
+
+                                                                                                             
+
+                                                                                                        min        log(()) - log(test,)             (15)
+
+                      = (  - inertia)/articulation                        (11)                          ,,   test
+
+   We model the pump's pressure loop setpoint with respect                             The identified orifice model () shown in Figure 6 and
+to the DCV command  as a LUT with linear interpolation                              pump model  () are inverted to form a two-dimensional
+ (). Furthermore, we calibrate the relationship between                             LUT that maps desired flow and current pseudo back pressure
+valve command  and hydraulic resistance of the variable                               to a valve command . This table is the hydraulic model
+in-line orifice of the DCV, represented by 3 in A-B. The                            for a negative flow control function and is shown in Figure 7.
+resistance of the variable orifice in the DCV is modeled by
+Equation (12),                                                                      C. MPC Model
+
+                                                                                       The MPC controller is independent of the hydraulic model
+                          () =                                                      and assumes a stiff low-level controller, where small com-
+                                    · ( + )2                              (12)      mands reach maximum function pressure at stall. We calibrate
+                                                                                    the joint model from step responses with dead-time , scalar
+where the free parameters ,  and  are fitted from mea-                              , damping  and natural frequency  of the combined PID,
+surements of the volume flow into the function func and                             hydraulic model and plant as shown in Figure 8.
+the function-side pseudo back pressure   . The pressure over
+3 is then given by  =  () -   . The orifice resistance
+                                            Stick Function Hydraulic Model                                          Boom Joint Velocity                                                                   Hyd Model Feedforward Term
+
+                                350                                                 1.0                       0.00           Empty                                                                                      Empty
+                                                                                                            -0.02            Curled
+                                                                                                            -0.04            Full
+                                                                                                                             Target Velocity
+Function Pseudo Pressure [bar]  300                                                                         Valve Command                                                                                 0.45          Curled
+                                                                                                                                  Boom Velocity [rad/s]
+                                250                                                 0.8                                                                                                 Feedforward Term  0.40          Full
+
+                                200                                                                                                                                                                       0.35
+                                                                                                       0.6
+
+                                150
+
+                                100                                                                         -0.06        2.5 5.0 7.5                                                                      0.30          2.5 5.0 7.5
+                                                                                                       0.4          0.0      Time [s]                                                                           0.0         Time [s]
+
+                                 50
+
+                                      0                                             0.2
+
+                                -50                                                                         Fig. 9. Contribution of calibrated NFC hydraulics FF model. PID controller
+                                                                                                            disabled. The pressure-dependent FF term achieves the target joint velocity
+                                -100     0     50     100         150               0.0                     independent of the joint loading.
+
+                                                   Flow [l/m]
+
+Fig. 7. Hydraulic model for the Stick function on CASE250. Load-dependent                                              Grading Blade Path: Commercial Controller
+mapping from valve command to flow (cylinder speed).
+                                                                                                                    0.4
+Boom Vel [rad/s]                               Boom Velocity Step Response                                  z [m]                                                      Blade Position
+                                                                                                                                                                       Target Height
+                                0.06
+                                                                                                                    0.2
+                                0.04
+                                                                                                                                              Direction of Motion
+                                0.02
+                                                                                                                    0.0
+
+                                                                            Measured
+
+                                0.00                                        Fit                                          10  9           8                                                                7          6  5       4
+
+                                         0  1      2           3  4              5                                                            x [m]
+
+                                                      Time [s]                                              Fig. 10. CASE250, Commercial Controller: Evaluation of 10 grading passes
+                                                                                                            of varying depth in compacted soil. RMSE: 4.7 cm (9 m and closer)
+Fig. 8. CASE250 Boom step response identification with a commanded joint
+rate of 0.05 rad/sec.
+
+                          V. EXPERIMENTS                                                                    B. Grading
+
+   The presented method was tested and evaluated on a 11.5 t                                                   Our grading experiments test the full stack, including joint
+LS excavator: Menzi Muck M445, and on a 25 t NFC stan-                                                      velocity control and MPC path tracking. We compare the
+dard machine: CASE250. The first experiments test hydraulic                                                 precision of the proposed system with a commercially avail-
+model accuracy under load. The core quantitative evaluation                                                 able semi-automatic grading controller and evaluate our pro-
+is in-soil path tracking on CASE250 and M445 across cutting                                                 prioceptive path-tracking accuracy and soil-planing accuracy
+depths and external soil loads, including high-load passes near                                             across multiple passes using a laser scanner. All experiments,
+stall. A separate CASE250 surface-finish test measures final                                                including those with the commercial system, use a blade veloc-
+terrain quality against a commercial system. Preliminary anal-                                              ity of approximately 0.5 m s-1 for comparability. This velocity
+ysis showed that the machine-specific commercial controller                                                 is close to that of an expert operator during fine grading, who
+matches a straightforward PID+IK controller for grading.                                                    removes less material but achieves similar surface accuracy.
+
+A. Hydraulic FF                                                                                                1) Path Tracking: We collect trajectories from light surface
+                                                                                                            grading to deeper cuts, high-load passes, and near-stall cuts in
+   To validate the hydraulic FF model, we benchmark the                                                     compacted material from 2 cm to 40 cm deep. The deep paths
+joint velocity tracking performance of the FF element for                                                   in Figures 10­12 fill the bucket in less than one stroke. We
+different payloads and thus joint loadings. On the LS M445                                                  also test whether the machine reaches maximum torque and
+this experiment only validates the calibrated LUT, since the                                                whether the blade is pushed away from the target surface.
+system reacts stiff to different loads. A joint-velocity tracking
+accuracy of  2% is achieved, confirming the LS model                                                              a) Commercial (CASE250): Figure 10 shows the trajec-
+and calibration. On the CASE250 this experiment shows that                                                  tory tracking of the commercial controller on the CASE250.
+the hydraulic model can compensate for the load-dependent                                                   After the first meter of approach to the target, it tracks with
+joint dynamics. Figure 9 shows a Boom lifting command                                                       an RMSE of 4.7 cm and a maximum path deviation of
+of 0.05 rad s-1 for three payload scenarios. The target joint                                               17 cm (9 m and closer). In hard soil the controller does not
+velocity is accurately tracked by the load-dependent FF term,                                               reach the target depth, while in light soil a substantial initial
+including changing gravity loading during the lift, as visible                                              overshoot is visible. Many trajectories stall before the end of
+in the FF output. Comparable performance is obtained over                                                   travel at about 5 m with stick pressures far below the maximum
+the full machine velocity range and payloads.                                                               function pressure of 350 bar. In some hard soil conditions the
+                                                                                                            shovel is pushed up at the end of travel, reducing accuracy
+                                                                                                            close to the machine.
+z [m]           Grading Blade Path: Our Controller
+
+       0.4
+                                                          Blade Position
+                                                          Target Height
+
+       0.2
+
+                                 Direction of Motion
+
+       0.0
+
+       10     9  8  7         6  5                                         4
+
+                    x [m]
+
+Fig. 11. CASE250, Our Controller: Evaluation of 10 grading passes of             Fig. 13. Experiment Setup for Surface Quality Measurements on CASE250.
+varying depth in compacted soil. RMSE: 1.8 cm (9 m and closer)                   Fixed Leica MS60 scan used for evaluation of the surface quality.
+
+                      Grading Blade Path: M445                                   y [m]
+                                                                                                                                                                    Terrain Relative to Target Surface [m]
+       0.4                                                                       Point cloud comparison: Commercial Vs. Ours
+                                                           Blade Position
+                                                           Target Height            Commercial  Ours
+
+       0.2                                                                       8
+                                                                                                                                                        0.1
+                                    Direction of Motion
+z [m]                                                                            6
+       0.0
+                                                                                                                                                        0.0
+                                                                                 4
+
+                                                                                 2                                            -0.1
+
+           6     5         4        3
+
+                    x [m]                                                                       0 0.0 2.5 5.0 7.5 10.0 12.5 15.0
+                                                                                                                                x [m]
+Fig. 12. M445, Our Controller: Evaluation of 10 grading passes of varying
+depth in compacted soil. RMSE: 1.4 cm (5.2 m and closer). Varying starting       Fig. 14. CASE250: Comparison of the two graded surfaces: target surface
+distances are a result of different extensions of the telescopic stick on M445.  was not reached with the commercial system, higher precision and consistency
+                                                                                 from our method. Gray points are outside of the testing area and included for
+                                                                                 context, white areas are shadowed in the scan.
+
+      b) Ours (CASE250): As shown in Figure 11, the pre-                         of the pass and shows large deviations and surface oscillations
+sented controller achieves an RMSE of 1.8 cm and a                               with magnitudes larger than 10 cm. The presented controller
+maximum path deviation of 5 cm on the same machine                               reaches the target surface earlier, creates a flatter surface at
+and conditions. It maintains high accuracy regardless of soil                    the target height and does not oscillate.
+conditions and reliably reaches the target height after about
+one meter of approach. Light grading passes show no initial                      C. Discussion
+overshoot, and in most cases the end of travel is reached.
+When the machine stalls earlier, the stick pressure reaches the                     Our calibrated hydraulic FF terms track joint velocity com-
+maximum function pressure of the machine.                                        mands across payloads on LS and NFC machines. Grading
+                                                                                 experiments show that the proposed controller reaches the
+      c) Ours (M445): Figure 12 shows our controller on the                      target surface after about one meter and maintains low de-
+LS Menzi Muck M445 with an RMSE of 1.4 cm1 and a                                 viation in compacted material up to 40 cm cutting depth. Our
+maximum path deviation of 4 cm. On M445 the trajectories                         setup outperforms the commercial controller by a factor of
+start at different distances due to the variable reach from the                  2.6 (RMSE 1.8 cm vs. 4.7 cm) and avoids premature stalling
+telescopic joint which is initialized at different lengths but                   by using maximum function pressure. Laser scans confirm a
+kept fixed during episodes. No loss of precision from varying                    flatter surface with fewer oscillations and earlier convergence
+cutting depths is visible, consistent with the CASE250 results.                  to the target height.
+The trajectory stalls at maximum function pressure and shows
+no significant initial overshoot.                                                   Our once-per-machine retrofitting process of the presented
+                                                                                 controller can adapt to LS and NFC hydraulic machines.
+   2) Surface Quality: This separate CASE250 test evaluates                      It starts with the identification and tuning of the hydraulic-
+final surface finish, not path tracking, as seen in Figure 13.                   specific low-level controller, which includes inertia compen-
+The test is performed on compacted sand with a cutting depth                     sation for NFC machines. The transfer functions of the plant
+of about 25 cm. The target area is four shovel widths wide                       including machine and low-level controller are then identified
+and graded from left to right, one pass per lateral position                     and updated in the MPC EE space controller. The whole
+with about 20% overlap (five passes total) to avoid spillage.                    process takes about 20 min.
+Surface quality is measured by laser scan with a Leica MS60
+Multistation. Figure 14 shows the two graded areas side by                          VI. FUTURE WORK, LIMITATIONS, AND CONCLUSION
+side, with color indicating deviation from the target surface
+and gray points outside the graded area. The commercial                          A. Future Work and Limitations
+controller does not reach the target height until the midpoint
+                                                                                    Future work will address tracking arbitrary shapes via a
+     1Much lower in-air. Precise enough to open a bottle. Check our supple-      more expressive cost function and will include end-effector
+mentary video for a visual demonstration of the achieved accuracy.
+forces in Cartesian space in the MPC objective to enable                  Applied Sciences, 12(15):7453, 2022. ISSN 2076-3417.
+impedance-style control for proprioceptive compaction and                 doi: 10.3390/app12157453.
+redistribution of piles. Limitations of this work are the ap-        [5] Hoang Vu Dao, Seonjun Na, Duc Giap Nguyen, and Ky-
+plicability of our method to Positive Flow Control machines,              oung Kwan Ahn. High accuracy contouring control of an
+which has not been evaluated, as no machine with this ar-                 excavator for surface flattening tasks based on extended
+chitecture was available to the authors. The hydraulic model              state observer and task coordinate frame approach. Au-
+can be extended to capture coupling effects between functions,            tomation in Construction, 130:103845, October 2021.
+enabling faster motions at higher precision.                              ISSN 0926-5805. doi: 10.1016/j.autcon.2021.103845.
+                                                                     [6] Timothy W. Dell, editor. Hydraulic Systems for Mobile
+B. Conclusion                                                             Equipment. G-W Publisher, 2023.
+                                                                     [7] Pascal Egli and Marco Hutter. A General Approach
+   This work presents a retrofittable, machine-agnostic control           for the Automation of Hydraulic Excavator Arms Using
+stack for high-precision, heavy-duty grading with hydraulic               Reinforcement Learning. IEEE Robotics and Automation
+excavators. Our joint velocity controller targets multiple hy-            Letters, 7(2):5679­5686, April 2022. ISSN 2377-3766.
+draulic architectures, including LS, and for NFC machines                 doi: 10.1109/LRA.2022.3152865.
+we formulate a novel load-aware model. Furthermore, we               [8] Pascal Egli, Lorenzo Terenzi, and Marco Hutter. Re-
+formulate a practical calibration procedure that targets field de-        inforcement Learning-Based Bucket Filling for Au-
+ployment: it relies only on kinematic parameters and onboard              tonomous Excavation. IEEE Transactions on Field
+sensing and runs in about 20 min. Experiments on a 11.5 t                 Robotics, 1:170­191, 2024. doi: 10.1109/TFR.2024.3
+LS and a 25 t NFC excavator validate the FF joint velocity                432508.
+accuracy and in-soil grading performance of the combined             [9] Leica Geosystems. Leica mc1. https://leica-geosystems.
+system. Our system executes grading passes in compacted                   com/en-us/products/machine-control-systems/software/
+material with cutting depths up to 40 cm, respects actuator               leica-mc1. Accessed: 2025-11-10.
+limits, and preserves smooth joint commands through ex-             [10] Jonas Gruetter, Lorenzo Terenzi, Pascal Egli, and Marco
+plicit transient and dead-time modeling. In heavy-duty grading            Hutter. Towards Learning Boulder Excavation with
+trials, the proposed controller outperforms a state-of-the-art            Hydraulic Excavators. 2025. doi: 10.48550/arXiv.2
+commercially available semi-automatic system on the same                  509.17683.
+NFC excavator and uses the full torque potential. Overall,          [11] Trimble Inc. Trimble earthworks. https://heavyindus
+the proposed retrofittable controller achieves centimeter-level           try.trimble.com/en/products/grade- control- excavators.
+grading at 2.6 times better accuracy in compacted mate-                   Accessed: 2025-11-10.
+rial and generalizes across common hydraulic architectures.         [12] Inkyu Jang, Junha Kim, Dongjae Lee, Changhyeon Kim,
+Adoption of our grading framework can reduce the number                   Changsuk Oh, Youngbum Kim, Sangwook Woo, Heejee
+of autonomous passes required in earthworks, resulting in                 Sung, and H. Jin Kim. Towards Fully Integrated Au-
+substantial cost reductions.                                              tonomous Excavation: Autonomous Excavator for Pre-
+                                                                          cise Earth Cutting and Onboard Landscape Inspection.
+                        ACKNOWLEDGMENTS                                   IEEE Robotics & Automation Magazine, 32(3):88­102,
+                                                                          2025. doi: 10.1109/MRA.2024.3400772.
+   This project received funding from Hexagon AB and was            [13] Shiyu Jin, Zhixian Ye, and Liangjun Zhang. Learning
+supported by the Swiss National Science Foundation through                Excavation of Rigid Objects with Offline Reinforcement
+the National Centre of Competence in Digital Fabrication                  Learning. 2023. doi: 10.48550/arXiv.2303.16427.
+(NCCR dfab).                                                        [14] Dominic Jud, Philipp Leemann, Simon Kerscher, and
+                                                                          Marco Hutter. Autonomous Free-Form Trenching Using
+                             REFERENCES                                   a Walking Excavator. IEEE Robotics and Automation
+                                                                          Letters, 4(4):3208­3215, 2019. doi: 10.1109/LRA.2019
+ [1] Koji Aoshima and Martin Servin. Examining the                        .2925758.
+      simulation-to-reality gap of a wheel loader digging in de-    [15] Kwangmin Kim, Minji Kim, Dongmok Kim, and
+      formable terrain. Multibody System Dynamics, July 2024.             Dongjun Lee. Modeling and velocity-field control of
+      ISSN 1573-272X. doi: 10.1007/s11044-024-10005-5.                    autonomous excavator with main control valve. Au-
+                                                                          tomatica, 104:67­81, 2019. ISSN 0005-1098. doi:
+ [2] Ehsan Rezazadeh Azar and Vineet R Kamat. Earth-                      10.1016/j.automatica.2019.02.041.
+      moving equipment automation: a review of technical            [16] Youngbum Kim and Jinwhan Kim. Enhanced Hydraulic
+      advances and future outlook. Tcon, 22:247­265. URL                  Excavator Control via Semi-automatic Grading Control
+      https://www.itcon.org/2017/13.                                      Using Reinforcement Learning. International Journal of
+                                                                          Control, Automation and Systems, 23(3):896­906, 2025.
+ [3] Caterpillar. Cat grade for excavators. https://www.cat.co            ISSN 2005-4092. doi: 10.1007/s12555-024-0213-9.
+      m/en US/products/new/technology/grade/grade/159698            [17] Chang Seop Lee, Jangho Bae, and Daehie Hong. Contour
+      04.html. Accessed: 2025-11-10.
+
+ [4] Hoang Vu Dao and Kyoung Kwan Ahn. Active Distur-
+      bance Rejection Contouring Control of Robotic Excava-
+      tors with Output Constraints and Sliding Mode Observer.
+      control for leveling work with robotic excavator. Inter-        Digital Publishing Institute.
+      national Journal of Precision Engineering and Manufac-    [28] Tao Wang and Qingfeng Wang. Efficiency analysis
+      turing, 14(12):2055­2060, December 2013. ISSN 2005-
+      4602. doi: 10.1007/s12541-013-0278-5.                           and evaluation of energy-saving pressure-compensated
+[18] Minhyeong Lee, Hyelim Choi, ChangU Kim, Jihyun                   circuit for hybrid hydraulic excavator. Automation in
+      Moon, Dongmok Kim, and Dongjun Lee. Precision                   Construction, 47:62­68, November 2014. ISSN 0926-
+      Motion Control of Robotized Industrial Hydraulic Exca-          5805. doi: 10.1016/j.autcon.2014.07.012.
+      vators via Data-Driven Model Inversion. IEEE Robotics     [29] Lennart Werner, Fang Nan, Pol Eyschen, Filippo A.
+      and Automation Letters, 7(2):1912­1919, April 2022.             Spinelli, Hongyi Yang, and Marco Hutter. Dynamic
+      ISSN 2377-3766. doi: 10.1109/LRA.2022.3142389.                  Throwing with Robotic Material Handling Machines. In
+[19] Ruichuan Li, Qiyou Sun, Xinkai Ding, Yisheng Zhang,              2024 IEEE/RSJ International Conference on Intelligent
+      Wentao Yuan, and Tong Wu. Review of Flow-Matching               Robots and Systems (IROS), pages 98­104, 2024. doi:
+      Technology for Hydraulic Systems. Processes, 10(12):            10.1109/IROS58592.2024.10802743.
+      2482, December 2022. ISSN 2227-9717. doi: 10.3390/        [30] Lennart Werner, Pol Eyschen, Sean Costello, Pierluigi
+      pr10122482.                                                     Micarelli, and Marco Hutter. Calibrated dynamic mod-
+[20] Qingkai Lu, Yifan Zhu, and Liangjun Zhang. Exca-                 eling for force and payload estimation in hydraulic
+      vation Reinforcement Learning Using Geometric Rep-              machinery. Construction Robotics, 9(2), October 2025.
+      resentation. IEEE Robotics and Automation Letters, 7            ISSN 2509-8780. doi: 10.1007/s41693-025-00169-7.
+      (2):4472­4479, April 2022. ISSN 2377-3766. doi:           [31] Jiaqi Xu, Bradley Thompson, and Hwan-Sik Yoon. Au-
+      10.1109/LRA.2022.3150511.                                       tomated Grading Operation for Hydraulic Excavators.
+[21] Salim Msaad, Leonardo Cecchin, Ozan Demir, and                   In SAE Technical Paper 2014-01-2405, 2014. doi:
+      Lorenzo Fagiano. Data-Driven Model Predictive Control           10.4271/2014-01-2405.
+      of an Hydraulic Excavator via Local Model Networks. In    [32] Teng Yang, Bin Zhang, Haocen Hong, Yuanlong Chen,
+      2025 American Control Conference (ACC), page 85­90,             Huayong Yang, Tongman Wang, and Donghui Cao. Mo-
+      2025. doi: 10.23919/ACC63710.2025.11107493.                     tion control for earth excavation robot based on force
+[22] Huynh A. D. Nguyen and Quang P. Ha. Robotic au-                  pre-load and cross-coupling compensation. Automation
+      tonomous systems for earthmoving equipment operating            in Construction, 141:104402, 2022. ISSN 09265805. doi:
+      in volatile conditions and teaming capacity: a survey.          10.1016/j.autcon.2022.104402.
+      Robotica, 41(2):486­510, February 2023. ISSN 0263-        [33] Liangjun Zhang, Jinxin Zhao, Pinxin Long, Liyang
+      5747, 1469-8668. doi: 10.1017/S0263574722000339.                Wang, Lingfeng Qian, Feixiang Lu, Xibin Song, and
+[23] Filippo A. Spinelli, Pascal Egli, Julian Nubert, Fang            Dinesh Manocha. An autonomous excavator system
+      Nan, Thilo Bleumer, Patrick Goegler, Stephan Brockes,           for material loading tasks. Science Robotics, 6(55):
+      Ferdinand Hofmann, and Marco Hutter. Reinforcement              eabc3164, 2021. doi: 10.1126/scirobotics.abc3164.
+      Learning Control for Autonomous Hydraulic Material        [34] John G Ziegler and Nathaniel B Nichols. Optimum
+      Handling Machines with Underactuated Tools. Inter-              settings for automatic controllers. Transactions of the
+      national Conference on Intelligent Robots and Systems,          American society of mechanical engineers, 64(8):759­
+      page 12694­12701, October 2024. ISSN 2153-0866. doi:            765, 1942.
+      10.1109/IROS58592.2024.10802199.
+[24] Sergiy Sydorenko. Negative flow control vs load sensing
+      - which one is better? https://www.insanehydraulics.com
+      /letstalk/nfcvsls.html, 2025. Accessed: 2025-12-04.
+[25] Lorenzo Terenzi and Marco Hutter. Toward Autonomous
+      Excavation Planning. IEEE Transactions on Field
+      Robotics, 1:292­317, 2024. ISSN 2997-1101. doi:
+      10.1109/TFR.2024.3485037.
+[26] Dongyun Wang, Lijuan Zheng, Hongxiang Yu, Wu Zhou,
+      and Liping Shao. Robotic excavator motion control
+      using a nonlinear proportional-integral controller and
+      cross-coupled pre-compensation. Automation in Con-
+      struction, 64:1­6, April 2016. ISSN 09265805. doi:
+      10.1016/j.autcon.2015.12.024.
+[27] Jian Wang, Hao Zhang, Peng Hao, and Hua Deng.
+      Observer-Based Approximate Affine Nonlinear Model
+      Predictive Controller for Hydraulic Robotic Excavators
+      with Constraints. Processes, 11(7), 2023. ISSN 2227-
+      9717. doi: 10.3390/pr11071918. Multidisciplinary
+                             APPENDIX A                                ECU
+                    HYDRAULIC BACKGROUND
+                                                                            NFC
+A. Load Sensing Hydraulic Model                                             Pump
+
+   The simplified load-sensing circuit in Figure 15 shows the          Fig. 16. Simplified schematic of a single hydraulic function in an NFC
+pressure feedback loop of an LS function. The pump senses              circuit. The central bypass is used as a reference for pump control. Pump
+the pressure drop  across the flow-controlling DCV. It                 control remains mainly unaffected by changing load on the function side.
+then adjusts pump displacement to keep this pressure drop
+approximately constant. As a result, the flow through the valve
+is mainly set by valve opening and is largely independent
+of the load pressure at the actuator [28]. For control, this
+makes the hydraulic response comparatively stiff: a given valve
+command produces nearly the same cylinder velocity over a
+wide load range. Our calibrated hydraulic model can therefore
+map the required flow, or cylinder velocity, directly to a valve
+command.
+
+B. Negative Flow Control Hydraulic Model                                       ECU
+
+   Figure 16 shows a simplified NFC schematic for a single             Fig. 17. Broken down schematic of NFC for modeling. Highlighted in blue
+function. Since the active hydraulic circuit depends on the            are the abstracted orifices from the DCV in an actuated position. The flow
+travel direction, we model and identify each direction sepa-           resistance follows a curve based on the spool displacement of the valve.
+rately. We break the hydraulic model down further into func-
+tional elements for modeling a single direction in Figure 17.          tional feedback line from pump pressure  and the Engine
+The abstraction intentionally simplifies the underlying physical       Control Unit (ECU) can destroke the pump as well. Since
+effects. It does not represent all aspects of the true oil flow, but   this core dynamic is load independent, the system does not
+the calculated values match observed and measurable behavior           react stiff to valve commands, as described in greater detail
+on hardware. In Section V, we provide the experimental                 by [24]. In our model, the flow into the function is determined
+validation of the presented model. For a more comprehensive            by the balance between the back pressure func, the function
+explanation of NFC hydraulics, we refer the reader to Dell             orifice 3, and the pump pressure , that is determined by the
+[6], which gives a detailed description of all mechanisms and          bypass galleries 1, and the reference orifice 2. The bypass
+their differences across implementations, including Caterpillar,       galleries and reference orifice together with the NFC pump
+Sumitomo, and Kobelco.                                                 and    form a pressure control loop that depends only
+                                                                       on the DCV displacement. We can probe this mapping by
+   We decompose the DCV into two active orifices, one for the          stalling the function (function = 0) and measuring the function
+NFC central bypass 1 and one for the function power line 3.            pressure    = . Only when  exceeds the cylinder
+The resistances of 1 and 3 depend on spool displacement                back pressure can oil flow into the function. The resulting
+and are inversely proportional to each other. We further assume        flow into the function depends only on the pressure difference
+2  1, so the NFC path flow NFC is negligible. NFC                       - func and the resistance of orifice 3. For calibration,
+uses a variable-displacement pump whose stroke decreases               we characterize the pressure-control feedback loop as a feed-
+with increasing control-line pressure NFC, that is generated           forward function and the orifice function of 3.
+by the accumulative resistance of the central bypass 1 with
+a reference orifice 2. Opening the DCV reduces the bypass-
+orifice-induced pressure and increases pump flow. An addi-
+
+                                    LS Control
+                                    Pump
+
+Fig. 15. Simplified schematic of a LS hydraulic function. The pump is                               APPENDIX B
+regulated by the function pressure.                                                                    ROBOTS
+
+                                                                          Table II compares the two platforms used for evaluation.
+                                                                       The Menzi Muck M445 as shown in Figure 18 is controlled
+                                                                       through the vendor remote control interface. A cabin mounted
+                                                                       computer is running our controller and sends valve commands
+Fig. 18. Menzi Muck M445
+
+Fig. 19. CASE250
+
+to the excavator through CAN-Bus. Inertial, joint position
+and joint velocity data is measured by a Leica Icon Machine
+Control system.
+
+   CASE250 in Figure 19 is controlled through a Husco Exacto
+machine control system. Similarly to M445, a cabin mounted
+computer receives joint measurements from a Leica Icon
+Machine Control system, runs the controller presented in this
+paper, and sends valve commands to the Exacto.
+
+                                     TABLE II
+COMPARISON OF MENZI MUCK M445 AND CASE250 EXCAVATORS
+
+Parameter         M445    CASE250
+Weight
+Engine Power      11.5 t      25 t
+Overall Length   105 kW    138 kW
+Overall Width     6.1 m     5.3 m
+Boom Length       2.3 m     3.2 m
+Stick Length      2.5 m     5.8 m
+Bucket Length     1.9 m     3.0 m
+Bucket Capacity   1.3 m     1.6 m
+Maximum Reach    0.54 m3    0.8 m3
+                  7.8 m     10.8 m
+

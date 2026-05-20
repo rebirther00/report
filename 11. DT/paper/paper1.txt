@@ -1,0 +1,574 @@
+                                                                                                                                               ETH Library
+
+A General Approach for the
+Automation of Hydraulic Excavator
+Arms Using Reinforcement
+Learning
+
+      Journal Article
+       Author(s):
+
+       Egli, Pascal; Hutter, Marco
+       Publication date:
+       2022-04
+       Permanent link:
+       https://doi.org/https://doi.org/10.3929/ethz-b-000487440
+       Rights / license:
+       In Copyright - Non-Commercial Use Permitted
+       Originally published in:
+       IEEE Robotics and Automation Letters 7(2), https://doi.org/10.1109/LRA.2022.3152865
+
+       This page was generated automatically upon download from the ETH Zurich Research Collection.
+       For more information, please consult the Terms of use.
+IEEE ROBOTICS AND AUTOMATION LETTERS. PREPRINT VERSION. ACCEPTED JANUARY, 2021  1
+
+A General Approach for the Automation of
+          Hydraulic Excavator Arms
+
+        Using Reinforcement Learning
+
+                                        Pascal Egli and Marco Hutter
+
+   Abstract--This article presents a general approach to derive an          Fig. 1. Menzi Muck M545, a 12 t hydraulic walking excavator, used in this
+end effector trajectory tracking controller for highly nonlinear            work to validate the proposed method by controlling its four arm joints.
+hydraulic excavator arms. Rather than requiring an analytical
+model of the system, we use a neural network model that is                  are too large for direct control. Therefore, a pilot stage
+trained based on measurements collected during operation of                 which operates at a lower pressure is preconnected to operate
+the machine. The data-driven model effectively represents the               the main valves indirectly. This setup, however, introduces
+actuator dynamics including the cylinder-to-joint-space conver-             large control delays and dead zones. Also, multiple cylinders
+sion. Requiring only the distances between the individual joints, a         are usually supplied by the same pump causing coupling
+simulation is set up to train a control policy using reinforcement          effects and saturation. Additionally, machine characteristics
+learning (RL). The policy outputs pilot stage control commands              vary considerably across different excavators. Depending on
+that can be directly applied to the machine without further                 the size of the excavator, the type of hydraulic system, i.e.,
+fine-tuning. The proposed approach is implemented on a Menzi                implementation and type of load sensing (LS), or the operating
+Muck M545, a 12 t hydraulic excavator, and tested in different              and loading conditions, the behavior can be substantially dif-
+task space trajectory tracking scenarios, with and without soil             ferent. Even machines of the same type can behave differently
+interaction. Compared to a commercial grading controller, which             due to wear and manufacturing tolerances. Another source of
+requires laborious hand-tuning by expert engineers, the learned             nonlinearities are the linkage mechanisms which transform the
+controller shows higher tracking accuracy, indicating that the              linear motions of the hydraulic cylinders into angular joint
+achieved performance is sufficient for the practical application            motions. These configurations differ from machine to machine
+on construction sites and that the proposed approach opens a                and it is laborious to derive the corresponding cylinder-to-
+new avenue for future machine automation.                                   joint-space conversions which are necessary to compute end
+                                                                            effector properties in task space.
+   Index Terms--Robotics and Automation in Construction, Re-
+inforcement Learning, Autonomous Excavator, Sim-to-Real                        To circumvent these problems and to facilitate the au-
+                                                                            tomation of any type of excavator we propose a data-driven
+                          I. INTRODUCTION                                   approach, based on measurements collected during operation
+                                                                            of the machine which inherently capture machine-specific
+T HE automation of heavy hydraulic equipment, in par-                       particularities without relying on a precise analytical model
+      ticular excavators which are indispensable in various                 of the system, laborious expert tuning, or expensive hardware
+domains like construction, mining, agriculture or forestry, has             modifications. The proposed method is implemented and vali-
+various benefits such as safety, by not exposing operators to               dated on a Menzi Muck M545, a 12 t walking excavator (see
+hazardous environments, increased productivity, by alleviating              Fig. 1).
+the difficulty of finding enough skilled operators, or increased
+precision.                                                                  A. Related Work
+
+   A necessary technology is the precise and accurate control                  Nonlinear model-based control approaches have shown
+of the hydraulic arm's end effector for manipulation of objects             state-of-the-art performance in accurate control of hydraulic
+such as stones, for harvesting trees, or for shaping the soil,
+i.e., grading. Even for a human operator these are extremely
+challenging tasks which require many years of practice. What
+makes this a difficult control problem are strong nonlinearities
+that hydraulic machines, such as excavators, exhibit [1]. These
+machines are usually controlled using a two-staged hydraulic
+circuit because the forces required to move the main valves
+
+   Manuscript received: October, 15, 2020; Revised January, 3, 2021; Ac-
+cepted January, 24, 2021.
+
+   This paper was recommended for publication by Editor Youngjin Choi upon
+evaluation of the Associate Editor and Reviewers' comments.
+
+   This research was supported by the Swiss National Science Foundation
+through the National Centre of Competence in Digital Fabrication (NCCR
+dfab).
+
+   Authors are with the Robotic Systems Lab, ETH Zurich, Switzerland.
+Contact: pasegli@ethz.ch
+
+   Digital Object Identifier (DOI): see top of this page.
+2  IEEE ROBOTICS AND AUTOMATION LETTERS. PREPRINT VERSION. ACCEPTED JANUARY, 2021
+
+manipulators [2]. However, they rely on an accurate mathe-          realistic trajectory tracking scenario was not ideal, because,
+matical description of the system which is difficult to obtain      due to the position control paradigm, the controller always
+and often use high-precision actuators [3], [4]. Model-free         required an offset to the desired trajectory point in order to
+approaches, such as PID controllers, do not require such a          move, leading to large trajectory tracking errors.
+mathematical description, but require tedious parameter tuning
+on every machine and their performance deteriorates with            B. Contribution
+increasing distance to the nominal operating configuration for
+which they have been tuned [5]. Since our work explicitly tack-        In this work, we present a general approach to synthesize
+les the problems of these approaches, the following paragraph       a task space trajectory tracking controller for systems, where
+focuses on related work on data-driven methods to control           an accurate analytical model for control is difficult and costly
+hydraulic excavators.                                               to obtain. In particular, we focus on the automation of large-
+                                                                    scale hydraulic excavators. As opposed to traditional model-
+   Song and Koivo [6] trained one neural network that pre-          based approaches, where an accurate analytical model of
+dicted the torques at the three controllable joints given a         the system is required, the proposed method only requires
+history of joint positions to compute feed-forward torques for      minimal machine-specific knowledge and modifications to an
+a hand-tuned PID controllers. This method, however, was only        off-the-shelf excavator. In particular, only measurements of
+tested in simulation and relies on controlling the torques at the   the joint states, i.e., positions and velocities, knowledge about
+joints which requires expensive high-precision valves [3], [4].     the link lengths and electrical pilot stage valves for automatic
+Training one neural network for each of the three arm cylinders     control are required. Nonlinearities from the hydraulic actu-
+was proposed by Cannon and Singh [7]. Each neural network           ation as well as from the cylinder-to-joint-space conversion
+predicted the cylinder velocity at the next time step given the     are captured within a data-driven actuator model. A velocity
+velocity at the current time step, the control input and the load.  tracking controller is trained in simulation using RL that
+The conversion to joint space was then carried out separately,      directly outputs pilot stage valve commands which can be
+outside of the neural network requiring precise knowledge           applied to the machine without further tuning or filtering.
+about each cylinder linkage configuration. Together with a soil     We show extensions and modifications to our previous work
+model, the actuator models were used to evaluate trajectories       [11] which substantially improve the utility of the controller.
+from a force-based controller. More recently, Park et al. [8]       We add tracking of desired shovel orientations and take into
+used a recurrent neural network to learn the inverse model          account end effector velocities which significantly improves
+of the excavator arm online in an end-to-end fashion, i.e.,         the trajectory tracking accuracy and shows good performance
+from end effector space to valve inputs. The controller could       also for larger end effector velocities. Moreover, we present
+improve the performance online, required however filtering of       hardware experiments on a Menzi Muck M545, for motions
+the control commands before applying them to the machine.           in the air and with soil interaction in a grading task, and
+Also, even after a couple of repetitive motions in the air,         show a performance comparison with a commercial excavator
+the average tracking errors remained in the order of tens of        automation system that is tuned by expert engineers of the
+centimeters which might be suitable for digging, but is not         supplier.
+accurate enough for surface finishing and it is left open if the
+approach generalizes to the entire work space of the excavator                                   II. METHOD
+without forgetting how to track previously learned trajectories.
+To facilitate the automation of hydraulic excavators, but still        An overview of our approach is shown in Fig. 2. First,
+relying on hand-tuned PID controllers, Nurmi et al. [9] pro-        we model the actuation using measurements collected during
+posed to use a deep convolutional neural network to learn a         operation of the machine. In a second step, we train a task
+parameterized mapping from valve current inputs to actuator         space end effector velocity tracking controller in simulation
+velocities that can be used as feed-forward terms for joint-level   with RL using the pretrained actuator model. And third, we
+PID controllers. In the context of wheel loaders, Dadhich et al.    directly deploy the controller trained in simulation on the real
+[10] used a feed-forward neural network to model the mapping        machine.
+from operator inputs to actuator commands and showed that
+using a history of past measurements as input enables the           A. Modeling the Hydraulic Actuation
+neural network to learn temporal relationships such as delays.
+The controller was then refined to adapt to changing conditions        Following our previous work [11], we train one single
+with online RL.                                                     feed-forward neural network to model the four main arm
+                                                                    actuators in a supervised fashion based on data collected
+   In our previous work [11] we investigated the feasibility        during operation of the machine. Using valve commands and
+of learning a control policy in simulation using a data-driven      measurements at the current time, and a history thereof, the
+actuator model and RL. The controller was trained using a           model predicts the joint velocities at the next time step (see
+position control paradigm, i.e., to move the shovel from a          Table I). The joint positions are obtained by integration.
+start position at rest to a goal position at rest, and could be
+deployed on the real machine without further modification for          To collect data on the machine we design randomized
+end effector position tracking in the air. However, the practical   control signals for the four arm actuators. The control signals
+utility of the controller was limited, because the shovel orienta-  consist of ramp profiles, which ensure coverage of the full
+tion could not be controlled. Also, the performance in a more       motion range of the cylinders, overlaid with a chirp signal,
+EGLI et al.: A GENERAL APPROACH FOR THE AUTOMATION OF HYDRAULIC EXCAVATOR ARMS USING REINFORCEMENT LEARNING  3
+
+Fig. 2. Overview of the proposed method. First (A), an actuator model is trained using measurements collected during operation of the machine in a supervised
+fashion. Second (B), a control policy is trained in simulation with RL using the pretrained actuator model. Third (C), the control policy is deployed on the
+physical machine and directly outputs current setpoints that can be applied to the electric pilot stage valves of the excavator.
+
+                                        TABLE I
+ACTUATOR MODEL INPUTS AND OUTPUTS. THE SUPERSCRIPT j STANDS
+
+                        FOR THE FOUR ACTUATED JOINTS.
+
+Inputs                     qtj
+Joint Positions            qtj , qtj-0.01s, . . . , qtj-0.1s
+Joint Velocities           utj , ujt-0.03s, . . . , ujt-0.99s
+Valve Setpoints            Rt
+Diesel Engine RPM          Tt
+Hydraulic Oil Temperature
+                           qtj+0.01s
+Outputs
+Joint Velocities
+
+i.e., sinusoidal signal with changing frequency over time.         Fig. 3. We control the four arm joints of the excavator arm (B , D, xT , S ).
+Additionally, we found that the performance of the controller      The goal is to track a trajectory of desired shovel edge poses relative to the
+on the real machine improved, when using also data without         cabin (xe, ze, e). To facilitate the training of the controller, by decoupling
+overlaid chirp. However, using exclusively either the perturbed    linear and angular motion, velocity tracking is learned for the shovel joint
+or the unperturbed base signals led to worse performance on        (xj , zj , j ). Trajectory commands for the shovel edge are converted to shovel
+the machine, highlighting the importance of collecting data        joint commands through rigid body kinematics.
+that is rich enough, i.e., that covers all the relevant modes
+of operation. The results presented in this letter are obtained    about the required velocities to achieve tracking of a desired
+using 100 min of data collected at 100 Hz, where roughly half      pose to a higher-level entity (see Section II-C). This facilitates
+of the data was collected without overlaid chirp. The valve        the generalization to track arbitrary end effector trajectories
+setpoints u  [-1, 1] correspond to current setpoints applied       in the entire work space of the excavator. Compared to the
+to the proportional solenoid valves in the pilot stage, where      position control paradigm from our previous approach [11],
+-1 and +1 is fully open in negative and positive direction         velocity control has a faster responsiveness, hence the tracking
+respectively and 0 is closed. The valves are configured such       performance improves.
+that a constant offset is applied to the commanded valve
+setpoints to partially compensate the dead zone.                      To facilitate training, inspired by human operators, we
+                                                                   decouple the linear and angular motion to some degree, by
+B. Learning a Velocity Tracking Controller in Simulation           tracking the linear velocity with the shovel joint instead of
+                                                                   the shovel edge (see Fig. 3). Since the motion of the shovel
+   Task: The final goal is to obtain a control policy that can     joint does not contribute to its linear velocity, it can be
+accurately track arbitrary trajectories in task space relative to  used exclusively to track the desired angular velocity. Without
+the cabin frame with the shovel edge of the excavator (see         decoupling, careful reward tuning is required such that the
+Fig. 3). We solve this problem using RL, because it provides a     agent learns tracking both, linear and angular, velocities. Using
+means of dealing with the highly nonlinear actuator dynamics       standard rigid body kinematics, commands for the shovel edge,
+by learning the optimal control inputs through trial and error.    which are usually of interest in a practical application, can be
+In particular, RL is able to handle different input delays and     converted to commands for the shovel joint which are then
+coordinate the joints optimally. We define the learning task       tracked by the control policy.
+to only track task space velocities and leave the reasoning
+                                                                      Simulation: Since the actuator model directly outputs joint
+                                                                   states and we assume that the distances between the joints, i.e.,
+                                                                   the link lengths, are known, the excavator arm can be modeled
+                                                                   as serial manipulator with a fixed base. Task space end
+4                                  IEEE ROBOTICS AND AUTOMATION LETTERS. PREPRINT VERSION. ACCEPTED JANUARY, 2021
+
+                                         TABLE II                    effector is restricted to motions in SE(2), i.e., linear motion
+   CONTROL POLICY OBSERVATIONS AND ACTIONS. THE SUPERSCRIPT j        in the plane and orientation of the shovel. We sample a linear
+                                                                     velocity between [0, 0.5] m s-1 with a random direction and
+                    STANDS FOR THE FOUR ACTUATED JOINTS.             an angular velocity between [-0.3, 0.3] rad s-1. To improve
+                                                                     the velocity tracking performance, we continuously change
+   Observations                    qtj                               the velocity command over the course of an episode. The
+   Joint Positions                 qtj , qtj-0.15s, qtj-0.3s         maximum change over one episode for the linear velocity is
+   Joint Velocities                utj-0.15s, . . . , utj-1.5s       0.05 m s-1 with a maximum change in direction of 0.31 rad
+                                   Rt                                and for the angular velocity 0.025 rad s-1 while not allowing
+   Valve Setpoints                 Tt                                for the direction to change, i.e., clipping to 0 rad s-1 if
+   Diesel Engine RPM               t  SE(2)                          the sign would change. To ensure good performance also at
+   Hydraulic Oil Temperature        t  SE(2)                         rest, we independently sample 0 initial velocity, desired linear
+   Shovel Joint Pose                t  SE(2)                         velocity and desired angular velocity with a probability of
+   Shovel Joint Velocities                                           0.01. Additionally, we sample a hydraulic oil temperature and
+   Shovel Joint Velocity Commands  ujt                               an engine rpm uniformly from the range of observed values
+                                                                     at the beginning of every episode.
+   Actions
+   Valve Setpoints                                                      Training Episodes: We choose an episode length of 2.0 s
+                                                                     trading off between errors that accumulate over time during
+effector pose and velocity can then be computed using standard       the forward simulation of the actuator model and giving the
+forward kinematics. The nonlinear conversion from cylinder to        agent enough time to reach the desired end effector velocity.
+joint space is captured within the actuator network such that        We terminate an episode early if the arm collides with itself
+the geometry of the cylinder attachment configurations does          and give a reward of 0. We could only see a difference in
+not need to be modeled explicitly.                                   performance when terminating an episode also at joint limits,
+                                                                     when we train a controller using all the four arm joints
+   Observations and Actions: The agent receives as observa-          (we train two different controllers, one with a fully retracted
+tions the same information that is also provided to the actuator     and frozen telescopic joint and one with all four joints, see
+model. In particular, providing a history of past measurements       Section III). In particular, we saw that without terminating
+is important for the agent to optimally coordinate different         at joint limits, the telescopic joint would frequently reach
+joint delays. Additionally, the agent receives task space mea-       its lower joint limit (fully retracted) leading to poor tracking
+surements and target velocities of the shovel joint. The actions     performance afterwards, whereas, when we terminate at joint
+of the agent consist of pilot stage valve current setpoints that     limits, other joints would start to move before the telescopic
+are fed to the actuator model in simulation during training or       joint reaches the joint limit. When the telescopic joint is
+the real machine during deployment (see Table II). To speed          frozen, the joint limits are not reached when operating within
+up training, we normalize all the observations and actions with      the feasible work space, thus, avoiding this problem.
+an approximated mean and standard deviation.
+                                                                        Reward Function: The reward rk received by the agent at
+   For a successful sim-to-real transfer, we found that it is        the kth interaction with the environment is defined as follows:
+necessary to noisify observations and actions during training.
+Therefore, we add uniformly sampled white noise to the obser-               rk = max(0.0, rkv + rk + rkr + rkc ),  (1)
+vations. The maximum noise amplitudes are [0.02]4 rad and m
+for joint positions, [0.04, 0.04, 0.05, 0.05]4 rad s-1 and m s-1     where  rkv = 0.05 exp (-60fc,1 vk - vk 22),
+for joint velocities, [25] for the engine rpm, [0.01]3 m and rad            rk = 0.02 exp (-60fc,1  k -  k 22),
+for the shovel joint pose and [0.05]3 m s-1 and rad s-1 for                 rkr = -0.75fc,2 ak - ak-1 1,
+the shovel joint velocity. The temperature observation is noise             rkc = 0.025.
+free. Additionally, to account for errors in the actuator model
+and robustify the policy, we randomly scale the action output        The two rewards terms rkv and rk encourage the agent to track
+from the controller by ±10 % and keep this factor constant           the desired linear vk and angular  k velocity respectively,
+over the course of an episode. This randomization is hidden          where vk and  k correspond to the measured velocities.
+for the agent, as it only receives its unmodified past actions       The term rkr ensures smooth commands by penalizing large
+as part of the observations.                                         changes in control actions a. Finally, a constant positive
+                                                                     reward rkc is always added to ensure that the reward remains
+   Episode Initialization: A good episode initialization strat-      positive which improves the learning performance. To the
+egy improves the learning performance substantially, as it can
+help to explore the state space. Therefore, we first sample joint    same end, we set the lower bound of the reward to 0, which
+positions within the joint limits and reject all the configurations
+that would lead to self-collisions. Then, we sample a reachable      especially at the beginning of training discourages the agent
+task space end effector position and use the position tracking
+controller from our previous work [11] to move towards the           to terminate an episode early. The two parameters fc,1 and
+goal position for 1.2 s. This ensures that the excavator is          fc,2 are curriculum factors [12] which facilitate learning at
+initialized in a feasible position and moves with a realistic        the beginning of the training when the agent's performance is
+velocity. Additionally, this allows us to fill the observation
+histories with sensible values.                                      still poor by making the reward distribution less sparse. The
+
+   Command Sampling: The desired task space velocity for
+the shovel joint is sampled at the beginning of each training
+episode. Since we do not control the cabin turn joint, the end
+EGLI et al.: A GENERAL APPROACH FOR THE AUTOMATION OF HYDRAULIC EXCAVATOR ARMS USING REINFORCEMENT LEARNING  5
+
+                      TABLE III
+            PPO HYPERPARAMETERS.
+
+            Policy Hidden Layers        128x128, Tanh
+            Value Hidden Layers         128x128, Tanh
+            Discount Factor             0.97
+            Max. Episode Length         2.0 s
+            Batch Size                  39k
+            Entropy Coefficient         0.0
+            Learning Rate               0.001
+            Value Function Coefficient  0.5
+            Max. Grad Norm              0.5
+            GAE                         0.95
+            Mini-Batches                4
+            Optimization Epochs         10
+            Clip Range                  0.2
+
+factors are increased linearly from 0.1 to 1.0 during 100 and         Fig. 4. Circular trajectory tracking experiments in the air. Measurements are
+200 algorithm iterations respectively.                                represented in the cabin frame. (Top) Shovel edge position for 10 cm s-1
+                                                                      average velocity. The arrow indicates the direction of motion. (Bottom)
+   Algorithm: To train the control policy, we use Proximal            Measured, desired and trajectory shovel joint velocities for a circular trajectory
+Policy Optimization (PPO) [13] which we found to perform              with 10 cm s-1 average velocity and constant orientation.
+similarly to Trust Region Policy Optimization (TRPO) [14]
+used in our previous work [11] but trains faster. We use the          For all the experiments presented in the following section we
+PPO2 implementation provided by Hill et al. [15] which allows         use a constant kp,x = kp,z = kp, = 3.0 which turned out to
+for parallelized experience generation and uses the General           be a good trade-off between accuracy and stability.
+Advantage Estimation (GAE) [16]. We use two separate neural
+networks to approximate the value function and the policy,                              III. EXPERIMENTAL RESULTS2
+each with hyperbolic tangent activation in the hidden layers
+and a linear output layer. We found that the choice of activation     A. Circular Trajectory Tracking in the Air
+function has a large impact on the performance on the real
+machine. In particular, we experienced that using unbounded              In a first set of experiments we test our controller in
+ReLU activations leads to less stable tracking performance.           different parts of the work space without soil interaction on
+Additionally, we found that reducing the control frequency in         circular reference trajectories with a diameter of 1.5 m and a
+simulation, has a beneficial impact on the performance when           constant orientation of the shovel relative to the cabin which
+deployed at an increased rate on the machine. We assume               is different for all the trajectories. Commands provided for the
+that this is due to an increased difficulty of the task by            shovel edge are converted to commands for the shovel joint
+reducing control authority of the agent. This yields to less          as input to the control policy. We use circular trajectories to
+aggressive commands, hence more stable performance on the             test our controller because they require coordinated motions
+physical machine. Therefore, we train the control policy at a         of all the four joints as well as velocity direction changes
+rate of 6.7 Hz and deploy it at 100 Hz on the real machine.           and therefore constitute particularly challenging test cases.
+The actuator model is evaluated at 100 Hz. Table III lists            The trajectories are scaled in time using 5th-order polynomials
+the hyperparameters used for PPO. Training the policy until           with zero velocity and acceleration at the start and end points.
+convergence, i.e., no more significant improvement of the             Fig. 4 shows the position of the shovel edge for an average
+reward, takes around 2 h.1                                            linear velocity 10 cm s-1 and the measured, commanded
+                                                                      and trajectory shovel joint velocities for a circular trajectory.
+C. Deployment on the Real System                                      The velocity tracking is worst, where the end effector moves
+
+During deployment on the real machine, the physical actu-                2A video of the data collection, the training procedure and the experiments
+                                                                      can be found here: https://youtu.be/t0bvf3DAEH0
+ators replace the actuator model. The control policy trained in
+
+simulation at 6.7 Hz is evaluated at 100 Hz on the machine
+
+and its outputs are directly applied to the electric pilot stage
+
+valves without modification or filtering. Given an arbitrary
+
+desired end effector trajectory consisting of desired poses
+
+and velocities for the shovel edge, we compute the desired
+
+end effector velocity using one proportional controller per
+
+dimension:
+
+            x t = kp,x(xttraj - xt) + x ttraj ,
+
+            zt = kp,z(zttraj - zt) + zttraj ,          (2)
+
+             t = kp,(ttraj - t) +  ttraj .
+
+   1We use a PC with an AMD Ryzen9 3950x CPU (@4.0GHz), 32GB of
+RAM and a Nvidia RTX 2080s GPU. Experience generation takes place on
+the CPU and policy training on the GPU.
+6                                                    IEEE ROBOTICS AND AUTOMATION LETTERS. PREPRINT VERSION. ACCEPTED JANUARY, 2021
+
+                                   TABLE IV
+   EVALUATION METRICS. N IS THE NUMBER OF SAMPLES PER
+
+                                 TRAJECTORY.
+
+   |ep|avg [cm]      :=  1               (xttraj - xt)2 + (zttraj - zt)2
+                         N
+   |ep|max [cm]
+   |epz |avg [cm]    := max (xttraj - xt)2 + (zttraj - zt)2
+   |epz |max [cm]
+   |v|avg [cm s-1]   :=  1        |zttraj - zt|
+   |v|max [cm s-1]       N
+   |eo|avg [rad]
+   |eo|max [rad]     := max |zttraj - zt|
+   | |avg [rad s-1]
+   | |max [rad s-1]  :=  1               x 2t + zt2
+    [s]                  N
+   z [s]
+                     := max x 2t + zt2
+
+                     :=  1        |ttraj - t|
+                         N
+
+                     := max |ttraj - t|
+
+                     :=  1        | t|
+                         N
+
+                     := max | t|
+
+                     :=  |ep |max
+                     :=  ||evzpm|maxax|
+                          |vmax |
+
+                                        TABLE V
+  CIRCULAR TRAJECTORY TRACKING PERFORMANCE. THE VALUES ARE
+REPORTED FOR THE SHOVEL EDGE IN THE CABIN FRAME. THE VALUES IN
+
+    BRACKETS CORRESPOND TO THE PERFORMANCE OF OUR PREVIOUS
+
+                                    APPROACH [11].
+
+   Metric            10 cm s-1           15 cm s-1   20 cm s-1            Fig. 5. Straight-line tracking experiments in the air. Measurements are
+   |ep |avg          1.7 (7.8)           2.2         2.8                  represented in the world frame. (Top) Shovel edge position for the slow
+   |ep |max          3.9 (13.5)          4.9         6.7                  scenario. The arrow indicates the direction of motion. (Bottom) Measured
+   |v|max            23.7 (22.3)         37.8        52.5                 linear velocity of the shovel edge and absolute tracking errors in vertical
+   |eo |avg          0.008 (-)           0.010       0.011                direction for the straight line at z = -0.2 m and 3 actuated joints.
+   |eo |max          0.015 (-)           0.021       0.026
+   | |avg            0.004 (-)           0.007       0.010                and control system [17] (see Fig. 5). This system is retrofitted
+   | |max            0.025 (-)           0.044       0.067                to thousands of off-the-shelf excavators each year to enable
+   [s]               0.16 (0.61)         0.13        0.13                 high-precision geo-referenced grading, i.e., surface finishing.
+                                                                          The semi-automatic functionality used in these experiments is
+fastest in positive z direction, against gravity, at 30 s and the         a mature prototype version, pending release in 2021, which
+proportional controller (see Eq. 2) needs to compensate for               has been installed and configured on our excavator by Leica
+the error accordingly.                                                    experts. The controller is limited and optimized for straight-
+                                                                          line motions, hence it cannot follow arbitrary trajectories as
+   We execute the same trajectories with average end effector             our approach. It is a semi-automatic system, meaning that
+velocities of 15 and 20 cm s-1. The results, computed ac-                 the operator manually controls the dipper joint while the re-
+cording to the metrics defined in Table IV and averaged over              maining joints are automatically adjusted such that the shovel
+all the trajectories with the same velocities, are summarized             edge follows a commanded plane. Same as our controller, it
+in Table V, where |ep|avg and |ep|max are the average and                 relies on measurements of the joint angles, requires knowledge
+maximum errors in position, and |eo|avg and |eo|max are the               about the link lengths, and directly outputs pilot stage valve
+average and the maximum errors in orientation. Additionally,              commands. Since it is difficult to perform fair and repeatable
+we report the maximum linear and maximum and average                      experiments with soil interaction due to the inhomogeneity
+angular end effector velocities |vmax|, | |max and | |avg                 of the soil, we compare the two controllers for motions in
+respectively, as well as the normalizing performance indicator            the air. The purpose of this comparison is to assess if the
+ which is defined as the ratio between the maximum linear                 tracking accuracy of our controller lies within a useful range
+position error and the maximum linear velocity [2] (the smaller           for practical application on construction sites. Since the Leica
+, the better the performance).                                            controller is configured without actuating the telescopic joint,
+                                                                          for comparability, we additionally train a control policy with
+   Compared to our previous approach [11] where we only                   a frozen telescopic joint, i.e., its position and velocity are
+control the position without the orientation, the results show a          set to 0 and the agent does not output a command for it,
+substantially improved tracking accuracy (see Table V, values
+in brackets). Moreover, the controller can track trajectories
+with higher velocities without reduction of the performance
+indicator .
+
+B. Linear Trajectory Tracking in the Air
+
+   In a second set of experiments we test our controller on five
+horizontal trajectories at different heights with two different
+velocities and compare it to the Leica iCON excavator sensing
+EGLI et al.: A GENERAL APPROACH FOR THE AUTOMATION OF HYDRAULIC EXCAVATOR ARMS USING REINFORCEMENT LEARNING                  7
+
+                                    TABLE VI
+LINEAR TRAJECTORY TRACKING PERFORMANCE. THE VALUES ARE
+REPORTED FOR THE SHOVEL EDGE IN THE WORLD FRAME. J. IS THE
+
+                       NUMBER OF ACTUATED JOINTS.
+
+Metric     Slow         Leica  Fast         Leica
+|ezp |avg  Learning     3 J.   Learning     3 J.
+|ezp |max  3 J. 4 J.    1.6    3 J. 4 J.    1.8
+|v|avg     0.7 0.8      3.6    1.2 0.9      4.2
+           1.7 1.7      11.8   2.5 2.2      16.3
+|v|max     14.5 13.1    30.5   18.3 18.3    40.9
+           27.5 24.9    0.011  33.1 35.1    0.015
+| |avg     0.013 0.010  0.047  0.015 0.012  0.046
+           0.035 0.030  0.12   0.046 0.041  0.10
+| |max     0.06 0.07           0.08 0.06
+z
+
+using the identical actuator model, parameters, and training        Fig. 6. Tracking performance for the grading experiment. Measurements are
+scenario. To achieve similar end effector velocities profiles for   represented in the cabin frame. The largest tracking error is circled in red and
+both controllers (see Fig. 5), we provide the Leica controller      the direction of motion is indicated with the arrows. Angular (top) and linear
+with smooth commands for the dipper joint consisting of 4th-        (bottom) trajectory of the shovel edge.
+order polynomials with 0 slope where the joint starts and stops
+to move and the learned controller with reference trajectories                                           TABLE VII
+scaled in time using 5th-order polynomials with 0 velocity and      GRADING TRAJECTORY TRACKING PERFORMANCE. THE VALUES ARE
+acceleration at start and end.
+                                                                           REPORTED FOR THE SHOVEL EDGE IN THE CABIN FRAME.
+   Leica controls the end effector with respect to the gravity-
+aligned frame attached to the cabin. Since our controller            Metric   Grading  Entire path
+operates relative to the cabin frame, we orient the machine         |ep |avg  2.0      2.2
+such that the cabin and the gravity-aligned frames coincide,        |ep |max  3.4      6.2
+thus, straight lines commanded in the cabin frame correspond        |v|avg    19.8     19.6
+to straight lines in the world frame. This has the advantage        |v|max    40.4     40.8
+that undesired motions of the entire machine, e.g., caused          |eo |avg  0.006    0.007
+by rocking on the soft tires, would be reflected in the mea-        |eo |max  0.011    0.029
+surements. The machine however does not rock as it can be           | |avg    0.047    0.041
+seen in Fig. 5, where the position of the shovel edge in the        | |max    0.103    0.103
+gravity-aligned frame for the slow-velocity scenario is shown.      [s]       0.08     0.15
+The performance values are summarized in Table VI. Since
+we do not know the reference for the orientation and in x           the grading part of the trajectory as well as the entire path are
+direction followed by the Leica controller, we only report the      summarized in Table VII.
+tracking errors in z direction, where |epz| is the position error
+in z direction and z is the normalized performance indicator           This experiment shows that our controller can be success-
+with respect to the maximum error in z direction |epz|max (see      fully used for grading. Even though the interaction with soil
+Table IV). The values are averaged over all the trajectories        and the resulting disturbance forces have never been explicitly
+with the same end effector velocity.                                experienced by the agent during training of the control policy,
+                                                                    it generalizes well to this scenario. The worse performance
+   Overall, the learned controller shows a higher tracking          indicator  for the entire path compared to the grading part
+accuracy compared to the Leica controller, which not only           results from a larger maximum tracking error. The largest
+shows larger tracking errors where the end effector moves or        tracking error occurs right after grading, when simultaneously
+accelerates fastest, but also at the beginning of the trajectories  curling an lifting the bucket (see Fig. 6, red circle). This
+where the end effector velocities and accelerations are lower       is caused by a suboptimal trajectory and not the tracking
+(see Fig. 5). The performance indicator  shows that the             controller itself. The bucket is commanded to curl too fast
+difference between actuating three or four joints with the          compared to the lifting motion such that the shovel cannot
+learned controller is only minor.                                   turn freely because its back side touches the ground. This can
+                                                                    be seen in Fig. 7, Image 6, where the soil is more compressed
+C. Grading                                                          from when the shovel tried to curl and touched the ground
+                                                                    with its back side.
+   Finally, we test our controller in a grading scenario, where
+the goal is to level an uneven soil surface (see Fig. 7). There-
+fore, we define a trajectory through four waypoints, which
+we connect with straight-line trajectories, scaled in time using
+5th-order polynomials and an average end effector velocity of
+20 cm s-1. The position and orientation of the shovel edge are
+shown in Fig. 6 and the corresponding performance values for
+8  IEEE ROBOTICS AND AUTOMATION LETTERS. PREPRINT VERSION. ACCEPTED JANUARY, 2021
+
+Fig. 7. Grading experiment with the learned controller. The shovel cannot move freely when curling at the end of the grading part and compresses the soil
+with its back side which leads to a higher tracking error (Image 6, arrow).
+
+               IV. CONCLUSION AND DISCUSSION                                 [2] J. Mattila, J. Koivuma¨ki, D. G. Caldwell, and C. Semini, "A survey
+                                                                                  on control of hydraulic robotic manipulators with projection to future
+   This work shows a method to automate the arm of a heavy                        trends," IEEE/ASME Transactions on Mechatronics, vol. 22, no. 2, pp.
+hydraulic excavator for high-precision grading using a data-                      669­680, 2017.
+driven actuator model that captures the nonlinearities of the hy-
+draulic actuation and the cylinder linkage configurations, and               [3] D. Jud, P. Leemann, S. Kerscher, and M. Hutter, "Autonomous free-form
+a control policy trained in simulation using RL that directly                     trenching using a walking excavator," IEEE Robotics and Automation
+outputs pilot stage valve commands without requiring joint                        Letters, vol. 4, no. 4, pp. 3208­3215, Oct 2019.
+level gain tuning by an expert. The presented approach only re-
+quires minimal machine-specific knowledge and modifications                  [4] Quang Ha, M. Santos, Quang Nguyen, D. Rye, and H. Durrant-
+to an off-the-shelf excavator and is in that sense general that                   Whyte, "Robotic excavation in construction automation," IEEE Robotics
+it can be directly applied to automate also other excavators.                     Automation Magazine, vol. 9, no. 1, pp. 20­28, March 2002.
+This has been demonstrated, by using the same approach to
+derive tracking controllers that actuate three and four arm                  [5] V. Chacko, H. Yu, S. Cang, and L. Vladareanu, "State of the art in
+joints. The method was tested in various trajectory tracking                      excavators," in Proceedings of the 2014 International Conference on
+experiments with and without soil interaction. Compared to                        Advanced Mechatronic Systems. IEEE, aug 2014, pp. 481­488.
+our previous work [11] we could substantially improve the
+tracking accuracy and also show experiments with larger                      [6] Bumjin Song and A. J. Koivo, "Neural adaptive control of excavators,"
+velocities and soil contact. In comparison to a commercial                        in Proceedings 1995 IEEE/RSJ International Conference on Intelligent
+grading controller [17] the learned controller showed higher                      Robots and Systems. Human Robot Interaction and Cooperative Robots,
+tracking accuracy indicating that the achieved performance is                     vol. 1, Aug 1995, pp. 162­167 vol.1.
+sufficient for practical application on construction sites.
+                                                                             [7] H. Cannon and S. Singh, "Models for automated earthmoving," in
+   Given that the presented results are obtained using only                       Experimental Robotics VI. London: Springer London, 2000, pp. 163­
+100 min of real-world data, this method bears the potential                       172.
+to improve its performance or adapt to changing machine
+characteristics, e.g., due to wear, either indirectly, by updating           [8] J. Park, B. Lee, S. Kang, P. Y. Kim, and H. J. Kim, "Online learning
+the actuator model with new data and retrain the control policy,                  control of hydraulic excavators based on echo-state networks," IEEE
+or by directly improving the policy online. Furthermore, even                     Transactions on Automation Science and Engineering, vol. 14, no. 1,
+though the target application in this work is accurate trajectory                 pp. 249­259, Jan 2017.
+tracking for surface finishing, where it is sufficient to collect
+data during motions in the air, the proposed method can be                   [9] J. Nurmi, M. M. Aref, and J. Mattila, "A Neural Network Strategy for
+extended for digging. This can be achieved by collecting data                     Learning of Nonlinearities Toward Feed-Forward Control of Pressure-
+during digging operation and including an estimate of the load                    Compensated Hydraulic Valves With a Significant Dead Zone," in
+at the joints through pressure measurements for the training of                   BATH/ASME 2018 Symposium on Fluid Power and Motion Control.
+the actuator model. The environment for training the controller                   American Society of Mechanical Engineers, sep 2018, pp. 6­8.
+can then be augmented by applying force disturbances, e.g.,
+through soil-tool interaction models [5].                                   [10] S. Dadhich, "Automation of wheel-loaders," PhD dissertation, Lulea°,
+                                                                                  2018.
+                             REFERENCES
+                                                                            [11] Pascal Egli and Marco Hutter, "Towards rl-based hydraulic excavator
+ [1] S. Dadhich, U. Bodin, and U. Andersson, "Key challenges in automation        automation," in Proceedings 2020 IEEE/RSJ International Conference
+      of earth-moving machines," Automation in Construction, vol. 68, 05          on Intelligent Robots and Systems, vol. 1, 2020.
+      2016.
+                                                                            [12] Y. Bengio, J. Louradour, R. Collobert, and J. Weston, "Curriculum
+                                                                                  learning," in Proceedings of the 26th Annual International Conference
+                                                                                  on Machine Learning - ICML '09, vol. 2, no. 3. New York, New York,
+                                                                                  USA: ACM Press, 2009, pp. 1­8.
+
+                                                                            [13] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov,
+                                                                                  "Proximal Policy Optimization Algorithms," pp. 1­12, jul 2017.
+
+                                                                            [14] J. Schulman, S. Levine, P. Moritz, M. I. Jordan, and P. Abbeel, "Trust
+                                                                                  region policy optimization," CoRR, vol. abs/1502.05477, 2015.
+
+                                                                            [15] A. Hill, A. Raffin, M. Ernestus, A. Gleave, A. Kanervisto, R. Traore,
+                                                                                  P. Dhariwal, C. Hesse, O. Klimov, A. Nichol, M. Plappert, A. Rad-
+                                                                                  ford, J. Schulman, S. Sidor, and Y. Wu, "Stable baselines,"
+                                                                                  https://github.com/hill-a/stable-baselines, 2018.
+
+                                                                            [16] J. Schulman, P. Moritz, S. Levine, M. Jordan, and P. Abbeel, "High-
+                                                                                  dimensional continuous control using generalized advantage estimation,"
+                                                                                  06 2015.
+
+                                                                            [17] "Leica Geosystems," https://leica-geosystems.com/products/machine-
+                                                                                  control-systems/excavator/leica-icon-ixe3--3d-system, accessed: 2020-
+                                                                                  09-30.
+

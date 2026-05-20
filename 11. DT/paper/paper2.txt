@@ -1,0 +1,605 @@
+                                                 ExT: Towards Scalable Autonomous Excavation via
+                                                 Large-Scale Multi-Task Pretraining and Fine-Tuning
+
+                                        Yifan Zhai1,, Lorenzo Terenzi1,, Patrick Frey, Diego Garcia Soto1, Pascal Egli1, Marco Hutter1
+
+arXiv:2509.14992v2 [cs.RO] 22 Sep 2025     Abstract-- Scaling up the deployment of autonomous excava-              Fig. 1: The ExT framework enables the collection of demonstrations from
+                                        tors is of great economic and societal importance. Yet it remains          different experts (human teleoperation, RL experts, scripted controllers),
+                                        a challenging problem, as effective systems must robustly handle           pretraining, followed by rapid adaptation via SFT for demonstration-only
+                                        unseen worksite conditions and new hardware configurations.                tasks or RLFT for reward-based tasks.
+                                        Current state-of-the-art approaches rely on highly engineered,
+                                        task-specific controllers, which require extensive manual tuning           enables the model to learn useful representations and pri-
+                                        for each new scenario. In contrast, recent advances in large-              ors, while subsequent sample-efficient supervised fine-tuning
+                                        scale pretrained models have shown remarkable adaptability                 (SFT) or reinforcement learning fine-tuning (RLFT) allows
+                                        across tasks and embodiments in domains such as manipulation               rapid adaptation to new tasks and embodiments.
+                                        and navigation, but their applicability to heavy construction
+                                        machinery remains largely unexplored. In this work, we in-                    However, compared to manipulation and navigation do-
+                                        troduce ExT, a unified open-source framework for large-scale               mains where this paradigm has been successfully applied,
+                                        demonstration collection, pretraining, and fine-tuning of multi-           collecting human demonstrations on excavators is consider-
+                                        task excavation policies. ExT policies are first trained on                ably more expensive. Moreover, since different approaches
+                                        large-scale demonstrations collected from a mix of experts,                have been used for single-task acquisition, a unified obser-
+                                        then fine-tuned either with supervised fine-tuning (SFT) or                vation modality is required for a multi-task dataset. Finally,
+                                        reinforcement learning fine-tuning (RLFT) to specialize to new             unlike manipulation and navigation tasks that are typically
+                                        tasks or operating conditions. Through both simulation and                 evaluated solely on task completion, excavation tasks also
+                                        real-world experiments, we show that pretrained ExT policies               demand consideration of safety and precision metrics, mak-
+                                        can execute complete excavation cycles with centimeter-level               ing high-quality demonstrations essential.
+                                        accuracy, successfully transferring from simulation to real
+                                        machine with performance comparable to specialized single-                    In this paper, we address this gap by introducing ExT, a
+                                        task controllers. Furthermore, in simulation, we demonstrate               unified framework for demonstration collection, large-scale
+                                        that ExT's fine-tuning pipelines allow rapid adaptation to new             pretraining, and rapid adaptation via fine-tuning, specifically
+                                        tasks, out-of-distribution conditions, and machine configura-              designed for excavation tasks. The framework defines four
+                                        tions, while maintaining strong performance on previously                  core tasks that together encompass a complete excavation
+                                        learned tasks. These results highlight the potential of ExT to             workflow. Using GPU-parallelized simulation, our frame-
+                                        serve as a foundation for scalable and generalizable autonomous            work can efficiently collect large numbers of demonstra-
+                                        excavation.                                                                tions: RL agents for contact-rich tasks, scripted controller
+
+                                                                 I. INTRODUCTION
+
+                                           Automation of excavators promises to address workforce
+                                        shortages, enhance workplace safety, and improve productiv-
+                                        ity. To achieve scalable deployment, however, autonomous
+                                        excavation systems must be capable of quickly adapting
+                                        to diverse operating conditions, including variations in soil
+                                        properties, machine configurations, and task specifications.
+
+                                           While significant progress has been made in automating
+                                        excavation, state-of-the-art performance is still confined to
+                                        single-task, single-embodiment settings [1]­[4]. Prior work
+                                        has explored adaptive digging [5] and low-level control [6],
+                                        yet these approaches do not enable task-level generalization,
+                                        meaning that each new task or excavator model requires
+                                        labor-intensive tuning or retraining.
+
+                                           Recently, large-scale pretraining of high-capacity mod-
+                                        els followed by fine-tuning has emerged as a promising
+                                        paradigm [7]­[10]. Pretraining on diverse demonstrations
+
+                                           1Robotic Systems Lab, ETH Zu¨rich.
+                                           These authors contributed equally to this work.
+                                           This work is supported by the NCCR digital fabrication & robotics, the
+                                        SNF project No. 188596.
+                                           Corresponding author: Lorenzo Terenzi, lterenzi@ethz.ch
+experts for high-precision tasks, and human teleoperation        unexplored. Consequently, for full-scale, continuous excava-
+for additional coverage. All demonstrations share a unified      tion workflows [3], [15], despite impressive results, existing
+observation-action interface, which is used to construct a       methods face challenges in large-scale deployment, since
+multi-task dataset for pretraining a GPT-style transformer       each controller responsible for a segment of the workflow
+model. Finally, the ExT framework provides two fine-tuning       would require re-tuning or retraining when applied to new
+methods, SFT and RLFT, for rapid skill acquisition and           excavator models or worksites.
+adaptation to new task configurations.
+                                                                 B. Large-Scale Multi-Task Supervised Pretraining
+   Through both simulated and on-machine experiments, we
+show that pretrained ExT policies can execute the complete          Large-scale pretraining via imitation learning (IL) has
+excavation workflow with centimeter-level precision, achiev-     achieved great success in acquiring generalist policies in
+ing successful zero-shot transfer from simulation to real hard-  domains such as manipulation [7], [16]­[19] and naviga-
+ware. Our choice of a transformer architecture is validated by   tion [20]­[22]. These approaches achieve scalability by de-
+superior performance compared to capacity-matched RNN            coupling data collection from consumption and employing
+baselines. In simulation, we further demonstrate that ExT's      large-capacity transformers that scale favorably with model
+fine-tuning pipelines enable effective skill acquisition from    size and the amount of data [23]. By learning robust rep-
+limited demonstrations via SFT, as well as sample-efficient      resentations and versatile behavior priors, these methods
+adaptation to unseen scenarios via RLFT, all with minimal        demonstrate adaptability to open-world environments [24]
+forgetting of previously learned tasks.                          and robustness to unseen embodiments [19].
+
+   Our main contributions are:                                      Despite these advances, high-quality demonstrations that
+   1) A unified, open-source1 framework for excavator au-        are crucial for high-performing IL policies remain expensive
+                                                                 to collect [25]. For excavators, transformer policies trained
+       tomation that enables large-scale demonstration col-      on real-world demonstrations are constrained to the small
+       lection using diverse experts, and the pretraining and    data regime [26]. This limitation motivates the use of GPU-
+       fine-tuning of high-capacity transformer policies.        parallelized simulation for scalable data collection [27], com-
+   2) Through simulated and on-machine experiments, we           bining demonstrations from multiple experts, such as trained
+       demonstrate the effectiveness of multi-task policies      RL policies and scripted controllers, to broaden coverage and
+       trained in ExT for automating excavation tasks and        improve policy performance.
+       show that policy performance on hardware aligns with
+       performance in simulation.                                C. Fine-Tuning and Adaptation for Embodied Policies
+   3) Through simulated experiments, we validate the adap-
+       tation pipeline with SFT for few-shot learning and           A key advantage of multi-task pretrained models is their
+       RLFT for sample-efficient adaptation, both with min-      adaptability to new tasks and embodiments through super-
+       imal forgetting of learned tasks.                         vised fine-tuning (SFT) or reinforcement learning fine-tuning
+                                                                 (RLFT). SFT uses the same behavior cloning objective
+                        II. RELATED WORK                         from pretraining on a smaller task-specific dataset, and has
+                                                                 proven stable and effective with only modest amounts of
+A. Autonomous Excavator Arm Control                              additional demonstrations [7], [17], [28]. RLFT leverages the
+                                                                 robust representations, versatile behavior priors, and good
+   For excavator arm control in free space without external      inductive biases acquired during pretraining to fine-tuning
+forces, classical inverse kinematics (IK) and model predic-      the pretrained policy with great sample-efficiency [10]. How-
+tive control (MPC) approaches have demonstrated accurate         ever, directly applying RL gradient updates to large-scale
+tracking while respecting system constraints [1], [11], [12].    pretrained policies often leads to oscillation or collapse in
+However, these methods are typically tailored to a specific      performance. To address this, several techniques have been
+excavator model and require retuning for different machines.     proposed to stabilize training, including critic-only warmup
+A recent reinforcement learning (RL) approach proposes a         for actor-critic methods [25], reduced learning rates with no
+more general method by incorporating data-driven actuator        entropy bonus [10], KL-divergence regularization between
+models of the arm joints during RL training, achieving           the updated and pretrained policies [28], and alternating
+higher precision [4]; yet, applying such methods to a new        RLFT with SFT to mitigate catastrophic forgetting [9]. These
+machine still necessitates recollecting joint dynamics data      methods have unlocked substantial performance improve-
+and retraining the policy from scratch. When external forces     ments on top of large-scale pretraining, achieving state-of-
+are present, such as during dynamic object throwing or           the-art results across diverse domains [8]­[10].
+digging, RL methods have shown superior robustness to
+the sim-to-real gap and adaptability to varying operating                                    III. METHOD
+conditions through domain randomization [13], [14]. Nev-
+ertheless, these approaches typically excel in a single task,       In this section, we detail the implementation of the pro-
+and their performance under out-of-distribution conditions,      posed ExT framework. ExT consists of three main stages.
+as well as strategies for rapid adaptation, remain largely       In the first stage, we define four excavation tasks in simula-
+                                                                 tion (Section III-A) and generate large-scale demonstrations
+   1To be released upon acceptance.
+                                                                                      TABLE I: Shared state-action interface for all tasks
+
+               DIG TASK
+
+                                                                                                                     abort &                move
+
+                                                                                      State st                 Dim. dig reset dump arm
+
+                                                                                      Task encoding            3              
+
+                                                                                      Task target              9              
+
+                                                                                      Cabin turn joint pos. & vel 2           
+
+                                                                                      Arm joint pos. & vel.    8              
+
+                                                                                      Arm joint torque         4 
+
+                                                                                      Previous arm joint action 4  
+
+     (a)                         (b)                                                  Bucket linear pos. & vel. 4  
+
+                                                                                      Bucket angular pos. & vel. 2  
+
+          ABORT DIGGING & RESET                                                       Bucket linear vel. norm  1 
+
+                                                                                      Base pitch pos. & vel.   2 
+
+                                                                                      Bucket fill ratio        1 
+
+                                                                                      Bucket angle of attack   1 
+
+                                                                                      Soil height in base frame 5  
+
+                                                                                      Bucket depth in soil     1 
+
+                                                                                      Bucket pitch joint vel.  2 
+
+                                                                                      Max digging depth        5 
+
+                                                                                      Pull-up distance         1 
+
+(c)       (d)             (e)         (f)                                                                      55
+
+               DUMP TASK                                                              Action at                1              
+                                                                                      Cabin joint velocity     4              
+                                                                                      Arm joint velocities
+
+     (g)                         (h)                                                        fundamental earth moving equations), soil profiles, and
+                                                                                            initial arm and base configurations, while satisfying task
+          MOVE ARM TASK                                                                     constraints (e.g., maximum depth, pull-up distance).
+                                                                                         · Abort Digging & Reset: If, during the dig task, the
+     (i)                         (j)                                                        bucket collides with a hidden, immovable object (e.g.,
+                                                                                            rock, pipe), the policy must detect the stall from propri-
+Fig. 2: Task Visualizations. Dig: (a) initial and (b) final state, with soil profile        oceptive observations, recover by opening the shovel,
+(green), max digging depth (red), and pull-up line (brown) visualized. Abort                and retract to a safe pose. The policy has no prior
+Digging & Reset: (c) normal digging, (d) collision with obstacle (white),                   observation or knowledge of the obstacle.
+(e) recovery, and (f) retraction. Dump: (g) initial pose with full shovel and            · Dump: The policy moves the full shovel to a designated
+(h) move to target and open shovel, with shovel trajectory visualized. Move                 location and releases the material by opening the shovel.
+Arm: move open shovel from (i) initial pose to (j) target pose.                          · Move Arm: The policy moves the open shovel to a
+                                                                                            designated location for the next digging cycle.
+(Section III-B) using GPU-parallelized simulations in Isaac-
+Gym [27]. These demonstrations combine trajectories from                              B. Large-Scale Demonstration Generation
+RL experts for contact-rich tasks, scripted controllers for
+precise movements, and a limited number of human teleoper-                               ExT relies on GPU-parallelized simulation (Isaac-
+ation demonstrations when neither is available. In the second                         Gym [27], [29]) to generate large-scale, high-quality demon-
+stage, ExT pretrains high-capacity models on this multi-                              strations using a mix of experts. All demonstrations share a
+task dataset to learn versatile representations (Section III-                         unified observation-action interface, as shown in Table I. The
+C). In the final stage, ExT adapts policies through SFT for                           experts used and their corresponding tasks are as follows:
+rapid skill acquisition with small datasets and KL-regularized
+PPO (RLFT) for on-policy adaptation to out-of-distribution                               RL Experts for Dig task. RL methods have been shown
+scenarios (Section III-D).                                                            to excel in contact-rich tasks [13], [14]. In the case of
+                                                                                      excavation, digging requires adapting to complex soil­bucket
+A. Task Definitions                                                                   interactions and leveraging proprioceptive feedback (joint
+                                                                                      torques) to handle resistance forces. Following [5], we apply
+   The four tasks, as shown in Fig. 2, together form a                                domain randomization over soil types, soil profiles, max-
+complete dig­dump­move excavation cycle:                                              imum digging depths, and initial excavator configurations
+                                                                                      to train an RL expert, which achieves a success rate of
+   · Dig: Following the formulation in [5], the policy must                           approximately 98%. The same domain randomization is
+      fill the bucket under diverse soil types (modeled with the                      employed when collecting demonstrations with the trained
+                                                                                      expert, yielding 150,000 successful episodes, equivalent to
+                                                                                      about 15 days of continuous real-world digging. Notably,
+                                                                                      reproducing such a wide range of domain variations in the
+                                                                                      real world would be infeasible, highlighting the advantage
+                                                                                      of large-scale simulation for data generation.
+
+                                                                                         Scripted Policies for Dump and Move Arm tasks. For
+free-space motions with high precision requirements and no      of new tasks or out-of-distribution conditions. When deploy-
+external forces, we employ a GPU-parallelized trajectory        ing ExT policies in an excavation pipeline involving mul-
+planner coupled with a PID tracking controller. Start and       tiple tasks, preventing catastrophic forgetting of previously
+target shovel positions are randomly sampled within the         learned behaviors is crucial. To address this, we interleave a
+excavator's reachable workspace to ensure comprehensive         small replay buffer of pretraining demonstrations from other
+coverage, and 150,000 episodes are collected for each task.     tasks with the new SFT dataset during fine-tuning.
+This dataset, corresponding to roughly 30 days of continuous
+real-world operation, is generated in under two hours on a         2) Reinforcement Learning Fine-Tuning (RLFT): Com-
+single RTX 3090 GPU.                                            pared to SFT, applying RLFT directly on pretrained policies
+                                                                often leads to instability without careful treatment [9], [10],
+   Human Teleoperation for Abort & Reset task. To               [25], [28], manifesting as catastrophic forgetting and gradi-
+account for abnormal operation scenarios, such as collisions    ent instabilities that degrade the pretrained representations.
+or stalling during digging, we randomly place obstacles in the  Building on prior work, we propose a practical recipe that
+digging environment. The PPO expert performs digging until      stabilizes proximal policy optimization (PPO)-based fine-
+a collision occurs, at which point a human operator takes over  tuning through four key design choices.
+via teleoperation to execute the recovery phase. We collect
+2,000 episodes in this manner, requiring approximately three       First, we use learning rates much smaller than those typical
+hours of wall-clock time. Although smaller, this dataset is     in RL [10]. While standard PPO often uses 10-3­10-4, we
+valuable because it avoids potential machine damage and         set the actor learning rate to 10-5 with cosine annealing
+enables randomization of obstacle locations that would be       to 10-7, which limits disruptive updates to the pretrained
+difficult to achieve in the real world.                         policy. Second, we train a separate critic warm-started from
+                                                                rollouts of the pretrained policy for 100 steps [10], [25],
+C. Pretraining and Model Architectures                          keeping actor and critic learning balanced for stability. Third,
+                                                                we use a smaller entropy coefficient c2 and parameterize
+   We follow the standard behavior cloning setup                the action log standard deviations independently of the main
+for pretraining. Given the expert dataset D =                   policy and the current state [10], [30], allowing limited
+{(s1, a1), (s2, a2), . . . , (si, ai)}, we minimize the L1      exploration without drastically shifting the pretrained action
+loss on the predicted actions:                                  means. Finally, we apply a KL penalty toward the frozen
+                                                                pretrained policy 0 [28], anchoring the fine-tuned policy to
+                J BC () = E(s,a)D |(s) - a| .                   prior behaviors. The modified PPO objective is
+
+After pretraining, we obtain the pretrained model 0.                 LPPO() =Et LtCLIP() - c1 LtVF() + c2 S[](st)
+   Following successful approaches in prior work, we adopt
+                                                                                   -  KL(  0)
+a GPT-style decoder-only transformer with 6 layers and 6
+attention heads. At each timestep, the previous action and      with c2=0.0005 and =0.02, encouraging low-variance ex-
+current state (as defined in Table I) are embedded via linear   ploration while keeping  close to 0.
+layers with a hidden dimension of 640. Any unused state-
+action entries are set to zeros. The model uses a context          During RLFT, the transformer outputs are used as mean
+window of K = 25 steps, and joint velocities are pre-           actions, while separate state-independent log standard devi-
+dicted autoregressively during inference, resulting in a high-  ations are learned [30]. Actions are sampled from a tanh-
+capacity transformer with approximately 25M parameters.         squashed Gaussian during training and set to the mean at test
+                                                                time. A separate 3-layer MLP critic (128 hidden dimensions,
+   Since transformer-based models for excavation automation     ELU) is warm-started for 100 steps using rollouts from the
+are still underexplored, we also implement a sequential 5-      pretrained policy. We use separate Adam optimizers for the
+layer LSTM baseline with 1024 hidden dimensions, scaled         actor (lr = 10-5 annealed to 10-7), the critic (lr = 10-4),
+to match the parameter count of the GPT model, to validate      and the standard deviation parameters (lr = 5×10-4).
+the choice of architecture for pretraining.
+                                                                                 IV. EXPERIMENTS & RESULTS
+D. Fine-Tuning Pipelines
+                                                                   We first define evaluation metrics for each task (Sec-
+   After obtaining the pretrained policy 0, ExT provides        tion IV-A). Then, the experiment results are organized into
+two fine-tuning methods for different use cases: SFT enables    pretraining (Section IV-B), SFT (Section IV-C), and RLFT
+rapid acquisition of new skills from a small number of          (Section IV-D).
+demonstrations, while RLFT allows adaptation to out-of-
+distribution scenarios when a simulation environment and        A. Task Evaluation Metrics
+reward function are available, such as new terrain profiles,
+soil parameters, or bucket geometries for the dig task.            For the dig task, we measure success as the rate of positive
+                                                                terminations, with failures defined as violations of any task
+   1) Supervised Fine-Tuning (SFT): Supervised fine-tuning      constraints specified in [5], evaluated over 1000 random
+updates the weights of 0 using the same L1 loss in (III-        configurations. The abort digging & reset task is tested on
+C), with the same optimizer and learning rate schedule, but     200 random configurations and consists of two phases: (i)
+applied to a much smaller dataset containing demonstrations     a normal digging phase, evaluated using the same success
+criterion as the dig task, and (ii) a recovery phase, where       finite state machine (Fig. 5). The system executed six dig-
+the policy must recover from collision-induced stalling and       dump-move cycles at three designated dig points and a target
+retract the arm to a safe pose, with success measured as the      dumping location 90 clockwise from the forward direction,
+completion rate of this recovery. For the dump and move           integrating all four tasks seamlessly (Fig. 3, Fig. 4). The
+arm tasks, we evaluate 25 random start­target position pairs      system achieved an average excavation volume of 0.96 m3
+and report the minimum distance between the shovel and            per cycle (0.68 m3 bucket capacity) and an average cycle
+target location while maintaining end-effector velocity below     time of 36 s, comparable to prior methods [3]. The task-level
+0.2 m s-1. The dump task further requires the shovel to be        accuracy was also consistent, with real digging locations
+fully opened for the episode to count as successful.              10.7±3.0 cm and dumping locations 6.5±2.9 cm away from
+                                                                  the specified targets. These results highlight the real-world
+B. Pretraining Experiments                                        applicability of policies trained with the ExT framework.
+
+   To validate the large-scale pretraining procedure, we train    C. Few-Shot Skill Acquisition via SFT
+multiple GPT-style transformers and RNN baselines on vari-
+ous combinations of task data and evaluate their performance         With SFT, we explore rapid skill acquisition from limited
+to assess the effects of multi-task pretraining on individual     demonstrations. We start with a GPT model pretrained on
+tasks. We further deploy the pretrained policies on a Menzi       the dig and move arm datasets (150k demonstrations each)
+Muck M545 excavator, demonstrating zero-shot sim-to-real          and fine-tune it to acquire the dump skill using only 1k
+transfer through quantitative evaluations and illustrating real-  demonstrations--an amount feasible for human data collec-
+world applicability via a complete excavation workflow.           tion. To mitigate catastrophic forgetting, a small replay buffer
+                                                                  of 500 dig and 350 move arm episodes is interleaved during
+   1) Simulated Experiments: Table II summarizes the dif-         fine-tuning. Table IV compares this SFT approach with two
+ferent combinations of task data used to train the GPT            baselines: a GPT model trained from scratch on the same
+policies and RNN baselines, along with their performance on       1k demonstrations, and another trained from scratch on the
+each task in simulation. From these quantitative results, sev-    full 150k dataset. The pretrained+SFT model achieves high
+eral key insights emerge. Transformers are more suitable          success rates on dump while maintaining strong performance
+for large-scale multi-task pretraining: GPT-style trans-          on the original tasks, despite using two orders of magnitude
+formers maintain high performance even when trained on            less data than full pretraining. Although models pretrained
+multiple tasks simultaneously, whereas RNNs, while capable,       on the full dump dataset remain more performant overall
+degrade more noticeably as the number of tasks increases.         (Table II), few-shot SFT recovers a large portion of this
+Transformers excel at precision tasks: For high-precision         performance at a fraction of the data cost. In contrast, training
+control tasks such as move arm and dump, GPT-based models         from scratch on only 1k demonstrations fails to learn the task,
+achieve consistently accurate performance across tasks and        showing failure modes such as off-track motion, premature
+environments, while RNNs exhibit larger errors, with single-      bucket opening, and overshoot near the target. These results
+task RNN policies occasionally failing catastrophically. This     underscore the advantage of pretrained policies on efficient
+suggests that transformers better capture the representations     skill acquisition in data-scarce regimes.
+needed for fine-grained control. Positive transfer between
+related tasks: Training on both dig and abort & reset tasks       D. Reinforcement Learning Fine-Tuning
+improves digging phase performance compared to training on
+abort & reset alone, indicating that simultaneously learning         Using RLFT, we aim to adapt a pretrained policy to
+closely related tasks enhances individual task performance. A     out-of-distribution (OOD) conditions for the dig task. We
+similar trend is observed for the Dump and Move Arm tasks,        consider three types of distribution shifts: (i) a change in
+further highlighting the advantage of positive skill transfer     the maximum digging depth profile from a radial basis
+from multi-task training.                                         function (RBF) to a stair-shaped terrain, visualized in Fig. 6,
+                                                                  (ii) OOD soil parameters in the fundamental earth moving
+   2) On-Machine Deployment: In preparation for deploying         equations used for soil simulation [5], and (iii) a new
+the pretrained models on the real machine, we first injected      excavator shovel geometry. The specific parameter changes
+control delays (up to 0.75 s) and joint-velocity noise (uni-      are summarized in Table V. These shifts reflect common
+formly sampled with an average amplitude of  0.2 rad/s)           unseen conditions encountered when deploying autonomous
+in simulation to predict the robustness of ExT policies against   excavation systems at worksites, including new excavation
+potential sim-to-real gap from nonlinear hydraulic dynamics       soil profile requirements, previously unseen soil types, and
+and imperfect velocity tracking. As shown in Table II,            new excavator attachments.
+the pretrained GPT policies remained robust to external
+disturbances for the dump and move arm tasks, and this               We conduct RLFT experiments in simulation on a GPT
+robustness carried over to real-world deployment. Table III       model pretrained on dig, dump, and move arm tasks to
+summarizes the on-machine performance of these two tasks:         evaluate adaptation to these distribution shifts in the dig
+the GPT policy pretrained across all four tasks successfully      environment. As a baseline comparison, we also apply RLFT
+achieved zero-shot sim-to-real transfer, maintaining a mean       on an MLP policy trained from scratch with PPO on the
+error below 4 cm. We then deployed the GPT-4-Tasks policy         original dig task settings, which is also the RL expert used
+in a complete excavation workflow coordinated by a simple         to collect dig demonstrations. All policies are trained and
+                     TABLE II: Results of Simulated Experiments Across Four Tasks Using Pretrained GPT and RNN Policies
+
+                     Dig Task Abort Digging & Reset Task                            Dump Task                    Move Arm Task
+
+                                     Digging Phase Recovery Phase                            Pos. Err. (cm)                        Pos. Err. (cm)
+                                                                       Pos. Err. (cm) w/ Perturbation        Pos. Err. (cm) w/ Perturbation
+    Architecture-Dataset Success         Success   Success
+
+    RNN-Dig              98.8%              --       --                      --           --                       --           --
+    RNN-Recover            --             36.3%    100%                      --           --                       --           --
+    RNN-Dig+Recover                       99.0%    99.5%                     --           --                       --           --
+    RNN-Dump             97.8%                                          3.1 ± 2.2   13.7 ± 9.7                     --           --
+    RNN-Move               --               --       --                      --           --                 3.8 ± 6.7    8.5 ± 7.0
+    RNN-Dump+Move          --               --       --                21.8 ± 15.8  40.8 ± 29.3              10.4 ± 6.5   14.7 ± 9.8
+    RNN-4-Tasks            --               --       --                21.7 ± 15.5  44.3 ± 46.4              27.8 ± 27.7  32.8 ± 27.8
+                                          99.0%    99.5%
+                         98.1%
+
+    GPT-Dig              98.6%            --               --               --           --                       --            --
+                                                                            --           --                       --            --
+    GPT-Recover           --              59.0%    99.5%                    --           --                       --            --
+                                                                       2.4 ± 0.9    8.0 ± 6.5                     --            --
+    GPT-Dig+Recover      98.6%            99.0%    98.0%                    --           --                  0.5 ± 0.3    42.2 ± 41.4
+                                                                       1.0 ± 0.7    3.3 ± 3.7                0.5 ± 0.5     6.7 ± 7.3
+    GPT-Dump              --              --               --          1.6 ± 0.9    5.5 ± 3.4                0.8 ± 0.4     5.3 ± 2.5
+
+    GPT-Move              --              --               --
+
+    GPT-Dump+Move         --              --               --
+
+    GPT-4-Tasks          98.8%           99.0%     99.5%
+
+     A failed episode with error > 10 m removed from the calculation.
+
+t1                                             t2
+
+           (a) Dig task (mid-scoop)                      (b) Dig done, Dump begins
+t3                                             t4
+
+    (c) Dump task (target reached)                 (d) Move Arm (repositioning)                     (e) Shovel trajectory visualization
+
+                     t1              t2       t3    t4
+                                         Dump      Move
+                     Dig
+
+Fig. 3: Complete autonomous excavation workflow using the pretrained GPT-4-Tasks policy on Menzi Muck M545: (a)-(d) real-world execution sequence
+
+with transitions between digging, dumping, and arm moving, (e) visualization of the end-effector trajectory throughout the six dig-dump-move cycles.
+
+    TABLE III: On-Machine Results for Dump and Move Arm                t0                                    t1
+
+    Policy                 Dump Task      Move Arm Task
+
+    GPT-Dump              Pos. Err. (cm)   Pos. Err. (cm)
+    GPT-Move
+    GPT-Dump+Move           8.5 ± 4.3             --
+    GPT-4-Tasks                  --          11.4 ± 7.7
+                                              2.2 ± 1.2
+                            5.0 ± 4.8        2.2 ± 1.0
+                            3.6 ± 2.5
+
+                                                                           (a) Collision with rock               (b) Recovery begins
+
+evaluated over five random seeds using the configuration               Fig. 4: Real-world collision recovery on the M545, with the buried rock
+in Table VI, which features limited parallel environments,             obstacle circled in red, demonstrating the pretrained ExT policy's ability to
+batch size, and total environment interactions. Reward and             detect stalls from proprioception and execute safe recovery maneuvers.
+termination conditions follow the implementation in [5]. We
+report the mean success rates with 95% confidence intervals.           are highly similar, suggesting successful distillation of the
+Results are summarized in Fig. 7.                                      MLP-PPO expert into the GPT model through large-scale
+                                                                       pretraining. After applying RLFT, despite limited environ-
+   Without RLFT, both MLP-PPO and the pretrained GPT                   ment interactions, the GPT fine-tuned model achieves high
+model experience performance drops under OOD condi-                    success rates on the OOD conditions while showing minimal
+tions. Interestingly, their performances in these conditions
+Fig. 5: The Finite State Machine used to coordinate task switching during
+deployment of GPT-4-Tasks policy for a complete excavation workflow.
+
+TABLE IV: SFT results: The pretrained model (trained on dig and move       Fig. 6: Change in soil terrain (max digging depth profile in red) from RBF-
+                                                                           sampled terrain (left) to stair-shaped terrain (right).
+arm demos) acquires the Dump task using 150x less data than a single-
+                                                                           TABLE V: Parameter ranges used for dig demonstration collection, along
+task model trained from scratch, achieving comparable performance while    with the out-of-distribution values to be adapted by the policy with RLFT.
+preserving high accuracy on the original pretraining tasks.
+
+                     Training        Dump Task Performance                                   Parameters                               Unit Min Max OOD Value
+
+Method               Data Success    Error (cm)                                              Terrain RBF length scale m                                                 0        0.5                Stairs
+
+GPT Pretrained+SFT    1k       96%    4.3 ± 3.0                                              Cohesion                                 kPa 0 100                                                     0
+GPT BC from scratch   1k       12%   45.7 ± 30.3
+GPT BC from scratch  150k      100%                                                          Adhesion                                 --                                0                1          0
+                                      2.4 ± 0.9
+                                                                                             Soil internal friction angle rad 0.3 0.8                                                               0.77
+Performance on pretrained tasks: 98% dig success, 1.5 cm move arm error.
+                                                                                             Soil­bucket friction angle rad 0.19 0.38                                                               0.4
+
+                                                                                             Cavity pressure factor                   --                                0 300                       315
+
+forgetting on the original task configurations. In contrast,                                 Bucket width                             m 1.4 --                                                       1.1
+applying the same fine-tuning schedule to the MLP-PPO                                        Bucket radius                            m 0.375 --                                                    0.275
+expert policy leads to poor performance. This can be at-
+tributed to the small batch size, which increases variance                                                          Terrain Shape Adaptation
+in advantage estimation and results in noisy policy updates.
+Such updates are insufficient for effective adaptation in the                                100  98.8%             98.8%                                                74.7%           98.4%      96.6% 96.7%
+MLP architecture, causing significant degradation on both                                                                                                               (±11.2)          (±0.7)     (±0.4) (±0.3)
+the original and OOD conditions. On the other hand, the
+robust representations and behavior priors learned by the                  Success Rate (%)  80
+GPT model during pretraining mitigate this issue, enabling
+effective learning in this low-data regime.                                                              65.2%             64.0%                                                 45.7%
+
+   To test whether this performance gap can be closed, we                                    60                                       30.3%                                      (±8.7)
+increase the training budget for the MLP-PPO expert to 300
+iterations with 64k parallel environments, totaling 115.2M                                                                                                     (±11.3)
+environment interactions. Under this larger-scale setting, the                               40
+MLP-PPO policy eventually achieves strong performance
+on the OOD tasks but continues to suffer from substan-                                       20
+tial forgetting on the original configurations. This contrast
+highlights two key advantages of the pretrained GPT model:                                   0
+(i) superior sample efficiency and (ii) stronger retention of
+prior knowledge during adaptation.                                                                MLP-PPO           GPT Pre.          MLP-PPO                                    MLP-PPO            GPT Pre.
+                                                                                                                                      after RLFT after RLFT after RLFT
+   Finally, we perform an ablation study to evaluate the
+effect of KL regularization on retaining pretrained task                                                                              (100 iter, 1k envs) (300 iter, 64k envs) (100 iter, 1k envs)
+performance. Specifically, we apply RLFT both with and
+without the KL penalty term to the pretrained GPT policy                                                            Soil Parameter Adaptation
+and compare the fine-tuned policies' performance on the
+move arm task. As shown in Fig. 8, removing the KL                         Success Rate (%)  100  98.8%             98.8%                                                                   96.9%   96.6% 95.1%
+term leads to substantial degradation of the move arm skill                                   80             87.5%             87.7%                                                        (±1.8)  (±0.4) (±0.4)
+across all three adaptation scenarios, evidenced by higher                                    60                                                                                 61.0%
+end-effector position errors. In contrast, incorporating the                                                                                     63.7%                           (±4.8)
+KL penalty into the RLFT objective effectively constrains                                                                             51.8% (±8.0)
+excessive deviation from the pretrained prior, thus reducing                                                                          (±9.7)
+forgetting. Importantly, we observe that the KL regularization
+term does not affect the performance of the fine-tuned policy                                40
+on the OOD conditions, with a difference of -0.6%, -0.4%,
++1.3% relative to the fine-tuned policy trained without KL                                   20
+regularization. These results demonstrate that KL regulariza-
+tion provides a simple yet effective mechanism to preserve                                   0
+
+                                                                                                  MLP-PPO           GPT Pre.          MLP-PPO                                    MLP-PPO            GPT Pre.
+                                                                                                                                      after RLFT after RLFT after RLFT
+
+                                                                                                                                      (100 iter, 1k envs) (300 iter, 64k envs) (100 iter, 1k envs)
+
+                                                                                                                    Bucket Geometry Adaptation
+
+                                                                           Success Rate (%)  100  98.8%             98.8%                                                        92.2%   94.6%      96.6%   93.4%
+                                                                                              80             88.6%             81.8%                                             (±1.7)  (±1.9)     (±0.4)  (±0.4)
+                                                                                              60
+                                                                                                                                      54.3%                             60.8%
+                                                                                                                                      (±9.7)                            (±8.8)
+
+                                                                                             40
+
+                                                                                             20
+
+                                                                                             0
+
+                                                                                                  MLP-PPO           GPT Pre.          MLP-PPO                                    MLP-PPO             GPT Pre.
+                                                                                                                                      after RLFT                                 after RLFT         after RLFT
+
+                                                                                                                                      (100 iter, 1k envs) (300 iter, 64k envs) (100 iter, 1k envs)
+
+                                                                                                       Original Conditions                Out-of-Distribution Conditions
+
+                                                                           Fig. 7: RLFT adaptation performance across three distribution shifts.
+                                                                           Pretrained GPT policy adapts efficiently with minimum compute (100
+                                                                           iterations, 1k environments) while maintaining high success on original
+                                                                           conditions. The MLP-PPO policy requires significantly more data (300
+                                                                           iterations, 64k environments) to match adaptation performance.
+                         TABLE VI: Training Configuration for RLFT                                                        [2] D. Jud, I. Hurkxkens, C. Girot, and M. Hutter, "Robotic embankment,"
+                                                                                                                               Construction Robotics, vol. 5, no. 2, pp. 101­113, Jun. 2021.
+                         Hyperparameter                                         Value
+                                                                                                                          [3] L. Terenzi and M. Hutter, "Toward autonomous excavation planning,"
+                         Number of environments                                 1000                                           IEEE Transactions on Field Robotics, November 2024.
+                         Steps between PPO iterations                              6
+                         Number of PPO iterations                                                                         [4] P. Egli and M. Hutter, "A general approach for the automation
+                         Mini-batches per PPO iteration                          100                                           of hydraulic excavator arms using reinforcement learning," IEEE
+                         Total environment interactions                           10                                           Robotics and Automation Letters, vol. 7, pp. 5679­5686, 04 2022.
+                         Learning rate (LR)                                    600,000
+                         Minimum LR (cosine annealing)                          10-5                                      [5] P. Egli, L. Terenzi, and M. Hutter, "Reinforcement learning-based
+                                                                                10-7                                           bucket filling for autonomous excavation," IEEE Transactions on Field
+                                                                                                                               Robotics, vol. 1, pp. 170­191, 2024.
+            16     Move Err. after       Move Err. after                          Move Err. after
+                Terrain Adaptation       Soil Adaptation                       Bucket Adaptation                          [6] F. Nan and M. Hutter, "Learning adaptive controller for hydraulic
+                                  11.7                                                                                         machinery automation," IEEE Robotics and Automation Letters, 2024.
+            14                   (±1.3)                                  6.9                                       7.5
+                                                                       (±2.6)                                    (±3.6)   [7] M. J. Kim et al., "Openvla: An open-source vision-language-action
+            12                                                                                                                 model," in Proceedings of The 8th Conference on Robot Learning,
+                                                                                                                               P. Agrawal, O. Kroemer, and W. Burgard, Eds., 06­09 Nov 2025.
+Error (cm)  10
+                                                                                                                          [8] Y. Chen, S. Tian, S. Liu, Y. Zhou, H. Li, and D. Zhao, "ConRFT: A
+            8                                                                                                                  reinforced fine-tuning method for VLA models via consistency policy,"
+                                                                                                                               arXiv preprint arXiv:2502.05450, 2025.
+            6            3.3
+                                                                                                                          [9] Y. Guo et al., "Improving vision-language-action model with online
+            4            (±0.7)                 2.2                                       2.6                                  reinforcement learning," in ICRA, 05 2025, pp. 15 665­15 672.
+                                              (±1.1)                                    (±0.4)
+                                                                                                                         [10] J. Hu et al., "Flare: Achieving masterful and adaptive robot policies
+            2   0.8                      0.8                                   0.8                                             with large-scale reinforcement learning fine-tuning," in ICRA, 2025.
+
+            0            RLFT    RLFT Pretrain RLFT   RLFT Pretrain RLFT                         RLFT                    [11] D. Lee, I. Jang, J. Byun, H. Seo, and H. J. Kim, "Real-time motion
+               Pretrain  w/ KL   w/o KL       w/ KL   w/o KL                            w/ KL   w/o KL                         planning of a hydraulic excavator using trajectory optimization and
+                                                                                                                               model predictive control," in IROS, 2021, pp. 2135­2142.
+Fig. 8: The effect of KL regularization on pretrained task performance
+retention: move arm end-effector position error after RLFT, with and without                                             [12] E. Jelavic, K. Qu, F. Farshidian, and M. Hutter, "LSTP: Long Short-
+KL regularization.                                                                                                             Term Motion Planning for Legged and Legged-Wheeled Systems,"
+                                                                                                                               IEEE Transactions on Robotics, Dec. 2023.
+pretrained skills while enabling robust adaptation to new
+tasks.                                                                                                                   [13] L. Werner, F. Nan, P. Eyschen, F. A. Spinelli, H. Yang, and M. Hutter,
+                                                                                                                               "Dynamic throwing with robotic material handling machines," in 2024
+                          V. CONCLUSION                                                                                        IEEE/RSJ International Conference on Intelligent Robots and Systems
+                                                                                                                               (IROS), 2024, pp. 98­104.
+   We introduce ExT, a unified framework for large-scale
+multi-task demonstration generation, pretraining, and fine-                                                              [14] P. Egli, D. Gaschen, S. Kerscher, D. Jud, and M. Hutter, "Soil-
+tuning of excavator policies. Through both simulation and                                                                      adaptive excavation using reinforcement learning," IEEE Robotics and
+on-machine experiments, we demonstrate that pretrained ExT                                                                     Automation Letters, vol. 7, 2022.
+policies can successfully perform a complete excavation
+workflow zero-shot in a sim-to-real setting. This capability                                                             [15] F. A. Spinelli et al., "Large scale robotic material handling: Learning,
+stems from the robustness and versatility of the large-                                                                        planning, and control," arXiv preprint, 2025.
+scale, multi-task transformer policy trained on high-quality
+demonstrations generated by ExT. We validate ExT's fine-                                                                 [16] A. Brohan et al., "Rt-1: Robotics transformer for real-world control
+tuning pathways: SFT for tasks with limited available demon-                                                                   at scale," in arXiv preprint arXiv:2212.06817, 2022.
+strations, and RLFT for operating conditions where reward
+functions can be modeled in simulation. Using these fine-                                                                [17] ----, "Rt-2: Vision-language-action models transfer web knowledge
+tuning techniques, new skills can be acquired rapidly with                                                                     to robotic control," arXiv preprint arXiv:2307.15818, 2023.
+few demonstrations, and out-of-distribution conditions can
+be adapted efficiently in simulation. These results highlight                                                            [18] K. Black et al., "0: A vision-language-action flow model for general
+ExT's potential to enable scalable and adaptable deployment                                                                    robot control," arXiv preprint, 2024.
+of excavation policies in real-world scenarios. Future work
+for ExT includes expanding the framework to support a wider                                                              [19] Open X-Embodiment Collaboration, "Open x-embodiment: Robotic
+range of excavator models and tasks, enhancing the policy's                                                                    learning datasets and rt-x models," in ICRA, 2024.
+versatility for scalable autonomous excavation. Integrating
+unified perception using both LiDAR and vision will enable                                                               [20] D. Shah et al., "Vint: A foundation model for visual navigation," arXiv
+end-to-end learning of policies, improving decision-making                                                                     preprint, 2023.
+in complex environments. Furthermore, extending the frame-
+work to encompass soil manipulation tasks, leveraging GPU-                                                               [21] A. Sridhar, D. Shah, C. Glossop, and S. Levine, "Nomad: Goal masked
+accelerated MPM simulations, will allow for more accurate                                                                      diffusion policies for navigation and exploration," arXiv preprint,
+and realistic modelling of soil dynamics, further closing the                                                                  2023.
+sim-to-real gap and enable more complex manipulation tasks.
+                                                                                                                         [22] R. Ramrakhya, E. Undersander, D. Batra, and A. Das, "Habitat-web:
+                            REFERENCES                                                                                         Learning embodied object-search strategies from human demonstra-
+                                                                                                                               tions at scale," arXiv preprint, 2022.
+ [1] D. Jud et al., "Heap - the autonomous walking excavator," Automation
+      in Construction, vol. 129, p. 103783, 2021.                                                                        [23] M. Dehghani et al., "Scaling vision transformers to 22 billion param-
+                                                                                                                               eters," in ICML, 23­29 Jul 2023.
+
+                                                                                                                         [24] A. tone et al., "Open-world object manipulation using pre-trained
+                                                                                                                               vision-language models," in CoRL, 2023, pp. 3397­3417.
+
+                                                                                                                         [25] R. Ramrakhya, D. Batra, E. Wijmans, and A. Das, "Pirlnav: Pretraining
+                                                                                                                               with imitation and rl finetuning for objectnav," in CVPR, 2023.
+
+                                                                                                                         [26] L. Chen, S. Jin, H. Wang, and L. Zhang, "Exact: An end-to-end au-
+                                                                                                                               tonomous excavator system using action chunking with transformers,"
+                                                                                                                               in ICRA, 2024.
+
+                                                                                                                         [27] V. Makoviychuk et al., "Isaac gym: High performance gpu-based
+                                                                                                                               physics simulation for robot learning," in Proceedings of the Neural
+                                                                                                                               Information Processing Systems, 2021.
+
+                                                                                                                         [28] B. Baker et al., "Video pretraining (vpt): learning to act by watching
+                                                                                                                               unlabeled online videos," in Proceedings of the 36th International
+                                                                                                                               Conference on Neural Information Processing Systems. Red Hook,
+                                                                                                                               NY, USA: Curran Associates Inc., 2022.
+
+                                                                                                                         [29] M. Mittal et al., "Orbit: A unified simulation framework for interactive
+                                                                                                                               robot learning environments," IEEE Robotics and Automation Letters,
+                                                                                                                               vol. 8, no. 6, pp. 3740­3747, 2023.
+
+                                                                                                                         [30] N. Rudin, D. Hoeller, P. Reist, and M. Hutter, "Learning to walk
+                                                                                                                               in minutes using massively parallel deep reinforcement learning," in
+                                                                                                                               Proceedings of the 5th Conference on Robot Learning, 2022.
+
