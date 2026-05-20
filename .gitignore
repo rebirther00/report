@@ -6,3 +6,7 @@ mineru-env/
 *.pyc
 __pycache__/
 *.bat
+
+# 4극3특 컨설팅 자료 — OneDrive 동기화로 별도 보관 (git에는 md만 추적)
+13. 4극3특/*.hwpx
+13. 4극3특/*.pptx
