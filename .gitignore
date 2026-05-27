@@ -15,3 +15,10 @@ __pycache__/
 # (11. DT/공고/, 11. DT/생기원제안/ 등 하위 폴더의 추적 중 hwpx는 영향 없음)
 11. DT/*.hwpx
 11. DT/*.pptx
+
+# hwpx 추출 작업 산출물 (검토용 임시 텍스트·이미지)
+11. DT/_*_extract/
+11. DT/_*_extract.txt
+11. DT/_*_extract_clean.txt
+11. DT/_extract_*.py
+_extract_hwpx.py
