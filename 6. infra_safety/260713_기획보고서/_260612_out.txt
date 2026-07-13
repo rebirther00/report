@@ -1,0 +1,8 @@
+
+================================================================================
+### FILE: 260612_보고자료_자율작업 건설기계 기능안전 및 사이버보안 평가기반 구축.hwpx
+================================================================================
+Traceback (most recent call last):
+  File "C:\Users\sharp\AppData\Local/Temp/claude/c--Users-sharp-OneDrive----gitLocal-report/16c6f773-f229-4a07-96ad-92dcd169268c/scratchpad/extract_hwpx.py", line 45, in <module>
+    print(extract(p))
+UnicodeEncodeError: 'cp949' codec can't encode character '\u2027' in position 81: illegal multibyte sequence
